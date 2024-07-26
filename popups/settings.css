@@ -1,0 +1,48 @@
+body {
+    background-color: rgb(12, 16, 28);
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 700;
+    font-size: 1.375rem;
+    line-height: 1.4;
+    margin: 0px;
+}
+
+
+input {
+    height: 2.25rem;
+}
+.form-container {
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    
+}
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+
+}
+.form-container select,
+.form-container input[type="number"],
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgb(24, 28, 40);
+    color: #ffffff;
+}
+.form-container .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.form-container .checkbox-container input {
+    margin-right: 8px;
+}
+.form-container .checkbox-container label {
+    margin: 0;
+}
