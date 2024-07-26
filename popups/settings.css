@@ -9,14 +9,14 @@ body {
     text-decoration: none;
     font-family: Ubuntu, sans-serif;
     font-weight: 700;
-    font-size: 1.375rem;
-    line-height: 1.4;
+    font-size: 1rem;
+    line-height: 1;
     margin: 0px;
 }
 
 
 input {
-    height: 2.25rem;
+    height: 1.5rem;
 }
 
 .form-container {
