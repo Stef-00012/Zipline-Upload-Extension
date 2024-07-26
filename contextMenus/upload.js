@@ -30,40 +30,47 @@ chrome.runtime.onInstalled.addListener((details) => {
     });
 });
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
-    // let application = "com.getsharex.sharex";
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
     switch (info.menuItemId) {
         case "Zipline_Upload_Image":
-            // chrome.runtime.sendNativeMessage(application, {
-            //     Action: "UploadImage",
-            //     URL: info.srcUrl
-            // });
+
+            await uploadToZipline('upload', info.srcUrl)
             break;
         case "Zipline_Upload_Video":
-            // chrome.runtime.sendNativeMessage(application, {
-            //     Action: "UploadVideo",
-            //     URL: info.srcUrl
-            // });
+
+            await uploadToZipline('upload', info.srcUrl)
             break;
         case "Zipline_Upload_Audio":
-            // chrome.runtime.sendNativeMessage(application, {
-            //     Action: "UploadAudio",
-            //     URL: info.srcUrl
-            // });
+
+            await uploadToZipline('upload', info.srcUrl)
             break;
         case "Zipline_Upload_Text":
-            // chrome.runtime.sendNativeMessage(application, {
-            //     Action: "UploadText",
-            //     Text: info.selectionText
-            // });
+
+            await uploadToZipline('text', info.selectionText)
             break;
         case "Zipline_Shorten_URL":
-            // chrome.runtime.sendNativeMessage(application, {
-            //     Action: "ShortenURL",
-            //     URL: info.linkUrl
-            // });
+
+            await uploadToZipline('shorten', info.linkUrl)
             break;
     }
 });
 
+async function uploadToZipline(type, url) {
+    switch (type) {
+        case 'upload': {
+            
+            break;
+        }
+
+        case 'text': {
+
+            break;
+        }
+
+        case 'shorten': {
+
+            break;
+        }
+    }
+}
