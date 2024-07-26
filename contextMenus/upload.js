@@ -74,6 +74,13 @@ async function uploadToZipline(type, url) {
         }
 
         case 'text': {
+            const blob = new Blob(['url'], {
+                type: "text/plain"
+            })
+
+            const file = new File([blob], 'nome.txt', {
+                type: "text/plain"
+            })
 
             break;
         }
