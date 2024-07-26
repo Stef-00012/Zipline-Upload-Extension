@@ -15,7 +15,7 @@
     "storage"
   ],
   "background": {
-    "service_worker": "contextMenus/upload.js"
+    "service_worker": "main.js"
   },
   "action": {
     "default_popup": "popups/settings.html"
