@@ -11,7 +11,8 @@
     "128": "icons/128.png"
   },
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "storage"
   ],
   "background": {
     "service_worker": "contextMenus/upload.js"
