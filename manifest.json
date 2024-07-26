@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Zipline Upload",
+  "version": "1.0.0-dev",
+  "description": "Adds 'Upload to Zipline' button to image, video, audio and text selection context menu.",
+  "author": "Stef",
+  "homepage_url": "https://zipline.diced.sh",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": [
+    "contextMenus"
+  ],
+  "background": {
+    "service_worker": "contextMenus/upload.js"
+  },
+  "actions": {
+    "default_popup": "popups/settings.html"
+  }
+}
