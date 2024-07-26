@@ -93,10 +93,3 @@ async function uploadToZipline(type, url) {
         }
     }
 }
-
-chrome.windows.onCreated.addListener(function(window) {
-    if (window.type === 'popup') {
-      chrome.windows.update(window.id, { width: 400, height: 600 });
-    }
-  });
-  
