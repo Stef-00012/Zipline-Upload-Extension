@@ -30,7 +30,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     });
 });
 
-chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+chrome.contextMenus.onClicked.addListener(async (info) => {
 
     switch (info.menuItemId) {
         case "Zipline_Upload_Image":
@@ -57,6 +57,16 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 });
 
 async function uploadToZipline(type, url) {
+    const { key: ziplineUrl } = await chrome.storage.local.get(['ziplineUrl'])
+    const { key: ziplinToken } = await chrome.storage.local.get(['ziplineToken'])
+    const { key: fileNameFormat } = await chrome.storage.local.get(['ziplineFileNameFormat'])
+    const { key: imageCompression } = await chrome.storage.local.get(['ziplineImageCompression'])
+    const { key: overrideDomain } = await chrome.storage.local.get(['ziplineOverrideDomain'])
+    const { key: zeroWidthSpaces } = await chrome.storage.local.get(['ziplineZeroWidthSpaces'])
+    const { key: noJSON } = await chrome.storage.local.get(['ziplineNoJSON'])
+    const { key: embed } = await chrome.storage.local.get(['ziplineEmbed'])
+    const { key: originalName } = await chrome.storage.local.get(['ziplineOriginalName'])
+
     switch (type) {
         case 'upload': {
             
@@ -69,6 +79,8 @@ async function uploadToZipline(type, url) {
         }
 
         case 'shorten': {
+
+            await fetch()
 
             break;
         }
