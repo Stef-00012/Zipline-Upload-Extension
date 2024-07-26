@@ -52,3 +52,20 @@ input {
 .form-container .checkbox-container label {
     margin: 0;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #192038;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #202b50;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #25325f;
+}
