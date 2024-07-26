@@ -57,6 +57,8 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 });
 
 async function uploadToZipline(type, url) {
+    console.log(type, url)
+    
     const { key: ziplineUrl } = await chrome.storage.local.get(['ziplineUrl'])
     const { key: ziplinToken } = await chrome.storage.local.get(['ziplineToken'])
     const { key: fileNameFormat } = await chrome.storage.local.get(['ziplineFileNameFormat'])
@@ -69,7 +71,20 @@ async function uploadToZipline(type, url) {
 
     switch (type) {
         case 'upload': {
-            
+            const base64Data = url.split(',')[1]
+            const string = atob(base64Data)
+            const bytes = new Uint8Array(len);
+
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+
+            const blob = new Blob([bytes], { type: 'image/png' });
+
+            const file = new File([blob], 'image.png', { type: 'image/png' });
+
+            const formData = new FormData();
+            formData.append('file', file);
             break;
         }
 
@@ -82,6 +97,9 @@ async function uploadToZipline(type, url) {
                 type: "text/plain"
             })
 
+            const formData = new FormData();
+            formData.append('file', file);
+            
             break;
         }
 
