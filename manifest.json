@@ -8,16 +8,24 @@
   "icons": {
     "16": "icons/16.png",
     "48": "icons/48.png",
-    "128": "icons/128.png"
+    "128": "icons/128.png",
+    "512": "icons/512.png"
   },
   "permissions": [
     "contextMenus",
-    "storage"
+    "storage",
+    "notifications"
   ],
   "background": {
     "service_worker": "main.js"
   },
   "action": {
     "default_popup": "popups/settings.html"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["public/*", "icons/*", "*"],
+      "matches": ["*://*/*"]
+    }
+  ]
 }

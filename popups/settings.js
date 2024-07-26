@@ -18,17 +18,17 @@ for (const setting of settings) {
     if (['text', 'number'].includes(element.type) || element.tagName === 'SELECT') {
         element.value = elementData === 'UNSET' ? '' : elementData
     } else {
-        element.checked = elementData === 'yes'
+        element.checked = elementData === 'true'
     }
 
     element.oninput = async (event) => {
         if (['text', 'number'].includes(element.type) || element.tagName === 'SELECT') {
             await chrome.storage.local.set({
-                [element.id]: element.value
+                [element.id]: String(element.value)
             })
         } else {
             await chrome.storage.local.set({
-                [element.id]: element.checked ? 'yes' : 'no'
+                [element.id]: element.checked ? 'true' : 'false'
             })
         }
     }
