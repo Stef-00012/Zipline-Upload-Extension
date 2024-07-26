@@ -1,3 +1,19 @@
+chrome.runtime.onInstalled.addListener(async ({ reason }) => {
+    if (reason === "install") {
+        await chrome.storage.local.set({
+            ziplineUrl: 'UNSET',
+            ziplineToken: 'UNSET',
+            ziplineFileNameFormat: 'RANDOM',
+            ziplineImageCompression: '0',
+            ziplineOverrideDomain: '',
+            ziplineZeroWidthSpaces: 'no',
+            ziplineNoJSON: 'no',
+            ziplineEmbed: 'yes',
+            ziplineOriginalName: 'no'
+        })
+    }
+})
+
 chrome.runtime.onInstalled.addListener((details) => {
     chrome.contextMenus.create({
         "id": "Zipline_Upload_Image",
@@ -59,15 +75,27 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 async function uploadToZipline(type, url) {
     console.log(type, url)
     
-    const { key: ziplineUrl } = await chrome.storage.local.get(['ziplineUrl'])
-    const { key: ziplinToken } = await chrome.storage.local.get(['ziplineToken'])
-    const { key: fileNameFormat } = await chrome.storage.local.get(['ziplineFileNameFormat'])
-    const { key: imageCompression } = await chrome.storage.local.get(['ziplineImageCompression'])
-    const { key: overrideDomain } = await chrome.storage.local.get(['ziplineOverrideDomain'])
-    const { key: zeroWidthSpaces } = await chrome.storage.local.get(['ziplineZeroWidthSpaces'])
-    const { key: noJSON } = await chrome.storage.local.get(['ziplineNoJSON'])
-    const { key: embed } = await chrome.storage.local.get(['ziplineEmbed'])
-    const { key: originalName } = await chrome.storage.local.get(['ziplineOriginalName'])
+    const {
+        ziplineUrl,
+        ziplinToken,
+        ziplineFileNameFormat: fileNameFormat,
+        ziplineImageCompression: imageCompression,
+        ziplineOverrideDomain: overrideDomain,
+        ziplineZeroWidthSpaces: zeroWidthSpaces,
+        ziplineNoJSON: noJSON,
+        ziplineEmbed: embed,
+        ziplineOriginalName: originalName
+    } = await chrome.storage.local.get([
+        'ziplineUrl',
+        'ziplineToken',
+        'ziplineFileNameFormat',
+        'ziplineImageCompression',
+        'ziplineOverrideDomain',
+        'ziplineZeroWidthSpaces',
+        'ziplineNoJSON',
+        'ziplineEmbed',
+        'ziplineOriginalName'
+    ])
 
     switch (type) {
         case 'upload': {

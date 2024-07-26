@@ -9,13 +9,13 @@
   <body>
     <center><h1>Zipline Settings</h1></center>
     <div class="form-container">
-        <label for="domain">Domain</label>
-        <input type="text" id="domain" placeholder="e.g. https://example.com">
-        <label for="Zipline-Token">Zipline Token</label>
-        <input type="text" id="Zipline Token" placeholder="e.g. https://example.com">
+        <label for="ziplineUrl">Domain</label>
+        <input type="text" id="ziplineUrl" placeholder="e.g. https://example.com">
+        <label for="ziplineToken">Zipline Token</label>
+        <input type="text" id="ziplineToken" placeholder="e.g. https://example.com">
 
-        <label for="file-name-format">Select file name format</label>
-        <select id="file-name-format">
+        <label for="ziplineFileNameFormat">Select file name format</label>
+        <select id="ziplineFileNameFormat">
             <option value="RANDOM">Random (alphanumeric)</option>
             <option value="DATE">Date</option>
             <option value="UUID">UUID</option>
@@ -23,32 +23,33 @@
             <option value="GFYCAT">Gfycat</option>
         </select>
 
-        <label for="image-compression">Image Compression</label>
-        <input type="number" id="image-compression" min="0" max="100" value="0">
+        <label for="ziplineImageCompression">Image Compression</label>
+        <input type="number" id="ziplineImageCompression" min="0" max="100" value="0">
 
-        <label for="override-domain">Override Domain</label>
-        <input type="text" id="override-domain" placeholder="e.g. https://example.com">
+        <label for="ziplineOverrideDomain">Override Domain</label>
+        <input type="text" id="ziplineOverrideDomain" placeholder="e.g. https://example.com">
 
         <div class="checkbox-container">
-            <input type="checkbox" id="zero-width-space">
-            <label for="zero-width-space">Zero Width Space</label>
+            <input type="checkbox" id="ziplineZeroWidthSpaces">
+            <label for="ziplineZeroWidthSpaces">Zero Width Space</label>
         </div>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="no-json">
-            <label for="no-json">No JSON</label>
+            <input type="checkbox" id="ziplineNoJSON">
+            <label for="ziplineNoJSON">No JSON</label>
         </div>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="embed" checked>
-            <label for="embed">Embed</label>
+            <input type="checkbox" id="ziplineEmbed" checked>
+            <label for="ziplineEmbed">Embed</label>
         </div>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="original-name">
-            <label for="original-name">Original Name</label>
+            <input type="checkbox" id="ziplineOriginalName">
+            <label for="ziplineOriginalName">Original Name</label>
         </div>
     </div>
-      
+
+    <script src="settings.js" type="module"></script>
   </body>
 </html>
