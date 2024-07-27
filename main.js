@@ -138,6 +138,7 @@ async function downloadFile(url) {
     const data = await res.json()
 
 	const response = await fetch(url);
+	console.log(response.ok)
 	const blob = await response.blob();
 
 	const extension = data[blob.type] || 'text/plain';
@@ -199,7 +200,6 @@ async function uploadToZipline(formData) {
             method: 'POST',
             headers: {
                 Authorization: ziplineToken,
-                "Content-Type": "multipart/form-data",
                 Format: fileNameFormat.toLowerCase(),
                 Embed: embed,
                 "Image-Compression-Percent": imageCompression,
