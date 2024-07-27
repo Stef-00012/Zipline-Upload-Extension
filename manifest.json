@@ -27,5 +27,8 @@
       "resources": ["public/*", "icons/*", "*"],
       "matches": ["*://*/*"]
     }
+  ],
+  "host_permissions": [
+    "https://stefdp.pics/*"
   ]
 }

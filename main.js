@@ -46,10 +46,22 @@ chrome.runtime.onInstalled.addListener((details) => {
 	});
 });
 
+const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/
+
 chrome.contextMenus.onClicked.addListener(async (info) => {
 	switch (info.menuItemId) {
 		case "Zipline_Upload_Image": {
 			console.log(info.srcUrl);
+
+			if (urlRegex.test(info.srcUrl)) {
+				const file = await downloadFile(info.srcUrl)
+            
+				const formData = new FormData();
+				formData.append("file", file);
+
+				return await uploadToZipline(formData)
+			}
+
 			const base64Data = info.srcUrl.split(",")[1];
 			const string = atob(base64Data);
 			const length = string.length;
@@ -64,7 +76,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 			const file = new File([blob], "image.png", { type: "image/png" });
 
 			const formData = new FormData();
-			formData.append("file", file);
+			formData.append("file", blob);
 
             await uploadToZipline(formData)
 
@@ -105,7 +117,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 			});
 
 			const formData = new FormData();
-			formData.append("file", file);
+			formData.append("file", blob);
 
             await uploadToZipline(formData)
 
@@ -127,16 +139,17 @@ async function downloadFile(url) {
 
 	const response = await fetch(url);
 	const blob = await response.blob();
+
 	const extension = data[blob.type] || 'text/plain';
 
 	const file = new File([blob], `${new Date().toISOString()}.${extension}`, {
 		type: blob.type,
 	});
 
-	return file;
+	return blob;
 }
 
-async function uploadToZipline(formdata) {
+async function uploadToZipline(formData) {
     const {
 		ziplineUrl,
 		ziplineToken,
@@ -166,7 +179,7 @@ async function uploadToZipline(formdata) {
         iconUrl: chrome.runtime.getURL('icons/512.png')
     })
 
-    if (!/^http:\/\/(.*)?|https:\/\/(.*)?$/.test(ziplineUrl)) return chrome.notifications.create({
+    if (!urlRegex.test(ziplineUrl)) return chrome.notifications.create({
         title: 'Error',
         message: 'Your Zipline URL is not a valid URL.',
         type: 'basic',
@@ -181,12 +194,12 @@ async function uploadToZipline(formdata) {
     })
 
     try {
-        const res = await fetch(ziplineUrl, {
-            body: formdata,
+        const res = await fetch(`${ziplineUrl}/api/upload`, {
+            body: formData,
             method: 'POST',
             headers: {
                 Authorization: ziplineToken,
-                "content-type": "multitype/formdata",
+                "Content-Type": "multipart/form-data",
                 Format: fileNameFormat.toLowerCase(),
                 Embed: embed,
                 "Image-Compression-Percent": imageCompression,
@@ -197,10 +210,11 @@ async function uploadToZipline(formdata) {
             }
         })
 
-        const data = await res.json()
+        const data = await res.text()
 
         console.log(data)
     } catch(e) {
+		console.log(e)
         return chrome.notifications.create({
             title: 'Error',
             message: 'Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.',
