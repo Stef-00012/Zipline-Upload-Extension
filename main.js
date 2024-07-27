@@ -146,7 +146,6 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 		}
 
 		case "Zipline_Upload_Text": {
-			console.log(info.selectionText);
 			const blob = new Blob([info.selectionText], {
 				type: "text/plain",
 			});
@@ -160,8 +159,8 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 		}
 
 		case "Zipline_Shorten_URL": {
-			console.log(info.linkUrl);
 			await shortenWithZipline(info.linkUrl);
+
 			break;
 		}
 	}
@@ -174,7 +173,6 @@ async function downloadFile(url) {
 	const data = await res.json();
 
 	const response = await fetch(url);
-	console.log(response.ok);
 	const blob = await response.blob();
 
 	const extension = data[blob.type] || "text/plain";
@@ -336,7 +334,7 @@ async function shortenWithZipline(url) {
 
 		if (!res.ok) {
 			const error = await res.json();
-			console.log(error);
+			
 			return chrome.notifications.create({
 				title: "Error",
 				message: `Something went wrong...\nError ${error.code}: ${error.error}.`,
@@ -365,6 +363,7 @@ async function shortenWithZipline(url) {
 		});
 	} catch (e) {
 		console.log(e);
+
 		return chrome.notifications.create({
 			title: "Error",
 			message:

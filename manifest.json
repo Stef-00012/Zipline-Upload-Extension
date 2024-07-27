@@ -14,8 +14,7 @@
   "permissions": [
     "contextMenus",
     "storage",
-    "notifications",
-    "clipboardWrite"
+    "notifications"
   ],
   "background": {
     "service_worker": "main.js"

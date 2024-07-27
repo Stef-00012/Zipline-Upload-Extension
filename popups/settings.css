@@ -32,7 +32,8 @@ input {
 }
 .form-container select,
 .form-container input[type="number"],
-.form-container input[type="text"] {
+.form-container input[type="text"],
+.form-container input[type="password"] {
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
@@ -70,7 +71,7 @@ input {
     background: #25325f;
 }
 
-.button{
+.button {
     padding: 0px 1.125rem;
     appearance: none;
     text-align: left;

@@ -15,14 +15,14 @@ for (const setting of settings) {
 
     const { [element.id]: elementData } = await chrome.storage.local.get([element.id])
 
-    if (['text', 'number'].includes(element.type) || element.tagName === 'SELECT') {
+    if (['text', 'number', 'password'].includes(element.type) || element.tagName === 'SELECT') {
         element.value = elementData === 'UNSET' ? '' : elementData
     } else {
         element.checked = elementData === 'true'
     }
 
     element.oninput = async () => {
-        if (['text', 'number'].includes(element.type) || element.tagName === 'SELECT') {
+        if (['text', 'number', 'password'].includes(element.type) || element.tagName === 'SELECT') {
             await chrome.storage.local.set({
                 [element.id]: String(element.value)
             })
