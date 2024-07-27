@@ -12,5 +12,5 @@ To upload images, video etc. just right click the media and you'll see "Upload .
 
 # Credits
 
-Extension Code: [Stef-00012](https://github.com/Stef-00012)
+Extension Code: [Stef-00012](https://github.com/Stef-00012)<br />
 Popup UI: [Smartlinuxcoder](https://github.com/Smartlinuxcoder)
