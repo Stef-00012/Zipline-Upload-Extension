@@ -21,7 +21,7 @@ for (const setting of settings) {
         element.checked = elementData === 'true'
     }
 
-    element.oninput = async (event) => {
+    element.oninput = async () => {
         if (['text', 'number'].includes(element.type) || element.tagName === 'SELECT') {
             await chrome.storage.local.set({
                 [element.id]: String(element.value)
@@ -32,4 +32,20 @@ for (const setting of settings) {
             })
         }
     }
+}
+
+const grantUploadPermissionButton = document.getElementById('grantUploadPermission')
+const ziplineUrlElement = document.getElementById('ziplineUrl')
+
+grantUploadPermissionButton.onclick = () => {
+    chrome.permissions.request({ origins: [`${ziplineUrlElement.value}/*`] }, async (granted) => {
+		if (!granted) {
+            return chrome.notifications.create({
+                title: 'Error',
+                message: `The extension was not granted the permission to access "${ziplineUrlElement.value}". You won't be able to upload or shorten anything.`,
+                type: 'basic',
+                iconUrl: chrome.runtime.getURL('icons/512.png')
+            })
+        }
+	});
 }

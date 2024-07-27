@@ -14,7 +14,7 @@ chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 	}
 });
 
-chrome.runtime.onInstalled.addListener((details) => {
+chrome.runtime.onInstalled.addListener(() => {
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_Image",
 		title: "Upload Image to Zipline",
@@ -46,20 +46,34 @@ chrome.runtime.onInstalled.addListener((details) => {
 	});
 });
 
-const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/
+const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/;
 
 chrome.contextMenus.onClicked.addListener(async (info) => {
 	switch (info.menuItemId) {
 		case "Zipline_Upload_Image": {
-			console.log(info.srcUrl);
-
 			if (urlRegex.test(info.srcUrl)) {
-				const file = await downloadFile(info.srcUrl)
-            
-				const formData = new FormData();
-				formData.append("file", file);
+				chrome.permissions.request(
+					{ origins: [convertLink(info.srcUrl)] },
+					async (granted) => {
+						if (granted) {
+							const blob = await downloadFile(info.srcUrl);
 
-				return await uploadToZipline(formData)
+							const formData = new FormData();
+							formData.append("file", blob);
+
+							return await uploadToZipline(formData);
+						}
+
+						return chrome.notifications.create({
+							title: "Error",
+							message: "Image upload cancelled, permission to website denied.",
+							type: "basic",
+							iconUrl: chrome.runtime.getURL("icons/512.png"),
+						});
+					},
+				);
+
+				return;
 			}
 
 			const base64Data = info.srcUrl.split(",")[1];
@@ -73,35 +87,60 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 
 			const blob = new Blob([bytes], { type: "image/png" });
 
-			const file = new File([blob], "image.png", { type: "image/png" });
-
 			const formData = new FormData();
 			formData.append("file", blob);
 
-            await uploadToZipline(formData)
+			await uploadToZipline(formData);
 
 			break;
 		}
 
 		case "Zipline_Upload_Video": {
-            const file = await downloadFile(info.srcUrl)
+			chrome.permissions.request(
+				{ origins: [convertLink(info.srcUrl)] },
+				async (granted) => {
+					if (granted) {
+						const blob = await downloadFile(info.srcUrl);
 
-            const formData = new FormData();
-			formData.append("file", file);
+						const formData = new FormData();
+						formData.append("file", blob);
 
-            await uploadToZipline(formData)
+						return await uploadToZipline(formData);
+					}
+
+					return chrome.notifications.create({
+						title: "Error",
+						message: "Video upload cancelled, permission to website denied.",
+						type: "basic",
+						iconUrl: chrome.runtime.getURL("icons/512.png"),
+					});
+				},
+			);
 
 			break;
 		}
 
 		case "Zipline_Upload_Audio": {
-            console.log(info.srcUrl)
-            const file = await downloadFile(info.srcUrl)
-            
-            const formData = new FormData();
-			formData.append("file", file);
+			chrome.permissions.request(
+				{ origins: [convertLink(info.srcUrl)] },
+				async (granted) => {
+					if (granted) {
+						const blob = await downloadFile(info.srcUrl);
 
-            await uploadToZipline(formData)
+						const formData = new FormData();
+						formData.append("file", blob);
+
+						return await uploadToZipline(formData);
+					}
+
+					return chrome.notifications.create({
+						title: "Error",
+						message: "Audio upload cancelled, permission to website denied.",
+						type: "basic",
+						iconUrl: chrome.runtime.getURL("icons/512.png"),
+					});
+				},
+			);
 
 			break;
 		}
@@ -112,46 +151,39 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 				type: "text/plain",
 			});
 
-			const file = new File([blob], new Date().toISOString(), {
-				type: "text/plain",
-			});
-
 			const formData = new FormData();
-			formData.append("file", blob);
+			formData.append("file", blob, `${new Date().toISOString()}.txt`);
 
-            await uploadToZipline(formData)
+			await uploadToZipline(formData);
 
 			break;
 		}
 
 		case "Zipline_Shorten_URL": {
 			console.log(info.linkUrl);
+			await shortenWithZipline(info.linkUrl);
 			break;
 		}
 	}
 });
 
 async function downloadFile(url) {
-    const mimeTypesUrl = chrome.runtime.getURL('./public/mimetypes.json');
+	const mimeTypesUrl = chrome.runtime.getURL("./public/mimetypes.json");
 
-    const res = await fetch(mimeTypesUrl)
-    const data = await res.json()
+	const res = await fetch(mimeTypesUrl);
+	const data = await res.json();
 
 	const response = await fetch(url);
-	console.log(response.ok)
+	console.log(response.ok);
 	const blob = await response.blob();
 
-	const extension = data[blob.type] || 'text/plain';
-
-	const file = new File([blob], `${new Date().toISOString()}.${extension}`, {
-		type: blob.type,
-	});
+	const extension = data[blob.type] || "text/plain";
 
 	return blob;
 }
 
 async function uploadToZipline(formData) {
-    const {
+	const {
 		ziplineUrl,
 		ziplineToken,
 		ziplineFileNameFormat: fileNameFormat,
@@ -173,53 +205,172 @@ async function uploadToZipline(formData) {
 		"ziplineOriginalName",
 	]);
 
-    if (!ziplineUrl || ziplineUrl === "UNSET") return chrome.notifications.create({
-        title: 'Error',
-        message: 'Please set your Zipline URL first.',
-        type: 'basic',
-        iconUrl: chrome.runtime.getURL('icons/512.png')
-    })
+	if (!ziplineUrl || ziplineUrl === "UNSET")
+		return chrome.notifications.create({
+			title: "Error",
+			message: "Please set your Zipline URL first.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
 
-    if (!urlRegex.test(ziplineUrl)) return chrome.notifications.create({
-        title: 'Error',
-        message: 'Your Zipline URL is not a valid URL.',
-        type: 'basic',
-        iconUrl: chrome.runtime.getURL('icons/512.png')
-    })
+	if (!urlRegex.test(ziplineUrl))
+		return chrome.notifications.create({
+			title: "Error",
+			message: "Your Zipline URL is not a valid URL.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
 
-    if (!ziplineToken || ziplineToken === "UNSET") return chrome.notifications.create({
-        title: 'Error',
-        message: 'Please set your Zipline token first.',
-        type: 'basic',
-        iconUrl: chrome.runtime.getURL('icons/512.png')
-    })
+	if (!ziplineToken || ziplineToken === "UNSET")
+		return chrome.notifications.create({
+			title: "Error",
+			message: "Please set your Zipline token first.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
 
-    try {
-        const res = await fetch(`${ziplineUrl}/api/upload`, {
-            body: formData,
-            method: 'POST',
-            headers: {
-                Authorization: ziplineToken,
-                Format: fileNameFormat.toLowerCase(),
-                Embed: embed,
-                "Image-Compression-Percent": imageCompression,
-                'No-JSON': noJSON,
-                'Original-Name': originalName,
-                'Override-Domain': overrideDomain,
-                Zws: zeroWidthSpaces
-            }
-        })
+	try {
+		const res = await fetch(`${ziplineUrl}/api/upload`, {
+			body: formData,
+			method: "POST",
+			headers: {
+				Authorization: ziplineToken,
+				Format: fileNameFormat.toLowerCase(),
+				Embed: embed,
+				"Image-Compression-Percent": imageCompression,
+				"No-JSON": noJSON,
+				"Original-Name": originalName,
+				"Override-Domain": overrideDomain,
+				Zws: zeroWidthSpaces,
+			},
+		});
 
-        const data = await res.text()
+		if (!res.ok) {
+			const error = await res.json();
 
-        console.log(data)
-    } catch(e) {
-		console.log(e)
-        return chrome.notifications.create({
-            title: 'Error',
-            message: 'Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.',
-            type: 'basic',
-            iconUrl: chrome.runtime.getURL('icons/512.png')
-        })
-    }
+			return chrome.notifications.create({
+				title: "Error",
+				message: `Something went wrong...\nError ${error.code}: ${error.error}.`,
+				type: "basic",
+				iconUrl: chrome.runtime.getURL("icons/512.png"),
+			});
+		}
+
+		const data = await res.text();
+
+		if (data) {
+			return chrome.notifications.create({
+				title: "Success",
+				message: `The file has been upload as ${data}.`,
+				type: "basic",
+				iconUrl: chrome.runtime.getURL("icons/512.png"),
+			});
+		}
+
+		return chrome.notifications.create({
+			title: "Error",
+			message:
+				"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
+	} catch (e) {
+		console.log(e);
+		return chrome.notifications.create({
+			title: "Error",
+			message:
+				"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
+	}
+}
+
+function convertLink(url) {
+	const urlObj = new URL(url);
+	return `${urlObj.protocol}//${urlObj.host}/*`;
+}
+
+async function shortenWithZipline(url) {
+	const { ziplineUrl, ziplineToken } = await chrome.storage.local.get([
+		"ziplineUrl",
+		"ziplineToken",
+	]);
+
+	if (!ziplineUrl || ziplineUrl === "UNSET")
+		return chrome.notifications.create({
+			title: "Error",
+			message: "Please set your Zipline URL first.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
+
+	if (!urlRegex.test(ziplineUrl))
+		return chrome.notifications.create({
+			title: "Error",
+			message: "Your Zipline URL is not a valid URL.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
+
+	if (!ziplineToken || ziplineToken === "UNSET")
+		return chrome.notifications.create({
+			title: "Error",
+			message: "Please set your Zipline token first.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
+
+	try {
+		const res = await fetch(`${ziplineUrl}/api/shorten`, {
+			body: JSON.stringify({
+				url: url,
+				vanity: null,
+			}),
+			method: "POST",
+			headers: {
+				Authorization: ziplineToken,
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (!res.ok) {
+			const error = await res.json();
+			console.log(error);
+			return chrome.notifications.create({
+				title: "Error",
+				message: `Something went wrong...\nError ${error.code}: ${error.error}.`,
+				type: "basic",
+				iconUrl: chrome.runtime.getURL("icons/512.png"),
+			});
+		}
+
+		const data = await res.json();
+
+		if (data) {
+			return chrome.notifications.create({
+				title: "Success",
+				message: `The link has been shortened as ${data.url}.`,
+				type: "basic",
+				iconUrl: chrome.runtime.getURL("icons/512.png"),
+			});
+		}
+
+		return chrome.notifications.create({
+			title: "Error",
+			message:
+				"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
+	} catch (e) {
+		console.log(e);
+		return chrome.notifications.create({
+			title: "Error",
+			message:
+				"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
+	}
 }

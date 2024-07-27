@@ -14,7 +14,8 @@
   "permissions": [
     "contextMenus",
     "storage",
-    "notifications"
+    "notifications",
+    "clipboardWrite"
   ],
   "background": {
     "service_worker": "main.js"
@@ -28,7 +29,8 @@
       "matches": ["*://*/*"]
     }
   ],
-  "host_permissions": [
-    "https://stefdp.pics/*"
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://*/*"
   ]
 }
