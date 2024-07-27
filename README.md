@@ -17,7 +17,9 @@ Popup UI: [Smartlinuxcoder](https://github.com/Smartlinuxcoder)
 
 <details>
   <summary>Some Images</summary>
-  
+
+  ![image](https://github.com/user-attachments/assets/34f98fce-7d74-4d78-8f36-d45469a9c21d)
+  ![image](https://github.com/user-attachments/assets/8b76def5-7911-4ec5-9508-d7f0910bd5e7)
   ![image](https://github.com/user-attachments/assets/2a4e937e-bdc9-423a-a468-c2757a32c15f)
   ![image](https://github.com/user-attachments/assets/4db3e81e-2b22-467a-a72d-24e7f899b6b8)
   ![image](https://github.com/user-attachments/assets/dedb9987-a25b-49e2-99bc-5d6bac67c8f1)
