@@ -17,6 +17,13 @@ urlElement.value = shortenUrl
 const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/;
 
 document.getElementById('shorten').onclick = async () => {
+	if (!urlElement.value ||!urlRegex.test(urlElement.value)) return chrome.notifications.create({
+		title: "Success",
+		message: `Invalid URL "${urlElement.value || 'none'}".`,
+		type: "basic",
+		iconUrl: chrome.runtime.getURL("icons/512.png"),
+	});
+
     await shortenWithZipline(urlElement.value, vanityElement.value || null)
 
 	await chrome.storage.local.remove(['shortenUrl'])
