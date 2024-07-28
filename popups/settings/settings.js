@@ -1,8 +1,11 @@
 const settings = [
     'ziplineUrl',
     'ziplineToken',
-    'ziplineFileNameFormat',
+    'ziplineImageMaxViews',
+    'ziplineImageExpires',
     'ziplineImageCompression',
+    'ziplineFileNameFormat',
+    'ziplinePassword',
     'ziplineOverrideDomain',
     'ziplineZeroWidthSpaces',
     'ziplineNoJSON',
