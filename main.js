@@ -46,7 +46,7 @@ chrome.runtime.onInstalled.addListener(() => {
 	});
 
 	chrome.contextMenus.create({
-		id: "Advanced Zipline_Shorten_URL",
+		id: "Advanced_Zipline_Shorten_URL",
 		title: "Shorten URL with Zipline (Advanced Options)",
 		contexts: ["link"],
 	});
