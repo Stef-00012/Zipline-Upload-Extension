@@ -3,8 +3,11 @@ chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 		await chrome.storage.local.set({
 			ziplineUrl: "UNSET",
 			ziplineToken: "UNSET",
-			ziplineFileNameFormat: "random",
+			ziplineImageMaxViews: '',
+			ziplineImageExpires: 'never',
 			ziplineImageCompression: "0",
+			ziplineFileNameFormat: "random",
+			ziplinePassword: '',
 			ziplineOverrideDomain: "",
 			ziplineZeroWidthSpaces: "no",
 			ziplineNoJSON: "no",
