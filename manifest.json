@@ -14,8 +14,7 @@
   "permissions": [
     "contextMenus",
     "storage",
-    "notifications",
-    "offscreen"
+    "notifications"
   ],
   "background": {
     "service_worker": "main.js"
