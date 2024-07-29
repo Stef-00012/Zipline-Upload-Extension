@@ -304,12 +304,14 @@ async function uploadToZipline(formData) {
 		const data = await res.text();
 
 		if (data) {
-			return chrome.notifications.create({
+			chrome.notifications.create({
 				title: "Success",
 				message: `The file has been upload as ${data}.`,
 				type: "basic",
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});
+
+			return data;
 		}
 
 		return chrome.notifications.create({
@@ -393,12 +395,14 @@ async function shortenWithZipline(url) {
 		const data = await res.json();
 
 		if (data) {
-			return chrome.notifications.create({
+			chrome.notifications.create({
 				title: "Success",
 				message: `The link has been shortened as ${data.url}.`,
 				type: "basic",
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});
+
+			return data.url;
 		}
 
 		return chrome.notifications.create({

@@ -88,12 +88,14 @@ async function shortenWithZipline(url, vanity) {
 		const data = await res.json();
 
 		if (data) {
-			return chrome.notifications.create({
+			chrome.notifications.create({
 				title: "Success",
 				message: `The link has been shortened as ${data.url}.`,
 				type: "basic",
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});
+
+			return data.url;
 		}
 
 		return chrome.notifications.create({
