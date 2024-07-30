@@ -35,7 +35,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_Audio",
-		title: "Upload Audio to Ziline",
+		title: "Upload Audio to Zipline",
 		contexts: ["audio"],
 	});
 
