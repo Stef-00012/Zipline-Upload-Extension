@@ -7,10 +7,14 @@ const settings = [
     'ziplineFileNameFormat',
     'ziplinePassword',
     'ziplineOverrideDomain',
+    'ziplineMaxUploadSize',
+    'ziplineChunkSize',
     'ziplineZeroWidthSpaces',
     'ziplineNoJSON',
     'ziplineEmbed',
-    'ziplineOriginalName'
+    'ziplineOriginalName',
+    'ziplineAllowChunkedUploads',
+    'ziplineEnableExperimentalFeatures'
 ]
 
 for (const setting of settings) {
@@ -33,6 +37,20 @@ for (const setting of settings) {
             await chrome.storage.local.set({
                 [element.id]: element.checked ? 'true' : 'false'
             })
+
+            try {
+                if (element.id === "ziplineEnableExperimentalFeatures" && element.checked) {
+                    chrome.contextMenus.create({
+                        id: "Zipline_Upload_URL",
+                        title: "Upload URL with Zipliine [Experimental]",
+                        contexts: ["link"],
+                    });
+                } else {
+                    chrome.contextMenus.remove("Zipline_Upload_URL")
+                }
+            } catch(e) {
+                console.log('unable to toogle experimental context menu options')
+            }
         }
     }
 }

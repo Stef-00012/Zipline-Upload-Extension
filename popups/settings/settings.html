@@ -68,6 +68,12 @@
         <label for="ziplineOverrideDomain">Override Domain</label>
         <input type="text" id="ziplineOverrideDomain" placeholder="e.g. https://example.com">
 
+        <label for="ziplineMaxUploadSize">Max Upload Size (MB)</label>
+        <input type="number" min="1" id="ziplineMaxUploadSize" placeholder="e.g. 100">
+        
+        <label for="ziplineChunkSize">Chunk Size (MB)</label>
+        <input type="number" min="1" id="ziplineChunkSize" placeholder="e.g. 100">
+
         <div class="checkbox-container">
             <input type="checkbox" id="ziplineZeroWidthSpaces">
             <label for="ziplineZeroWidthSpaces">Zero Width Space</label>
@@ -87,6 +93,17 @@
             <input type="checkbox" id="ziplineOriginalName">
             <label for="ziplineOriginalName">Original Name</label>
         </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="ziplineAllowChunkedUploads">
+          <label for="ziplineAllowChunkedUploads">Allow Chunked Uploads</label>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="ziplineEnableExperimentalFeatures">
+          <label for="ziplineEnableExperimentalFeatures">Enable Experimental Features (URL File Upload)</label>
+        </div>
+
         <button id="grantUploadPermission" class="button">Grant Upload Permission</button>
     </div>
 

@@ -10,6 +10,8 @@ Once installed go to the extensions menu (top left puzzle icon) and press on zip
 
 To upload images, video etc. just right click the media and you'll see "Upload ... to Zipline" or "Shorten URL with Zipline"
 
+(if the image is above 95mb you must allow chunked uploads to downlaod it)
+
 # Credits
 
 Extension Code: [Stef-00012](https://github.com/Stef-00012)<br />

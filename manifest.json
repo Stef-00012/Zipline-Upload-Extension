@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Zipline Upload",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Adds 'Upload to Zipline' button to image, video, audio and text selection context menu.",
   "author": "Stef",
   "homepage_url": "https://zipline.diced.sh",

@@ -3,21 +3,24 @@ chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 		await chrome.storage.local.set({
 			ziplineUrl: "UNSET",
 			ziplineToken: "UNSET",
-			ziplineImageMaxViews: '',
-			ziplineImageExpires: 'never',
+			ziplineImageMaxViews: "",
+			ziplineImageExpires: "never",
 			ziplineImageCompression: "0",
 			ziplineFileNameFormat: "random",
-			ziplinePassword: '',
+			ziplinePassword: "",
 			ziplineOverrideDomain: "",
-			ziplineZeroWidthSpaces: "no",
-			ziplineNoJSON: "no",
-			ziplineEmbed: "yes",
-			ziplineOriginalName: "no",
+			ziplineMaxUploadSize: "100",
+			ziplineZeroWidthSpaces: "false",
+			ziplineNoJSON: "false",
+			ziplineEmbed: "true",
+			ziplineOriginalName: "false",
+			ziplineAllowChunkedUploads: "false",
+			ziplineEnableExperimentalFeatures: "false"
 		});
 	}
 });
 
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener(async () => {
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_Image",
 		title: "Upload Image to Zipline",
@@ -53,6 +56,16 @@ chrome.runtime.onInstalled.addListener(() => {
 		title: "Shorten URL with Zipline (Advanced Options)",
 		contexts: ["link"],
 	});
+
+	const { ziplineEnableExperimentalFeatures: experimentalFeatures } = await chrome.storage.local.get(['ziplineEnableExperimentalFeatures'])
+
+	if (experimentalFeatures === "false") return;
+	
+	chrome.contextMenus.create({
+		id: "Zipline_Upload_URL",
+		title: "Upload URL with Zipliine [Experimental]",
+		contexts: ["link"],
+	});
 });
 
 const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/;
@@ -61,76 +74,120 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 	switch (info.menuItemId) {
 		case "Zipline_Upload_Image": {
 			if (!urlRegex.test(info.srcUrl)) {
-				const formData = await convertToFormData(info.srcUrl)
-			
-				return await uploadToZipline(formData);
+				const blob = await convertToBlob(info.srcUrl);
+
+				if (!blob) return await chrome.notifications.create({
+					title: "Error",
+					message: "Unable to fetch the image, unknown protocol.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+
+				return await uploadToZipline(blob);
 			}
 
 			const granted = await chrome.permissions.request({
-				origins: [convertLink(info.srcUrl)]
-			})
+				origins: [convertLink(info.srcUrl)],
+			});
 
+			if (!granted)
+				return await chrome.notifications.create({
+					title: "Error",
+					message: "Image upload cancelled, permission to website denied.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
 
-			if (!granted) return chrome.notifications.create({
+			const blob = await convertToBlob(info.srcUrl);
+
+			if (!blob) return await chrome.notifications.create({
 				title: "Error",
-				message: "Image upload cancelled, permission to website denied.",
+				message: "Unable to fetch the image, unknown protocol.",
 				type: "basic",
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});
 
-			const formData = await convertToFormData(info.srcUrl)
-			
-			await uploadToZipline(formData);
+			await uploadToZipline(blob);
 
 			break;
 		}
 
 		case "Zipline_Upload_Video": {
 			if (!urlRegex.test(info.srcUrl)) {
-				const formData = await convertToFormData(info.srcUrl)
-			
-				return await uploadToZipline(formData);
-			}
-			
-			const granted = await chrome.permissions.request({
-				origins: [convertLink(info.srcUrl)]
-			})
+				const blob = await convertToBlob(info.srcUrl);
 
-			if (!granted) return chrome.notifications.create({
+				if (!blob) return await chrome.notifications.create({
+					title: "Error",
+					message: "Unable to fetch the image, unknown protocol.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+
+				return await uploadToZipline(blob);
+			}
+
+			const granted = await chrome.permissions.request({
+				origins: [convertLink(info.srcUrl)],
+			});
+
+			if (!granted)
+				return await chrome.notifications.create({
+					title: "Error",
+					message: "Video upload cancelled, permission to website denied.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+
+			const blob = await convertToBlob(info.srcUrl);
+			
+			if (!blob) return await chrome.notifications.create({
 				title: "Error",
-				message: "Video upload cancelled, permission to website denied.",
+				message: "Unable to fetch the image, unknown protocol.",
 				type: "basic",
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});
 
-			const formData = await convertToFormData(info.srcUrl)
-			
-			await uploadToZipline(formData);
+			await uploadToZipline(blob);
 
 			break;
 		}
 
 		case "Zipline_Upload_Audio": {
 			if (!urlRegex.test(info.srcUrl)) {
-				const formData = await convertToFormData(info.srcUrl)
-			
-				return await uploadToZipline(formData);
+				const blob = await convertToBlob(info.srcUrl);
+
+				if (!blob) return await chrome.notifications.create({
+					title: "Error",
+					message: "Unable to fetch the image, unknown protocol.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+
+				return await uploadToZipline(blob);
 			}
 
 			const granted = await chrome.permissions.request({
-				origins: [convertLink(info.srcUrl)]
-			})
+				origins: [convertLink(info.srcUrl)],
+			});
 
-			if (!granted) return chrome.notifications.create({
+			if (!granted)
+				return await chrome.notifications.create({
+					title: "Error",
+					message: "Audio upload cancelled, permission to website denied.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+
+			const blob = await convertToBlob(info.srcUrl);
+
+			if (!blob) return await chrome.notifications.create({
 				title: "Error",
-				message: "Audio upload cancelled, permission to website denied.",
+				message: "Unable to fetch the image, unknown protocol.",
 				type: "basic",
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});
 
-			const formData = await convertToFormData(info.srcUrl)
-			
-			await uploadToZipline(formData);
+			await uploadToZipline(blob);
 
 			break;
 		}
@@ -140,10 +197,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 				type: "text/plain",
 			});
 
-			const formData = new FormData();
-			formData.append("file", blob, `${new Date().toISOString()}.txt`);
-
-			await uploadToZipline(formData);
+			await uploadToZipline(blob);
 
 			break;
 		}
@@ -156,29 +210,81 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 
 		case "Advanced_Zipline_Shorten_URL": {
 			await chrome.storage.local.set({
-				shortenUrl: info.linkUrl
-			})
+				shortenUrl: info.linkUrl,
+			});
 
 			await chrome.action.setPopup({
-				popup: 'popups/shorten/shorten.html'
-			})
+				popup: "popups/shorten/shorten.html",
+			});
 
-			await chrome.action.openPopup()
+			await chrome.action.openPopup();
 
 			break;
+		}
+
+		case "Zipline_Upload_URL": {
+			try {
+				if (!urlRegex.test(info.linkUrl)) {
+					const blob = await convertToBlob(info.linkUrl);
+	
+					if (!blob) return await chrome.notifications.create({
+						title: "Error",
+						message: "Unable to fetch the URL, unknown protocol.",
+						type: "basic",
+						iconUrl: chrome.runtime.getURL("icons/512.png"),
+					});
+	
+					return await uploadToZipline(blob);
+				}
+	
+				const granted = await chrome.permissions.request({
+					origins: [convertLink(info.linkUrl)],
+				});
+	
+				if (!granted)
+					return await chrome.notifications.create({
+						title: "Error",
+						message: "URL upload cancelled, permission to website denied.",
+						type: "basic",
+						iconUrl: chrome.runtime.getURL("icons/512.png"),
+					});
+	
+				const blob = await convertToBlob(info.linkUrl);
+	
+				if (!blob) return await chrome.notifications.create({
+					title: "Error",
+					message: "Unable to fetch the URL, unknown protocol.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+	
+				await uploadToZipline(blob);
+	
+				break;
+			} catch(e) {
+				console.log(e)
+				return await chrome.notifications.create({
+					title: "Error",
+					message:
+						"Something went wrong [Experimental Feature]...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+			}
 		}
 	}
 });
 
 async function downloadFile(url) {
-
 	const response = await fetch(url);
 	const blob = await response.blob();
 
 	return blob;
 }
 
-async function uploadToZipline(formData) {
+async function uploadToZipline(blob, text = false) {
+	console.log('Uploading file...')
+
 	let {
 		ziplineUrl,
 		ziplineToken,
@@ -188,29 +294,35 @@ async function uploadToZipline(formData) {
 		ziplineFileNameFormat: fileNameFormat,
 		ziplinePassword: password,
 		ziplineOverrideDomain: overrideDomain,
+		ziplineMaxUploadSize: maxUploadSize,
+		ziplineChunkSize: chunkSize,
 		ziplineZeroWidthSpaces: zeroWidthSpaces,
 		ziplineNoJSON: noJSON,
 		ziplineEmbed: embed,
 		ziplineOriginalName: originalName,
+		ziplineAllowChunkedUploads: allowChunkedUploads,
 	} = await chrome.storage.local.get([
-		'ziplineUrl',
-		'ziplineToken',
-		'ziplineImageMaxViews',
-		'ziplineImageExpires',
-		'ziplineImageCompression',
-		'ziplineFileNameFormat',
-		'ziplinePassword',
-		'ziplineOverrideDomain',
-		'ziplineZeroWidthSpaces',
-		'ziplineNoJSON',
-		'ziplineEmbed',
-		'ziplineOriginalName'
+		"ziplineUrl",
+		"ziplineToken",
+		"ziplineImageMaxViews",
+		"ziplineImageExpires",
+		"ziplineImageCompression",
+		"ziplineFileNameFormat",
+		"ziplinePassword",
+		"ziplineOverrideDomain",
+		"ziplineMaxUploadSize",
+		"ziplineChunkSize",
+		"ziplineZeroWidthSpaces",
+		"ziplineNoJSON",
+		"ziplineEmbed",
+		"ziplineOriginalName",
+		"ziplineAllowChunkedUploads",
 	]);
 
-	if (overrideDomain) overrideDomain = overrideDomain.split('/')[2]
+	if (overrideDomain) overrideDomain = overrideDomain.split("/")[2];
 
 	if (!ziplineUrl || ziplineUrl === "UNSET")
-		return chrome.notifications.create({
+		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline URL first.",
 			type: "basic",
@@ -218,7 +330,7 @@ async function uploadToZipline(formData) {
 		});
 
 	if (!urlRegex.test(ziplineUrl))
-		return chrome.notifications.create({
+		return await chrome.notifications.create({
 			title: "Error",
 			message: "Your Zipline URL is not a valid URL.",
 			type: "basic",
@@ -226,7 +338,7 @@ async function uploadToZipline(formData) {
 		});
 
 	if (!ziplineToken || ziplineToken === "UNSET")
-		return chrome.notifications.create({
+		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
 			type: "basic",
@@ -243,93 +355,197 @@ async function uploadToZipline(formData) {
 		"Override-Domain": overrideDomain,
 		Zws: zeroWidthSpaces,
 		Password: password,
-		'Max-Views': maxViews,
-	}
+		"Max-Views": maxViews,
+	};
 
 	if (expires !== "never") {
 		const legend = {
-			'5m': 5 * 60 * 1000,
-			'10m': 10 * 60 * 1000,
-			'15m': 15 * 60 * 1000,
-			'30m': 30 * 60 * 1000,
-			'1h': 1 * 60 * 60 * 1000,
-			'2h': 2 * 60 * 60 * 1000,
-			'3h': 3 * 60 * 60 * 1000,
-			'4h': 4 * 60 * 60 * 1000,
-			'5h': 5 * 60 * 60 * 1000,
-			'6h': 6 * 60 * 60 * 1000,
-			'8h': 8 * 60 * 60 * 1000,
-			'12h': 12 * 60 * 60 * 1000,
-			'1d': 1 * 24 * 60 * 60 * 1000,
-			'3d': 3 * 24 * 60 * 60 * 1000,
-			'5d': 5 * 24 * 60 * 60 * 1000,
-			'7d': 7 * 24 * 60 * 60 * 1000,
-			'1w': 1 * 7 * 24 * 60 * 60 * 1000,
-			'1.5w': 1.5 * 7 * 24 * 60 * 60 * 1000,
-			'2w': 2 * 7 * 24 * 60 * 60 * 1000,
-			'3w': 3 * 7 * 24 * 60 * 60 * 1000,
-			'1M': 1 * 30.44 * 24 * 60 * 60 * 1000, // 30.44 is the average days in 1 month
-			'2M': 2 * 30.44 * 24 * 60 * 60 * 1000,
-			'3M': 3 * 30.44 * 24 * 60 * 60 * 1000,
-			'6M': 6 * 30.44 * 24 * 60 * 60 * 1000,
-			'8M': 8 * 30.44 * 24 * 60 * 60 * 1000,
-			'1y': 365 * 24 * 60 * 60 * 1000
-		}
+			"5m": 5 * 60 * 1000,
+			"10m": 10 * 60 * 1000,
+			"15m": 15 * 60 * 1000,
+			"30m": 30 * 60 * 1000,
+			"1h": 1 * 60 * 60 * 1000,
+			"2h": 2 * 60 * 60 * 1000,
+			"3h": 3 * 60 * 60 * 1000,
+			"4h": 4 * 60 * 60 * 1000,
+			"5h": 5 * 60 * 60 * 1000,
+			"6h": 6 * 60 * 60 * 1000,
+			"8h": 8 * 60 * 60 * 1000,
+			"12h": 12 * 60 * 60 * 1000,
+			"1d": 1 * 24 * 60 * 60 * 1000,
+			"3d": 3 * 24 * 60 * 60 * 1000,
+			"5d": 5 * 24 * 60 * 60 * 1000,
+			"7d": 7 * 24 * 60 * 60 * 1000,
+			"1w": 1 * 7 * 24 * 60 * 60 * 1000,
+			"1.5w": 1.5 * 7 * 24 * 60 * 60 * 1000,
+			"2w": 2 * 7 * 24 * 60 * 60 * 1000,
+			"3w": 3 * 7 * 24 * 60 * 60 * 1000,
+			"1M": 1 * 30.44 * 24 * 60 * 60 * 1000, // 30.44 is the average days in 1 month
+			"2M": 2 * 30.44 * 24 * 60 * 60 * 1000,
+			"3M": 3 * 30.44 * 24 * 60 * 60 * 1000,
+			"6M": 6 * 30.44 * 24 * 60 * 60 * 1000,
+			"8M": 8 * 30.44 * 24 * 60 * 60 * 1000,
+			"1y": 365 * 24 * 60 * 60 * 1000,
+		};
 
-		console.log(expires, legend[expires], Date.now() + legend[expires])
+		const expiresDate = new Date(Date.now() + legend[expires]).toISOString();
 
-		const expiresDate = new Date(Date.now() + legend[expires]).toISOString()
-
-		headers['Expires-At'] = `date=${expiresDate}`
+		headers["Expires-At"] = `date=${expiresDate}`;
 	}
-	
-	try {
-		const res = await fetch(`${ziplineUrl}/api/upload`, {
-			body: formData,
-			method: "POST",
-			headers,
+
+	if (blob.size > maxUploadSize * 1024 * 1024)
+		return await chrome.notifications.create({
+			title: "Error",
+			message: "This file is too big, it exceeds the max upload size you set.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-		if (!res.ok) {
-			const error = await res.json();
+	if (blob.size > 95 * 1024 * 1024 && allowChunkedUploads === "false")
+		return await chrome.notifications.create({
+			title: "Error",
+			message:
+				"This file is too big, you must allow chnked uploads to upload this file.",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
 
-			return chrome.notifications.create({
+	if (blob.size < 95 * 1024 * 1024) {
+		const filename = `${new Date().toISOString()}.${await guessMimetype(blob.type) || 'png'}`
+
+		console.log(`Starting normal upload\nFile Size: ${Math.floor(blob.size / 1024 / 1024)}mb\nFile Mimetype: ${blob.type}\nUploaded File Name: ${filename}`)
+
+		const formData = new FormData();
+
+		if (text) formData.append("file", blob, `${new Date().toISOString()}.txt`);
+		else formData.append("file", blob, filename);
+
+		try {
+			const res = await fetch(`${ziplineUrl}/api/upload`, {
+				body: formData,
+				method: "POST",
+				headers,
+			});
+
+			if (!res.ok) {
+				const error = await res.json();
+
+				return await chrome.notifications.create({
+					title: "Error",
+					message: `Something went wrong...\nError ${error.code}: ${error.error}.`,
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+			}
+
+			const data = await res.text();
+
+			if (data) {
+				await chrome.notifications.create({
+					title: "Success",
+					message: `The file has been upload as ${data}.`,
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+
+				return data;
+			}
+
+			return await chrome.notifications.create({
 				title: "Error",
-				message: `Something went wrong...\nError ${error.code}: ${error.error}.`,
+				message:
+					"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
+				type: "basic",
+				iconUrl: chrome.runtime.getURL("icons/512.png"),
+			});
+		} catch (e) {
+			console.log(e);
+			return await chrome.notifications.create({
+				title: "Error",
+				message:
+					"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
 				type: "basic",
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});
 		}
+	} else {
+		const numberOfChunks = Math.ceil(blob.size / (chunkSize * 1024 * 1024));
 
-		const data = await res.text();
+		const identifier = generateRandomString();
+		const filename = `${new Date().toISOString()}.${await guessMimetype(blob.type) || 'png'}`;
 
-		if (data) {
-			chrome.notifications.create({
-				title: "Success",
-				message: `The file has been upload as ${data}.`,
-				type: "basic",
-				iconUrl: chrome.runtime.getURL("icons/512.png"),
+		console.log(`Starting chunked upload\nFile Size: ${Math.floor(blob.size / 1024 / 1024)}mb\nFile Mimetype: ${blob.type}\nNumber of Chunks: ${numberOfChunks}\nChunk Size: ${chunkSize}mb\nIdentifier: ${identifier}\nUploaded File Name: ${filename}`)
+
+		for (let i = numberOfChunks - 1; i >= 0; i--) {
+			console.log(`Starting upload chunk ${i}`)
+			const start = i * (chunkSize * 1024 * 1024);
+			const end = Math.min(start + (chunkSize * 1024 * 1024), blob.size);
+
+			const chunk = blob.slice(start, end);
+			const formData = new FormData();
+
+			formData.append("file", chunk, {
+				filename,
+				contentType: blob.type,
+				knownLength: end - start,
 			});
 
-			return data;
-		}
+			headers["Content-Range"] = `bytes ${start}-${end - 1}/${blob.size}`;
+				
+			headers["X-Zipline-Partial-Filename"] = filename;
+			headers["X-Zipline-Partial-Lastchunk"] = i === 0 ? "true" : "false";
+			headers["X-Zipline-Partial-Identifier"] = identifier;
+			headers["X-Zipline-Partial-Mimetype"] = blob.type;
 
-		return chrome.notifications.create({
-			title: "Error",
-			message:
-				"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
-			type: "basic",
-			iconUrl: chrome.runtime.getURL("icons/512.png"),
-		});
-	} catch (e) {
-		console.log(e);
-		return chrome.notifications.create({
-			title: "Error",
-			message:
-				"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
-			type: "basic",
-			iconUrl: chrome.runtime.getURL("icons/512.png"),
-		});
+			try {
+				console.log(`Identifier: ${identifier}\nFile name: ${filename}\nHeaders:`, headers)
+
+				const response = await fetch(`${ziplineUrl}/api/upload`, {
+					method: "POST",
+					body: formData,
+					headers,
+				});
+
+				console.log('before "response.ok"')
+
+				if (!response.ok) {
+					const error = await response.json();
+
+					return await chrome.notifications.create({
+						title: "Error",
+						message: `Something went wrong...\nError ${error.code}: ${error.error}.`,
+						type: "basic",
+						iconUrl: chrome.runtime.getURL("icons/512.png"),
+					});
+				}
+
+				console.log('before "const data"')
+
+				const data = await response.json();
+
+				if (data.files) {
+					await chrome.notifications.create({
+						title: "Success",
+						message: `The file has been upload as ${data.files}.`,
+						type: "basic",
+						iconUrl: chrome.runtime.getURL("icons/512.png"),
+					});
+
+					return data.files;
+				}
+
+				console.log(`Successfully uploaded the chunk ${i}`)
+			} catch (e) {
+				console.log(e);
+				return await chrome.notifications.create({
+					title: "Error",
+					message:
+						"Something went wrong [Chunked Upload]...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
+					type: "basic",
+					iconUrl: chrome.runtime.getURL("icons/512.png"),
+				});
+			}
+		}
 	}
 }
 
@@ -345,7 +561,7 @@ async function shortenWithZipline(url) {
 	]);
 
 	if (!ziplineUrl || ziplineUrl === "UNSET")
-		return chrome.notifications.create({
+		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline URL first.",
 			type: "basic",
@@ -353,7 +569,7 @@ async function shortenWithZipline(url) {
 		});
 
 	if (!urlRegex.test(ziplineUrl))
-		return chrome.notifications.create({
+		return await chrome.notifications.create({
 			title: "Error",
 			message: "Your Zipline URL is not a valid URL.",
 			type: "basic",
@@ -361,7 +577,7 @@ async function shortenWithZipline(url) {
 		});
 
 	if (!ziplineToken || ziplineToken === "UNSET")
-		return chrome.notifications.create({
+		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
 			type: "basic",
@@ -383,8 +599,8 @@ async function shortenWithZipline(url) {
 
 		if (!res.ok) {
 			const error = await res.json();
-			
-			return chrome.notifications.create({
+
+			return await chrome.notifications.create({
 				title: "Error",
 				message: `Something went wrong...\nError ${error.code}: ${error.error}.`,
 				type: "basic",
@@ -395,7 +611,7 @@ async function shortenWithZipline(url) {
 		const data = await res.json();
 
 		if (data) {
-			chrome.notifications.create({
+			await chrome.notifications.create({
 				title: "Success",
 				message: `The link has been shortened as ${data.url}.`,
 				type: "basic",
@@ -405,7 +621,7 @@ async function shortenWithZipline(url) {
 			return data.url;
 		}
 
-		return chrome.notifications.create({
+		return await chrome.notifications.create({
 			title: "Error",
 			message:
 				"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
@@ -415,7 +631,7 @@ async function shortenWithZipline(url) {
 	} catch (e) {
 		console.log(e);
 
-		return chrome.notifications.create({
+		return await chrome.notifications.create({
 			title: "Error",
 			message:
 				"Something went wrong...\nPlease report this issue at https://github.com/Stef-00012/Zipline-Upload-Extension/issues.",
@@ -425,17 +641,25 @@ async function shortenWithZipline(url) {
 	}
 }
 
-async function convertToFormData(data) {
+async function convertToBlob(data) {
+	if (
+		!data.startsWith('http://') &&
+		!data.startsWith('https://') &&
+		!data.startsWith('data:')
+	) return null;
+
 	if (urlRegex.test(data)) {
+		console.log('Fetching file...')
+
 		const blob = await downloadFile(data);
 
-		const formData = new FormData();
-		formData.append("file", blob);
-
-		return formData;
+		return blob;
 	}
 
+	console.log('Decoding base64 file...')
+	
 	const base64Data = data.split(",")[1];
+	const mimetype = data.split(":")[1].split(";")[0];
 	const string = atob(base64Data);
 	const length = string.length;
 	const bytes = new Uint8Array(length);
@@ -444,10 +668,25 @@ async function convertToFormData(data) {
 		bytes[i] = string.charCodeAt(i);
 	}
 
-	const blob = new Blob([bytes], { type: "image/png" });
+	const blob = new Blob([bytes], { type: mimetype || "image/png" });
 
-	const formData = new FormData();
-	formData.append("file", blob);
+	return blob;
+}
 
-	return formData;
+function generateRandomString() {
+	return Math.random().toString(36).substring(2, 6);
+}
+
+async function guessMimetype(mimetype) {
+	if (!mimetype) return "xmp";
+
+	const mimetypesRes = await fetch(
+		chrome.runtime.getURL("public/mimetypes.json"),
+	);
+	const mimetypes = await mimetypesRes.json();
+
+	const mime = mimetypes[mimetype]
+	if (!mime) return "xmp";
+
+	return mime;
 }
