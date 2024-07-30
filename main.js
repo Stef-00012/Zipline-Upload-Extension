@@ -506,8 +506,6 @@ async function uploadToZipline(blob, text = false) {
 					headers,
 				});
 
-				console.log('before "response.ok"')
-
 				if (!response.ok) {
 					const error = await response.json();
 
@@ -518,8 +516,6 @@ async function uploadToZipline(blob, text = false) {
 						iconUrl: chrome.runtime.getURL("icons/512.png"),
 					});
 				}
-
-				console.log('before "const data"')
 
 				const data = await response.json();
 
