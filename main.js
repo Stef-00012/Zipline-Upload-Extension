@@ -275,16 +275,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 	}
 });
 
-async function downloadFile(url) {
-	const response = await fetch(url);
-	const blob = await response.blob();
-
-	return blob;
-}
-
 async function uploadToZipline(blob, text = false) {
-	console.log('Uploading file...')
-
 	let {
 		ziplineUrl,
 		ziplineToken,
@@ -409,6 +400,8 @@ async function uploadToZipline(blob, text = false) {
 			type: "basic",
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
+
+	console.log('Uploading file...')
 
 	if (blob.size < 95 * 1024 * 1024) {
 		const filename = `${new Date().toISOString()}.${await guessMimetype(blob.type) || 'png'}`
@@ -635,6 +628,13 @@ async function shortenWithZipline(url) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 	}
+}
+
+async function downloadFile(url) {
+	const response = await fetch(url);
+	const blob = await response.blob();
+
+	return blob;
 }
 
 async function convertToBlob(data) {
