@@ -15,10 +15,10 @@
         <label for="ziplineToken">Zipline Token</label>
         <input type="password" id="ziplineToken" placeholder="e.g. https://example.com">
 
-        <label for="ziplineImageMaxViews">Image Max Views</label>
+        <label for="ziplineImageMaxViews">File Max Views</label>
         <input type="number" id="ziplineImageMaxViews" min="0" value="0">
 
-        <label for="ziplineImageExpires">Image Expires</label>
+        <label for="ziplineImageExpires">File Expires</label>
         <select id="ziplineImageExpires">
           <option value="never">Never</option>
           <option value="5m">5 Minutes</option>
@@ -50,7 +50,7 @@
           <option value="1y">1 Year</option>
       </select>
 
-        <label for="ziplineImageCompression">Image Compression</label>
+        <label for="ziplineImageCompression">File Compression</label>
         <input type="number" id="ziplineImageCompression" min="0" max="100" value="0">
 
         <label for="ziplineFileNameFormat">Select file name format</label>
@@ -62,7 +62,7 @@
             <option value="gfycat">Gfycat</option>
         </select>
 
-        <label for="ziplinePassword">Zipline Password</label>
+        <label for="ziplinePassword">File Password</label>
         <input type="password" id="ziplinePassword" placeholder="e.g. 1234">
 
         <label for="ziplineOverrideDomain">Override Domain</label>
@@ -102,11 +102,7 @@
         <div class="checkbox-container">
           <input type="checkbox" id="ziplineEnableExperimentalFeatures">
           <label for="ziplineEnableExperimentalFeatures">Enable Experimental Features (URL File Upload)</label>
-        </div>
-
-        <button id="grantUploadPermission" class="button">Grant Upload Permission</button>
     </div>
-
 
     <script src="settings.js" type="module"></script>
   </body>

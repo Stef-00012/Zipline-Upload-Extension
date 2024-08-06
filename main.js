@@ -10,6 +10,7 @@ chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 			ziplinePassword: "",
 			ziplineOverrideDomain: "",
 			ziplineMaxUploadSize: "100",
+			ziplineChunkSize: "50",
 			ziplineZeroWidthSpaces: "false",
 			ziplineNoJSON: "false",
 			ziplineEmbed: "true",
@@ -59,7 +60,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 	const { ziplineEnableExperimentalFeatures: experimentalFeatures } = await chrome.storage.local.get(['ziplineEnableExperimentalFeatures'])
 
-	if (experimentalFeatures === "false") return;
+	if (experimentalFeatures !== "true") return;
 	
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_URL",
@@ -73,31 +74,6 @@ const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/;
 chrome.contextMenus.onClicked.addListener(async (info) => {
 	switch (info.menuItemId) {
 		case "Zipline_Upload_Image": {
-			if (!urlRegex.test(info.srcUrl)) {
-				const blob = await convertToBlob(info.srcUrl);
-
-				if (!blob) return await chrome.notifications.create({
-					title: "Error",
-					message: "Unable to fetch the image, unknown protocol.",
-					type: "basic",
-					iconUrl: chrome.runtime.getURL("icons/512.png"),
-				});
-
-				return await uploadToZipline(blob);
-			}
-
-			const granted = await chrome.permissions.request({
-				origins: [convertLink(info.srcUrl)],
-			});
-
-			if (!granted)
-				return await chrome.notifications.create({
-					title: "Error",
-					message: "Image upload cancelled, permission to website denied.",
-					type: "basic",
-					iconUrl: chrome.runtime.getURL("icons/512.png"),
-				});
-
 			const blob = await convertToBlob(info.srcUrl);
 
 			if (!blob) return await chrome.notifications.create({
@@ -113,31 +89,6 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 		}
 
 		case "Zipline_Upload_Video": {
-			if (!urlRegex.test(info.srcUrl)) {
-				const blob = await convertToBlob(info.srcUrl);
-
-				if (!blob) return await chrome.notifications.create({
-					title: "Error",
-					message: "Unable to fetch the image, unknown protocol.",
-					type: "basic",
-					iconUrl: chrome.runtime.getURL("icons/512.png"),
-				});
-
-				return await uploadToZipline(blob);
-			}
-
-			const granted = await chrome.permissions.request({
-				origins: [convertLink(info.srcUrl)],
-			});
-
-			if (!granted)
-				return await chrome.notifications.create({
-					title: "Error",
-					message: "Video upload cancelled, permission to website denied.",
-					type: "basic",
-					iconUrl: chrome.runtime.getURL("icons/512.png"),
-				});
-
 			const blob = await convertToBlob(info.srcUrl);
 			
 			if (!blob) return await chrome.notifications.create({
@@ -153,31 +104,6 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 		}
 
 		case "Zipline_Upload_Audio": {
-			if (!urlRegex.test(info.srcUrl)) {
-				const blob = await convertToBlob(info.srcUrl);
-
-				if (!blob) return await chrome.notifications.create({
-					title: "Error",
-					message: "Unable to fetch the image, unknown protocol.",
-					type: "basic",
-					iconUrl: chrome.runtime.getURL("icons/512.png"),
-				});
-
-				return await uploadToZipline(blob);
-			}
-
-			const granted = await chrome.permissions.request({
-				origins: [convertLink(info.srcUrl)],
-			});
-
-			if (!granted)
-				return await chrome.notifications.create({
-					title: "Error",
-					message: "Audio upload cancelled, permission to website denied.",
-					type: "basic",
-					iconUrl: chrome.runtime.getURL("icons/512.png"),
-				});
-
 			const blob = await convertToBlob(info.srcUrl);
 
 			if (!blob) return await chrome.notifications.create({
@@ -224,31 +150,6 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 
 		case "Zipline_Upload_URL": {
 			try {
-				if (!urlRegex.test(info.linkUrl)) {
-					const blob = await convertToBlob(info.linkUrl);
-	
-					if (!blob) return await chrome.notifications.create({
-						title: "Error",
-						message: "Unable to fetch the URL, unknown protocol.",
-						type: "basic",
-						iconUrl: chrome.runtime.getURL("icons/512.png"),
-					});
-	
-					return await uploadToZipline(blob);
-				}
-	
-				const granted = await chrome.permissions.request({
-					origins: [convertLink(info.linkUrl)],
-				});
-	
-				if (!granted)
-					return await chrome.notifications.create({
-						title: "Error",
-						message: "URL upload cancelled, permission to website denied.",
-						type: "basic",
-						iconUrl: chrome.runtime.getURL("icons/512.png"),
-					});
-	
 				const blob = await convertToBlob(info.linkUrl);
 	
 				if (!blob) return await chrome.notifications.create({

@@ -40,12 +40,14 @@ for (const setting of settings) {
 
             try {
                 if (element.id === "ziplineEnableExperimentalFeatures" && element.checked) {
+                    console.log(element.checked, element.id)
                     chrome.contextMenus.create({
                         id: "Zipline_Upload_URL",
                         title: "Upload URL with Zipliine [Experimental]",
                         contexts: ["link"],
                     });
-                } else {
+                } else if (element.id === "ziplineEnableExperimentalFeatures" && !element.checked) {
+                    console.log(element.checked, element.id)
                     chrome.contextMenus.remove("Zipline_Upload_URL")
                 }
             } catch(e) {
@@ -53,20 +55,4 @@ for (const setting of settings) {
             }
         }
     }
-}
-
-const grantUploadPermissionButton = document.getElementById('grantUploadPermission')
-const ziplineUrlElement = document.getElementById('ziplineUrl')
-
-grantUploadPermissionButton.onclick = () => {
-    chrome.permissions.request({ origins: [`${ziplineUrlElement.value}/*`] }, async (granted) => {
-		if (!granted) {
-            return chrome.notifications.create({
-                title: 'Error',
-                message: `The extension was not granted the permission to access "${ziplineUrlElement.value}". You won't be able to upload or shorten anything.`,
-                type: 'basic',
-                iconUrl: chrome.runtime.getURL('icons/512.png')
-            })
-        }
-	});
 }
