@@ -6,7 +6,7 @@ html {
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
     width: 400px;
-    height: 300px;
+    height: 200px;
 }
 
 body {
@@ -104,7 +104,6 @@ button:-moz-focusring {
 .button {
     padding: 0px 1.125rem;
     appearance: none;
-    text-align: center;
     text-decoration: none;
     box-sizing: border-box;
     height: 2.25rem;
@@ -122,8 +121,5 @@ button:-moz-focusring {
     border: 0.0625rem solid transparent;
     background-color: rgb(50, 62, 168);
     color: rgb(255, 255, 255);
-}
-
-.copy-popup {
-    display: none
+    text-align: center;
 }

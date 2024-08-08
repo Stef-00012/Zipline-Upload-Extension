@@ -1,4 +1,10 @@
 html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     width: 400px;
     height: 600px;
 }
@@ -14,9 +20,8 @@ body {
     margin: 0px;
 }
 
-
-input {
-    height: 1.5rem;
+h1 {
+    font-size: 2em;
 }
 
 .form-container {
@@ -28,13 +33,13 @@ input {
 .form-container label {
     display: block;
     margin-bottom: 8px;
-
 }
+
 .form-container select,
 .form-container input[type="number"],
 .form-container input[type="text"],
 .form-container input[type="password"] {
-    width: 100%;
+    width: 95%;
     padding: 8px;
     margin-bottom: 16px;
     border: 1px solid #ccc;
@@ -42,14 +47,21 @@ input {
     background-color: rgb(24, 28, 40);
     color: #ffffff;
 }
+
+.form-container select {
+    width: 100% !important;
+}
+
 .form-container .checkbox-container {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
 }
+
 .form-container .checkbox-container input {
     margin-right: 8px;
 }
+
 .form-container .checkbox-container label {
     margin: 0;
 }
@@ -71,25 +83,30 @@ input {
     background: #25325f;
 }
 
-.button {
-    padding: 0px 1.125rem;
-    appearance: none;
-    text-align: left;
-    text-decoration: none;
+input,
+select {
+    font-family: sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+input {
+    overflow: visible;
+    height: 1.5rem;
+}
+
+select {
+    text-transform: none;
+}
+
+[type=checkbox],
+[type=radio] {
     box-sizing: border-box;
-    height: 2.25rem;
-    font-family: Ubuntu, sans-serif;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
-    width: auto;
-    border-radius: 0.25rem;
-    font-weight: 600;
-    position: relative;
-    line-height: 1;
-    font-size: 0.875rem;
-    user-select: none;
-    cursor: pointer;
-    border: 0.0625rem solid transparent;
-    background-color: rgb(50, 62, 168);
-    color: rgb(255, 255, 255);
+    padding: 0;
+}
+
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+    height: auto;
 }

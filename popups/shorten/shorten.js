@@ -1,35 +1,57 @@
 await chrome.action.setPopup({
-	popup: 'popups/settings/settings.html'
-})
+	popup: "popups/settings/settings.html",
+});
 
-const { shortenUrl } = await chrome.storage.local.get(['shortenUrl'])
+const { shortenUrl } = await chrome.storage.local.get(["shortenUrl"]);
 
-const settings = [
-    'url',
-    'vanity'
-]
+const shortenPopup = document.getElementById('shortenPopup')
+const copyPopup = document.getElementById('copyPopup')
 
-const urlElement = document.getElementById('url')
-const vanityElement = document.getElementById('vanity')
+const urlElement = document.getElementById("url");
+const vanityElement = document.getElementById("vanity");
 
-urlElement.value = shortenUrl
+const outputUrlElement = document.getElementById('outputUrl')
+
+urlElement.value = shortenUrl;
 
 const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/;
 
-document.getElementById('shorten').onclick = async () => {
-	if (!urlElement.value ||!urlRegex.test(urlElement.value)) return await chrome.notifications.create({
-		title: "Success",
-		message: `Invalid URL "${urlElement.value || 'none'}".`,
-		type: "basic",
-		iconUrl: chrome.runtime.getURL("icons/512.png"),
-	});
+document.getElementById("shorten").onclick = async () => {
+	if (!urlElement.value || !urlRegex.test(urlElement.value))
+		return await chrome.notifications.create({
+			title: "Error",
+			message: `Invalid URL "${urlElement.value || "none"}".`,
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
 
-    await shortenWithZipline(urlElement.value, vanityElement.value || null)
+	const url = await shortenWithZipline(urlElement.value, vanityElement.value || null);
 
-	await chrome.storage.local.remove(['shortenUrl'])
+	if (!urlRegex.test(url)) {
+		await chrome.storage.local.remove(["shortenUrl"]);
 
-	await window.close()
-}
+		await window.close();
+	}
+
+	outputUrlElement.value = url
+	shortenPopup.style.display = 'none'
+	copyPopup.style.display = 'block'
+	document.getElementById('html').style.height = '200px'
+};
+
+document.getElementById("copy").onclick = async () => {
+	if (!outputUrlElement.value || !urlRegex.test(outputUrlElement.value))
+		return await chrome.notifications.create({
+			title: "Error",
+			message: `Invalid URL "${outputUrlElement.value || "none"}".`,
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
+
+	navigator.clipboard.writeText(outputUrlElement.value);
+
+	await window.close();
+};
 
 async function shortenWithZipline(url, vanity) {
 	const { ziplineUrl, ziplineToken } = await chrome.storage.local.get([
@@ -76,7 +98,7 @@ async function shortenWithZipline(url, vanity) {
 
 		if (!res.ok) {
 			const error = await res.json();
-			
+
 			return await chrome.notifications.create({
 				title: "Error",
 				message: `Something went wrong...\nError ${error.code}: ${error.error}.`,
@@ -87,16 +109,7 @@ async function shortenWithZipline(url, vanity) {
 
 		const data = await res.json();
 
-		if (data) {
-			await chrome.notifications.create({
-				title: "Success",
-				message: `The link has been shortened as ${data.url}.`,
-				type: "basic",
-				iconUrl: chrome.runtime.getURL("icons/512.png"),
-			});
-
-			return data.url;
-		}
+		if (data) return data.url;
 
 		return await chrome.notifications.create({
 			title: "Error",
