@@ -4,7 +4,7 @@ to install the extension, first clone this repository
 ```sh
 git clone https://github.com/Stef-00012/Zipline-Upload-Extension
 ```
-then go to the extensions page (`chrome://extensions`), enable "Developer mode" (top right), press the button "Load unpacked" (top left) and select the folder you cloned earlier
+then go to the extensions page (`chrome://extensions`), enable "Developer mode" (top right), press the button "Load unpacked" (top left) and select the `src` folder located inside the folder you cloned earlier
 
 Once installed go to the extensions menu (top left puzzle icon) and press on zipline to setup your zipline host URL, token and preferences
 
