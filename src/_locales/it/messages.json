@@ -1,0 +1,197 @@
+{
+    "extensionName": {
+        "message": "Zipline Upload"
+    },
+    "extensionDescription": {
+        "message": "Aggiunge un bottone 'Carica su Zipline' al menu del tasto destro delle immagini, video, audio e al testo selezionato."
+    },
+    "contextMenu_UploadImage": {
+        "message": "Carica l'Immagine su Zipline"
+    },
+    "contextMenu_UploadVideo": {
+        "message": "Carica il Video su Zipline"
+    },
+    "contextMenu_UploadAudio": {
+        "message": "Carica l'Audio su Zipline"
+    },
+    "contextMenu_UploadText": {
+        "message": "Carica il Testo su Zipline"
+    },
+    "contextMenu_ShortenUrl": {
+        "message": "Accorcia il Link con Zipline"
+    },
+    "contextMenu_ShortenUrlAdvanced": {
+        "message": "Accorcia il Link con Zipline (Opzioni Avanzate)"
+    },
+    "contextMenu_UploadUrl": {
+        "message": "Carica il link su Zipliine [Sperimentale]"
+    },
+    "ziplineSettings": {
+        "message": "Impostazioni di Zipline"
+    },
+    "ziplineUrl": {
+        "message": "Dominio"
+    },
+    "ziplineToken": {
+        "message": "Token di Zipline"
+    },
+    "ziplineImageMaxViews": {
+        "message": "Limite di Visioni del File"
+    },
+    "ziplineImageExpires": {
+        "message": "Scadenza del File"
+    },
+    "ziplineImageExpires_5min": {
+        "message": "5 Minuti"
+    },
+    "ziplineImageExpires_10minutes": {
+        "message": "10 Minuti"
+    },
+    "ziplineImageExpires_15minutes": {
+        "message": "15 Minuti"
+    },
+    "ziplineImageExpires_30minutes": {
+        "message": "30 Minuti"
+    },
+    "ziplineImageExpires_1hour": {
+        "message": "1 Ora"
+    },
+    "ziplineImageExpires_2hours": {
+        "message": "2 Ore"
+    },
+    "ziplineImageExpires_3hours": {
+        "message": "3 Ore"
+    },
+    "ziplineImageExpires_4hours": {
+        "message": "4 Ore"
+    },
+    "ziplineImageExpires_5hours": {
+        "message": "5 Ore"
+    },
+    "ziplineImageExpires_6hours": {
+        "message": "6 Ore"
+    },
+    "ziplineImageExpires_8hours": {
+        "message": "8 Ore"
+    },
+    "ziplineImageExpires_12hours": {
+        "message": "12 Ore"
+    },
+    "ziplineImageExpires_1day": {
+        "message": "1 Giorno"
+    },
+    "ziplineImageExpires_3days": {
+        "message": "3 Giorni"
+    },
+    "ziplineImageExpires_5days": {
+        "message": "5 Giorni"
+    },
+    "ziplineImageExpires_7days": {
+        "message": "7 Giorni"
+    },
+    "ziplineImageExpires_1week": {
+        "message": "1 Settimana"
+    },
+    "ziplineImageExpires_1_5weeks": {
+        "message": "1.5 Settimane"
+    },
+    "ziplineImageExpires_2weeks": {
+        "message": "2 Settimane"
+    },
+    "ziplineImageExpires_3weeks": {
+        "message": "3 Settimane"
+    },
+    "ziplineImageExpires_1month": {
+        "message": "1 Mese"
+    },
+    "ziplineImageExpires_1_5months": {
+        "message": "1.5 Mesi"
+    },
+    "ziplineImageExpires_2months": {
+        "message": "2 Mesi"
+    },
+    "ziplineImageExpires_3months": {
+        "message": "3 Mesi"
+    },
+    "ziplineImageExpires_6months": {
+        "message": "6 Mesi"
+    },
+    "ziplineImageExpires_8months": {
+        "message": "8 Mesi"
+    },
+    "ziplineImageExpires_1year": {
+        "message": "1 Anno"
+    },
+    "ziplineImageCompression": {
+        "message": "Compressione del File"
+    },
+    "ziplineFileNameFormat": {
+        "message": "Formato del Nome del File"
+    },
+    "ziplineFileNameFormat_random": {
+        "message": "Casuale"
+    },
+    "ziplineFileNameFormat_date": {
+        "message": "Data"
+    },
+    "ziplineFileNameFormat_uuid": {
+        "message": "UUID"
+    },
+    "ziplineFileNameFormat_name": {
+        "message": "Nome (Mantiene il Nome Originale del File)"
+    },
+    "ziplineFileNameFormat_gfycat": {
+        "message": "Gfycat"
+    },
+    "ziplinePassword": {
+        "message": "Password del File"
+    },
+    "ziplineOverrideDomain": {
+        "message": "Override Domain"
+    },
+    "ziplineMaxUploadSize": {
+        "message": "Grandezza Massima dei File (MB)"
+    },
+    "ziplineChunkSize": {
+        "message": "Grandezza dei Chunk (MB)"
+    },
+    "ziplineZeroWidthSpaces": {
+        "message": "Spazi a Larghezza Zero"
+    },
+    "ziplineNoJSON": {
+        "message": "Niente JSON"
+    },
+    "ziplineEmbed": {
+        "message": "Embed"
+    },
+    "ziplineOriginalName": {
+        "message": "Nome Originale"
+    },
+    "ziplineAllowChunkedUploads": {
+        "message": "Permetti gli Upload divisi in Chunk"
+    },
+    "ziplineChunkedUploadsNotifications": {
+        "message": "Mostra le Notifiche per gli Upload divisi in Chunk"
+    },
+    "ziplineGeneralNotifications": {
+        "message": "Mostra le Notifiche Generali"
+    },
+    "ziplineEnableExperimentalFeatures": {
+        "message": "Attiva le Funzioni Sperimentali (Upload dei Link)"
+    },
+    "url": {
+        "message": "Link"
+    },
+    "buttonCopy": {
+        "message": "Copia"
+    },
+    "shortenUrl": {
+        "message": "Accorcia il Link"
+    },
+    "urlVanity": {
+        "message": "Vanità"
+    },
+    "buttonShorten": {
+        "message": "Accorcia"
+    }
+}

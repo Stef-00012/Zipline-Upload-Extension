@@ -26,37 +26,37 @@ chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 chrome.runtime.onInstalled.addListener(async () => {
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_Image",
-		title: "Upload Image to Zipline",
+		title: await chrome.i18n.getMessage("contextMenu_UploadImage") || "Upload Image to Zipline",
 		contexts: ["image"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_Video",
-		title: "Upload Video to Zipline",
+		title: await chrome.i18n.getMessage("contextMenu_UploadVideo") || "Upload Video to Zipline",
 		contexts: ["video"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_Audio",
-		title: "Upload Audio to Zipline",
+		title: await chrome.i18n.getMessage("contextMenu_UploadAudio") || "Upload Audio to Zipline",
 		contexts: ["audio"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_Text",
-		title: "Upload Text to Zipline",
+		title: await chrome.i18n.getMessage("contextMenu_UploadText") || "Upload Text to Zipline",
 		contexts: ["selection"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Zipline_Shorten_URL",
-		title: "Shorten URL with Zipline",
+		title: await chrome.i18n.getMessage("contextMenu_ShortenUrl") || "Shorten URL with Zipline",
 		contexts: ["link"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Advanced_Zipline_Shorten_URL",
-		title: "Shorten URL with Zipline (Advanced Options)",
+		title: await chrome.i18n.getMessage("contextMenu_ShortenUrlAdvanced") || "Shorten URL with Zipline (Advanced Options)",
 		contexts: ["link"],
 	});
 
@@ -67,7 +67,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_URL",
-		title: "Upload URL with Zipliine [Experimental]",
+		title: await chrome.i18n.getMessage("contextMenu_UploadUrl") || "Upload URL with Zipliine [Experimental]",
 		contexts: ["link"],
 	});
 });

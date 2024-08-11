@@ -2,6 +2,16 @@ await chrome.action.setPopup({
 	popup: "popups/settings/settings.html",
 });
 
+const translationElements = document.querySelectorAll('[data-translation]')
+
+for (const translationElement of translationElements) {
+	const translationId = translationElement.dataset.translation
+
+	const translation = await chrome.i18n.getMessage(translationId)
+
+	if (translation) translationElement.innerText = translation
+}
+
 const { shortenUrl } = await chrome.storage.local.get(["shortenUrl"]);
 
 const shortenPopup = document.getElementById('shortenPopup')

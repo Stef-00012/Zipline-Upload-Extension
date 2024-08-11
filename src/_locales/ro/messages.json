@@ -1,0 +1,197 @@
+{
+    "extensionName": {
+        "message": "Încărcare Zipline"
+    },
+    "extensionDescription": {
+        "message": "Adaugă butonul „Încărcare în Zipline” la meniul contextual de selecție a imaginilor, video, audio și text."
+    },
+    "contextMenu_UploadImage": {
+        "message": "Încărcați imaginea în Zipline"
+    },
+    "contextMenu_UploadVideo": {
+        "message": "Încărcați videoclipul în Zipline"
+    },
+    "contextMenu_UploadAudio": {
+        "message": "Încărcați audio în Zipline"
+    },
+    "contextMenu_UploadText": {
+        "message": "Încărcați text în Zipline"
+    },
+    "contextMenu_ShortenUrl": {
+        "message": "Scurtați URL cu Zipline"
+    },
+    "contextMenu_ShortenUrlAdvanced": {
+        "message": "Scurtați URL cu Zipline (Opțiuni avansate)"
+    },
+    "contextMenu_UploadUrl": {
+        "message": "Încărcați URL cu Zipline [Experimental]"
+    },
+    "ziplineSettings": {
+        "message": "Setări Zipline"
+    },
+    "ziplineUrl": {
+        "message": "Domeniu"
+    },
+    "ziplineToken": {
+        "message": "Token Zipline"
+    },
+    "ziplineImageMaxViews": {
+        "message": "Vizualizări maxime ale fișierului"
+    },
+    "ziplineImageExpires": {
+        "message": "Fișierul expiră"
+    },
+    "ziplineImageExpires_5min": {
+        "message": "5 Minute"
+    },
+    "ziplineImageExpires_10minutes": {
+        "message": "10 Minute"
+    },
+    "ziplineImageExpires_15minutes": {
+        "message": "15 Minute"
+    },
+    "ziplineImageExpires_30minutes": {
+        "message": "30 Minute"
+    },
+    "ziplineImageExpires_1hour": {
+        "message": "O oră"
+    },
+    "ziplineImageExpires_2hours": {
+        "message": "2 ore"
+    },
+    "ziplineImageExpires_3hours": {
+        "message": "3 ore"
+    },
+    "ziplineImageExpires_4hours": {
+        "message": "4 ore"
+    },
+    "ziplineImageExpires_5hours": {
+        "message": "5 ore"
+    },
+    "ziplineImageExpires_6hours": {
+        "message": "6 ore"
+    },
+    "ziplineImageExpires_8hours": {
+        "message": "8 ore"
+    },
+    "ziplineImageExpires_12hours": {
+        "message": "12 ore"
+    },
+    "ziplineImageExpires_1day": {
+        "message": "O zi"
+    },
+    "ziplineImageExpires_3days": {
+        "message": "3 zile"
+    },
+    "ziplineImageExpires_5days": {
+        "message": "5 zile"
+    },
+    "ziplineImageExpires_7days": {
+        "message": "7 zile"
+    },
+    "ziplineImageExpires_1week": {
+        "message": "O săptămână"
+    },
+    "ziplineImageExpires_1_5weeks": {
+        "message": "1,5 săptămâni"
+    },
+    "ziplineImageExpires_2weeks": {
+        "message": "2 săptămâni"
+    },
+    "ziplineImageExpires_3weeks": {
+        "message": "3 săptămâni"
+    },
+    "ziplineImageExpires_1month": {
+        "message": "O lună"
+    },
+    "ziplineImageExpires_1_5months": {
+        "message": "1,5 luni"
+    },
+    "ziplineImageExpires_2months": {
+        "message": "2 luni"
+    },
+    "ziplineImageExpires_3months": {
+        "message": "3 luni"
+    },
+    "ziplineImageExpires_6months": {
+        "message": "6 luni"
+    },
+    "ziplineImageExpires_8months": {
+        "message": "8 luni"
+    },
+    "ziplineImageExpires_1year": {
+        "message": "Un an"
+    },
+    "ziplineImageCompression": {
+        "message": "Comprimarea fișierelor"
+    },
+    "ziplineFileNameFormat": {
+        "message": "Selectați formatul şi numelui fișierului"
+    },
+    "ziplineFileNameFormat_random": {
+        "message": "Aleatoriu"
+    },
+    "ziplineFileNameFormat_date": {
+        "message": "Dată"
+    },
+    "ziplineFileNameFormat_uuid": {
+        "message": "UUID"
+    },
+    "ziplineFileNameFormat_name": {
+        "message": "Nume (Păstrează numele fișierului original)"
+    },
+    "ziplineFileNameFormat_gfycat": {
+        "message": "Gfycat"
+    },
+    "ziplinePassword": {
+        "message": "Parola fişierului"
+    },
+    "ziplineOverrideDomain": {
+        "message": "Suprascrierea domeniului"
+    },
+    "ziplineMaxUploadSize": {
+        "message": "Dimensiunea maximă de încărcare (MB)"
+    },
+    "ziplineChunkSize": {
+        "message": "Dimensiunea fragmentului (MB)"
+    },
+    "ziplineZeroWidthSpaces": {
+        "message": "Spații cu lățime zero"
+    },
+    "ziplineNoJSON": {
+        "message": "Fără JSON"
+    },
+    "ziplineEmbed": {
+        "message": "Embed"
+    },
+    "ziplineOriginalName": {
+        "message": "Numele original"
+    },
+    "ziplineAllowChunkedUploads": {
+        "message": "Permite încărcări fragmentate"
+    },
+    "ziplineChunkedUploadsNotifications": {
+        "message": "Afișați notificări pentru încărcări în bloc"
+    },
+    "ziplineGeneralNotifications": {
+        "message": "Afișați notificări generale"
+    },
+    "ziplineEnableExperimentalFeatures": {
+        "message": "Activați funcțiile experimentale (Încărcare fișier URL)"
+    },
+    "url": {
+        "message": "URL"
+    },
+    "buttonCopy": {
+        "message": "Copiează"
+    },
+    "shortenUrl": {
+        "message": "Scurtați URL"
+    },
+    "urlVanity": {
+        "message": "Vanity"
+    },
+    "buttonShorten": {
+        "message": "Scurtează"
+    }
+}
