@@ -2,6 +2,9 @@
 
 ## Webstore
 
+> [!WARNING]
+> Updates will take longer to appear on the Chrome Webstore because they need to be reviewed.
+
 To install the extension from the Chrome Webstore, open the [extension's Webstore page](https://chromewebstore.google.com/detail/zipline-upload/nckdinonilcnlmjipgggnejkpdldjmjn) and press "Add to chrome"
 
 ## Releases

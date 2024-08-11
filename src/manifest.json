@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Zipline Upload",
   "short_name": "ZUE",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Adds 'Upload to Zipline' button to image, video, audio and text selection context menu.",
   "author": "Stef",
   "homepage_url": "https://zipline.diced.sh",

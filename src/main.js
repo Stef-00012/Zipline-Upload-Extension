@@ -525,11 +525,6 @@ async function uploadToZipline(blob, text = false) {
 	}
 }
 
-function convertLink(url) {
-	const urlObj = new URL(url);
-	return `${urlObj.protocol}//${urlObj.host}/*`;
-}
-
 async function shortenWithZipline(url) {
 	const { ziplineUrl, ziplineToken } = await chrome.storage.local.get([
 		"ziplineUrl",
