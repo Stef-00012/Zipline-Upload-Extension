@@ -1,16 +1,29 @@
 # Installation
 
-to install the extension, first clone this repository
+## Webstore
+
+To install the extension from the Chrome Webstore, open the [extension's Webstore page](https://chromewebstore.google.com/detail/zipline-upload/nckdinonilcnlmjipgggnejkpdldjmjn) and press "Add to chrome"
+
+## Releases
+
+On every update of the extension there will be a new release.
+To download the extensions from the releases, go to the [latest release](https://github.com/stef-00012/Zipline-Upload-Extension/releases/latest) and download the `ziplineUploads.crx` file.
+
+Once donwloaded go to the extensions page (`chrome://extensions`) and drop there the file you just downloaded.
+
+## Source
+
+To install the extension from source, first clone this repository
 ```sh
 git clone https://github.com/Stef-00012/Zipline-Upload-Extension
 ```
-then go to the extensions page (`chrome://extensions`), enable "Developer mode" (top right), press the button "Load unpacked" (top left) and select the `src` folder located inside the folder you cloned earlier
+then go to the extensions page (`chrome://extensions`), enable "Developer mode" (top right), press the button "Load unpacked" (top left) and select the `src` folder located inside the folder you cloned earlier.
 
-Once installed go to the extensions menu (top left puzzle icon) and press on zipline to setup your zipline host URL, token and preferences
+Once installed go to the extensions menu (top left puzzle icon) and press on zipline to setup your zipline host URL, token and preferences.
 
-To upload images, video etc. just right click the media and you'll see "Upload ... to Zipline" or "Shorten URL with Zipline"
+To upload images, video etc. just right click the media and you'll see "Upload ... to Zipline" or "Shorten URL with Zipline".
 
-(if the image is above 95mb you must allow chunked uploads to downlaod it)
+(if the image is above 95mb you must allow chunked uploads to downlaod it).
 
 # Credits
 
