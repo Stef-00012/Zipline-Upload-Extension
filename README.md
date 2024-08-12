@@ -40,6 +40,7 @@ Translations:
 - French: [KennySB-dev](https://github.com/KennySB-dev)
 - Polish: [iHategithub9000](https://github.com/iHategithub9000)
 - Romanian: [broisvoldemort](https://github.com/broisvoldemort)
+- Arabic: Cracky
 
 <details>
   <summary>Some Images</summary>

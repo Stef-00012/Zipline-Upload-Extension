@@ -1,0 +1,197 @@
+{
+    "extensionName": {
+        "message": "Zipline تحميل"
+    },
+    "extensionDescription": {
+        "message": "إضافة 'تحميل ل Zipline' زر لصورة، فيديو، صوت و نص اختيار سياق القائمه"
+    },
+    "contextMenu_UploadImage": {
+        "message": "Zipline تحميل صوره إلى"
+    },
+    "contextMenu_UploadVideo": {
+        "message": "Zipline تحميل فيديو إلى"
+    },
+    "contextMenu_UploadAudio": {
+        "message": "Zipline تحميل الصوت إلى"
+    },
+    "contextMenu_UploadText": {
+        "message": "Zipline تحميل النص إلى"
+    },
+    "contextMenu_ShortenUrl": {
+        "message": "اختصار عنوان URL باستخدام ال Zipline"
+    },
+    "contextMenu_ShortenUrlAdvanced": {
+        "message": "اختصار عنوان URL باستخدام ال Zipline ( خيارات متقدمة)"
+    },
+    "contextMenu_UploadUrl": {
+        "message": "تحميل عنوان URL باستخدام ال Zipline [تجريبي]"
+    },
+    "ziplineSettings": {
+        "message": "Zipline اعدادات"
+    },
+    "ziplineUrl": {
+        "message": "نطاق"
+    },
+    "ziplineToken": {
+        "message": "رمز Zipline المميز"
+    },
+    "ziplineImageMaxViews": {
+        "message": "أقصى عرض للملف"
+    },
+    "ziplineImageExpires": {
+        "message": "تاريخ انتهاء الملفات"
+    },
+    "ziplineImageExpires_5min": {
+        "message": "٥ دقائق"
+    },
+    "ziplineImageExpires_10minutes": {
+        "message": "١٠ دقائق"
+    },
+    "ziplineImageExpires_15minutes": {
+        "message": "١٥ دقيقه"
+    },
+    "ziplineImageExpires_30minutes": {
+        "message": "٣٠ دقيقه"
+    },
+    "ziplineImageExpires_1hour": {
+        "message": "ساعه واحده"
+    },
+    "ziplineImageExpires_2hours": {
+        "message": "ساعتين"
+    },
+    "ziplineImageExpires_3hours": {
+        "message": "٣ ساعات"
+    },
+    "ziplineImageExpires_4hours": {
+        "message": "٤ ساعات"
+    },
+    "ziplineImageExpires_5hours": {
+        "message": "٥ ساعات"
+    },
+    "ziplineImageExpires_6hours": {
+        "message": "٦ ساعات"
+    },
+    "ziplineImageExpires_8hours": {
+        "message": "٨ ساعات"
+    },
+    "ziplineImageExpires_12hours": {
+        "message": "١٢ ساعه"
+    },
+    "ziplineImageExpires_1day": {
+        "message": "يوم"
+    },
+    "ziplineImageExpires_3days": {
+        "message": "٣ ايام"
+    },
+    "ziplineImageExpires_5days": {
+        "message": "٥ ايام"
+    },
+    "ziplineImageExpires_7days": {
+        "message": "٧ ايام"
+    },
+    "ziplineImageExpires_1week": {
+        "message": "اسبوع"
+    },
+    "ziplineImageExpires_1_5weeks": {
+        "message": "اسبوع و نصف"
+    },
+    "ziplineImageExpires_2weeks": {
+        "message": "اسبوعين"
+    },
+    "ziplineImageExpires_3weeks": {
+        "message": "٣ اسابيع"
+    },
+    "ziplineImageExpires_1month": {
+        "message": "شهر"
+    },
+    "ziplineImageExpires_1_5months": {
+        "message": "شهر و نصف"
+    },
+    "ziplineImageExpires_2months": {
+        "message": "شهرين"
+    },
+    "ziplineImageExpires_3months": {
+        "message": "٣ أشهر"
+    },
+    "ziplineImageExpires_6months": {
+        "message": "٦ أشهر"
+    },
+    "ziplineImageExpires_8months": {
+        "message": "٨ أشهر"
+    },
+    "ziplineImageExpires_1year": {
+        "message": "سنه"
+    },
+    "ziplineImageCompression": {
+        "message": "ضغط الملفات"
+    },
+    "ziplineFileNameFormat": {
+        "message": "اختيار بنيه اسم الملف"
+    },
+    "ziplineFileNameFormat_random": {
+        "message": "عشوائي"
+    },
+    "ziplineFileNameFormat_date": {
+        "message": "تاريخ"
+    },
+    "ziplineFileNameFormat_uuid": {
+        "message": "UUID"
+    },
+    "ziplineFileNameFormat_name": {
+        "message": "الاسم ( ابقاء اسم الملف الأصلي)"
+    },
+    "ziplineFileNameFormat_gfycat": {
+        "message": "Gfycat"
+    },
+    "ziplinePassword": {
+        "message": " كلمه مرور الملف"
+    },
+    "ziplineOverrideDomain": {
+        "message": "تجاوز النطاق"
+    },
+    "ziplineMaxUploadSize": {
+        "message": "أقصى حجم تحميل (ميغا بايت)"
+    },
+    "ziplineChunkSize": {
+        "message": "كتله حجم (ميغا بايت)"
+    },
+    "ziplineZeroWidthSpaces": {
+        "message": "صفر مساحه عرض"
+    },
+    "ziplineNoJSON": {
+        "message": "JSON لا"
+    },
+    "ziplineEmbed": {
+        "message": "تضمين"
+    },
+    "ziplineOriginalName": {
+        "message": "الاسم الأصلي"
+    },
+    "ziplineAllowChunkedUploads": {
+        "message": "السماح بكتله تحميل"
+    },
+    "ziplineChunkedUploadsNotifications": {
+        "message": "إظهار الاشعارات لتحميل الكتل"
+    },
+    "ziplineGeneralNotifications": {
+        "message": "إظهار الاشعارات العامه"
+    },
+    "ziplineEnableExperimentalFeatures": {
+        "message": "تمكين السمات التجريبيه (تحميل ملفات عنوان رابط)"
+    },
+    "url": {
+        "message": "رابط"
+    },
+    "buttonCopy": {
+        "message": "نسخ"
+    },
+    "shortenUrl": {
+        "message": "اختصار رابط"
+    },
+    "urlVanity": {
+        "message": "معرف متخصص"
+    },
+    "buttonShorten": {
+        "message": "اختصار"
+    }
+}
