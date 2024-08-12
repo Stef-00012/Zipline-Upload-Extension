@@ -32,6 +32,14 @@ To upload images, video etc. just right click the media and you'll see "Upload .
 
 Extension Code: [Stef-00012](https://github.com/Stef-00012)<br />
 Popup UI: [Smartlinuxcoder](https://github.com/Smartlinuxcoder)
+Translations:
+- English: [Stef-00012](https://github.com/Stef-00012)
+  - English (UK): 
+  - English (US): [Stef-00012](https://github.com/Stef-00012)
+- Italian: [Stef-00012](https://github.com/Stef-00012)
+- French: [KennySB-dev](https://github.com/KennySB-dev)
+- Polish: [iHategithub9000](https://github.com/iHategithub9000)
+- Romanian: [broisvoldemort](https://github.com/broisvoldemort)
 
 <details>
   <summary>Some Images</summary>
