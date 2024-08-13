@@ -41,6 +41,9 @@
     "ziplineImageExpires": {
         "message": "Fișierul expiră"
     },
+    "ziplineImageExpires_never": {
+        "message": "Nu"
+    },
     "ziplineImageExpires_5min": {
         "message": "5 Minute"
     },
