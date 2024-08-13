@@ -1,3 +1,0 @@
-files:
-  - source: /src/_locales/en/messages.json
-    translation: /src/_locales/%osx_locale%/messages.json
