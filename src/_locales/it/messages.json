@@ -1,6 +1,6 @@
 {
     "extensionName": {
-        "message": "Zipline Upload"
+        "message": "Carica su Zipline"
     },
     "extensionDescription": {
         "message": "Aggiunge un bottone 'Carica su Zipline' al menu del tasto destro delle immagini, video, audio e al testo selezionato."
@@ -150,7 +150,7 @@
         "message": "Password del File"
     },
     "ziplineOverrideDomain": {
-        "message": "Override Domain"
+        "message": "Sovrascrivi il Dominio"
     },
     "ziplineMaxUploadSize": {
         "message": "Grandezza Massima dei File (MB)"
@@ -165,7 +165,7 @@
         "message": "Niente JSON"
     },
     "ziplineEmbed": {
-        "message": "Embed"
+        "message": "Incorpora"
     },
     "ziplineOriginalName": {
         "message": "Nome Originale"
@@ -192,7 +192,7 @@
         "message": "Accorcia il Link"
     },
     "urlVanity": {
-        "message": "Vanità"
+        "message": "Codice di Vanità"
     },
     "buttonShorten": {
         "message": "Accorcia"

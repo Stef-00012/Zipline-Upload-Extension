@@ -7,7 +7,7 @@ const translationElements = document.querySelectorAll('[data-translation]')
 for (const translationElement of translationElements) {
 	const translationId = translationElement.dataset.translation
 
-	const translation = await chrome.i18n.getMessage(translationId)
+	const translation = chrome.i18n.getMessage(translationId)
 
 	if (translation) translationElement.innerText = translation
 }
