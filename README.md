@@ -28,6 +28,19 @@ To upload images, video etc. just right click the media and you'll see "Upload .
 
 (if the image is above 95mb you must allow chunked uploads to downlaod it).
 
+# Contrbuting
+
+If you want to help translating the extension into your language
+
+First check if your language is listed in the [supported locales](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales).
+
+If the your language is listed there,
+
+- [Fork](https://github.com/Stef-00012/Zipline-Upload-Extension/fork) the repository.
+- Create a file `src/_locales/<locale_code>/messages.json` (replace `<locale_code>` with the code of your language, you can get it from the [supported locales](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales) list).
+- Translate the strings (use the [english file](https://github.com/Stef-00012/Zipline-Upload-Extension/blob/main/src/_locales/en/messages.json) as template).
+- Make a pull request.
+
 # Credits
 
 Extension Code: [Stef-00012](https://github.com/Stef-00012)<br />
