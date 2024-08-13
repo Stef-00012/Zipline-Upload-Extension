@@ -41,6 +41,9 @@
     "ziplineImageExpires": {
         "message": "Expire"
     },
+    "ziplineImageExpires_never": {
+        "message": "Jamais"
+    },
     "ziplineImageExpires_5min": {
         "message": "5 Minutes"
     },
