@@ -28,7 +28,7 @@ To upload images, video etc. just right click the media and you'll see "Upload .
 
 (if the image is above 95mb you must allow chunked uploads to downlaod it).
 
-# Contrbuting
+# Contributing
 
 If you want to help translating the extension into your language
 
