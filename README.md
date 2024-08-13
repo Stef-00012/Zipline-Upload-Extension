@@ -45,6 +45,7 @@ If the your language is listed there,
 
 Extension Code: [Stef-00012](https://github.com/Stef-00012)<br />
 Popup UI: [Smartlinuxcoder](https://github.com/Smartlinuxcoder)
+
 Translations:
 - English: [Stef-00012](https://github.com/Stef-00012)
   - English (UK): 
