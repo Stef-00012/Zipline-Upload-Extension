@@ -1,0 +1,200 @@
+{
+    "extensionName": {
+        "message": "Zipline Upload"
+    },
+    "extensionDescription": {
+        "message": "Menambahkan Tombol 'Unggah ke Zipline' pada menu pilihan untuk Gambar, Video, Audio, dan Teks"
+    },
+    "contextMenu_UploadImage": {
+        "message": "Unggah Gambar ke Zipline"
+    },
+    "contextMenu_UploadVideo": {
+        "message": "Unggah Video ke Zipline"
+    },
+    "contextMenu_UploadAudio": {
+        "message": "Unggah Audio ke Zipline"
+    },
+    "contextMenu_UploadText": {
+        "message": "Unggah Teks ke Zipline"
+    },
+    "contextMenu_ShortenUrl": {
+        "message": "Persingkat URL dengan Zipline"
+    },
+    "contextMenu_ShortenUrlAdvanced": {
+        "message": "Persingkat URL dengan Zipline (Opsi Khusus)"
+    },
+    "contextMenu_UploadUrl": {
+        "message": "Persingkat URL dengan Zipline [Eksperimental]"
+    },
+    "ziplineSettings": {
+        "message": "Pengaturan Zipline"
+    },
+    "ziplineUrl": {
+        "message": "Domain"
+    },
+    "ziplineToken": {
+        "message": "Zipline Token"
+    },
+    "ziplineImageMaxViews": {
+        "message": "Maksimal File dapat dilihat"
+    },
+    "ziplineImageExpires": {
+        "message": "File Kedaluwarsa"
+    },
+    "ziplineImageExpires_never": {
+        "message": "Tidak Kedaluwarsa"
+    },
+    "ziplineImageExpires_5min": {
+        "message": "5 Menit"
+    },
+    "ziplineImageExpires_10Menit": {
+        "message": "10 Menit"
+    },
+    "ziplineImageExpires_15Menit": {
+        "message": "15 Menit"
+    },
+    "ziplineImageExpires_30Menit": {
+        "message": "30 Menit"
+    },
+    "ziplineImageExpires_1hour": {
+        "message": "1 Jam"
+    },
+    "ziplineImageExpires_2hours": {
+        "message": "2 Jam"
+    },
+    "ziplineImageExpires_3hours": {
+        "message": "3 Jam"
+    },
+    "ziplineImageExpires_4hours": {
+        "message": "4 Jam"
+    },
+    "ziplineImageExpires_5hours": {
+        "message": "5 Jam"
+    },
+    "ziplineImageExpires_6hours": {
+        "message": "6 Jam"
+    },
+    "ziplineImageExpires_8hours": {
+        "message": "8 Jam"
+    },
+    "ziplineImageExpires_12hours": {
+        "message": "12 Jam"
+    },
+    "ziplineImageExpires_1day": {
+        "message": "1 Hari"
+    },
+    "ziplineImageExpires_3days": {
+        "message": "3 Hari"
+    },
+    "ziplineImageExpires_5days": {
+        "message": "5 Hari"
+    },
+    "ziplineImageExpires_7days": {
+        "message": "7 Hari"
+    },
+    "ziplineImageExpires_1week": {
+        "message": "1 Minggu"
+    },
+    "ziplineImageExpires_1_5weeks": {
+        "message": "1.5 Minggu"
+    },
+    "ziplineImageExpires_2weeks": {
+        "message": "2 Minggu"
+    },
+    "ziplineImageExpires_3weeks": {
+        "message": "3 Minggu"
+    },
+    "ziplineImageExpires_1month": {
+        "message": "1 Bulan"
+    },
+    "ziplineImageExpires_1_5months": {
+        "message": "1.5 Bulan"
+    },
+    "ziplineImageExpires_2months": {
+        "message": "2 Bulan"
+    },
+    "ziplineImageExpires_3months": {
+        "message": "3 Bulan"
+    },
+    "ziplineImageExpires_6months": {
+        "message": "6 Bulan"
+    },
+    "ziplineImageExpires_8months": {
+        "message": "8 Bulan"
+    },
+    "ziplineImageExpires_1year": {
+        "message": "1 Tahun"
+    },
+    "ziplineImageCompression": {
+        "message": "Kompresi File"
+    },
+    "ziplineFileNameFormat": {
+        "message": "Pilih Format Nama File"
+    },
+    "ziplineFileNameFormat_random": {
+        "message": "Acak"
+    },
+    "ziplineFileNameFormat_date": {
+        "message": "Tanggal"
+    },
+    "ziplineFileNameFormat_uuid": {
+        "message": "UUID"
+    },
+    "ziplineFileNameFormat_name": {
+        "message": "Nama (Mempertahankan Nama File Asli)."
+    },
+    "ziplineFileNameFormat_gfycat": {
+        "message": "Gfycat"
+    },
+    "ziplinePassword": {
+        "message": "Kata sandi File"
+    },
+    "ziplineOverrideDomain": {
+        "message": "Ganti Domain"
+    },
+    "ziplineMaxUploadSize": {
+        "message": "Ukuran Unggah Maksimal (MB)."
+    },
+    "ziplineChunkSize": {
+        "message": "Ukuran Bagian (MB)"
+    },
+    "ziplineZeroWidthSpaces": {
+        "message": "Spasi Tanpa Lebar"
+    },
+    "ziplineNoJSON": {
+        "message": "Tidak Ada JSON"
+    },
+    "ziplineEmbed": {
+        "message": "Sematkan"
+    },
+    "ziplineOriginalName": {
+        "message": "Nama Asli"
+    },
+    "ziplineAllowChunkedUploads": {
+        "message": "Izinkan Unggahan Per Bagian"
+    },
+    "ziplineChunkedUploadsNotifications": {
+        "message": "Tampilkan Notifikasi untuk Unggahan Per Bagian"
+    },
+    "ziplineGeneralNotifications": {
+        "message": "Tampilkan Notifikasi Umum"
+    },
+    "ziplineEnableExperimentalFeatures": {
+        "message": "Aktifkan Fitur Eksperimental (Unggah File dari URL)"
+    },
+    "url": {
+        "message": "URL"
+    },
+    "buttonCopy": {
+        "message": "Salin"
+    },
+    "shortenUrl": {
+        "message": "Persingkat URL"
+    },
+    "urlVanity": {
+        "message": "Kustom"
+    },
+    "buttonShorten": {
+        "message": "Persingkat"
+    }
+}
