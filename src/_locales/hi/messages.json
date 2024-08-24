@@ -1,0 +1,200 @@
+{
+    "extensionName": {
+        "message": "ज़िपलाइन अपलोड"
+    },
+    "extensionDescription": {
+        "message": "छवि, वीडियो, ऑडियो और पाठ चयन कॉन्टेक्स्ट मेनू में 'ज़िपलाइन पर अपलोड करें' बटन जोड़ता है।"
+    },
+    "contextMenu_UploadImage": {
+        "message": "ज़िपलाइन पर छवि अपलोड करें"
+    },
+    "contextMenu_UploadVideo": {
+        "message": "ज़िपलाइन पर वीडियो अपलोड करें"
+    },
+    "contextMenu_UploadAudio": {
+        "message": "ज़िपलाइन पर ऑडियो अपलोड करें"
+    },
+    "contextMenu_UploadText": {
+        "message": "ज़िपलाइन पर टेक्स्ट अपलोड करें"
+    },
+    "contextMenu_ShortenUrl": {
+        "message": "ज़िपलाइन से URL छोटा करें"
+    },
+    "contextMenu_ShortenUrlAdvanced": {
+        "message": "ज़िपलाइन से URL छोटा करें (उन्नत विकल्प)"
+    },
+    "contextMenu_UploadUrl": {
+        "message": "ज़िपलाइन के साथ URL अपलोड करें [प्रायोगिक]"
+    },
+    "ziplineSettings": {
+        "message": "ज़िपलाइन सेटिंग्स"
+    },
+    "ziplineUrl": {
+        "message": "डोमेन"
+    },
+    "ziplineToken": {
+        "message": "ज़िपलाइन टोकन"
+    },
+    "ziplineImageMaxViews": {
+        "message": "फ़ाइल अधिकतम दृश्य"
+    },
+    "ziplineImageExpires": {
+        "message": "फ़ाइल समाप्ति"
+    },
+    "ziplineImageExpires_never": {
+        "message": "कभी नहीं"
+    },
+    "ziplineImageExpires_5min": {
+        "message": "5 मिनटों"
+    },
+    "ziplineImageExpires_10minutes": {
+        "message": "10 मिनटों"
+    },
+    "ziplineImageExpires_15minutes": {
+        "message": "15 मिनटों"
+    },
+    "ziplineImageExpires_30minutes": {
+        "message": "30 मिनटों"
+    },
+    "ziplineImageExpires_1hour": {
+        "message": "1 घंटे"
+    },
+    "ziplineImageExpires_2hours": {
+        "message": "2 घंटे"
+    },
+    "ziplineImageExpires_3hours": {
+        "message": "3 घंटे"
+    },
+    "ziplineImageExpires_4hours": {
+        "message": "4 घंटे"
+    },
+    "ziplineImageExpires_5hours": {
+        "message": "5 घंटे"
+    },
+    "ziplineImageExpires_6hours": {
+        "message": "6 घंटे"
+    },
+    "ziplineImageExpires_8hours": {
+        "message": "8 घंटे"
+    },
+    "ziplineImageExpires_12hours": {
+        "message": "12 घंटे"
+    },
+    "ziplineImageExpires_1day": {
+        "message": "1 दिन"
+    },
+    "ziplineImageExpires_3days": {
+        "message": "3 दिन"
+    },
+    "ziplineImageExpires_5days": {
+        "message": "5 दिन"
+    },
+    "ziplineImageExpires_7days": {
+        "message": "7 दिन"
+    },
+    "ziplineImageExpires_1week": {
+        "message": "1 सप्ताह"
+    },
+    "ziplineImageExpires_1_5weeks": {
+        "message": "1.5 सप्ताह"
+    },
+    "ziplineImageExpires_2weeks": {
+        "message": "2 सप्ताह"
+    },
+    "ziplineImageExpires_3weeks": {
+        "message": "3 सप्ताह"
+    },
+    "ziplineImageExpires_1month": {
+        "message": "1 महीना"
+    },
+    "ziplineImageExpires_1_5months": {
+        "message": "1.5 महीने"
+    },
+    "ziplineImageExpires_2months": {
+        "message": "2 महीने"
+    },
+    "ziplineImageExpires_3months": {
+        "message": "3 महीने"
+    },
+    "ziplineImageExpires_6months": {
+        "message": "6 महीने"
+    },
+    "ziplineImageExpires_8months": {
+        "message": "8 महीने"
+    },
+    "ziplineImageExpires_1year": {
+        "message": "1 साल"
+    },
+    "ziplineImageCompression": {
+        "message": "फ़ाइल संकोचन"
+    },
+    "ziplineFileNameFormat": {
+        "message": "फ़ाइल नाम प्रारूप का चयन करें"
+    },
+    "ziplineFileNameFormat_random": {
+        "message": "यादृच्छिक"
+    },
+    "ziplineFileNameFormat_date": {
+        "message": "तारीख"
+    },
+    "ziplineFileNameFormat_uuid": {
+        "message": "UUID"
+    },
+    "ziplineFileNameFormat_name": {
+        "message": "नाम (वास्तविक फ़ाइल नाम बरकरार रहेगा)"
+    },
+    "ziplineFileNameFormat_gfycat": {
+        "message": "Gfycat"
+    },
+    "ziplinePassword": {
+        "message": "फ़ाइल पासवर्ड"
+    },
+    "ziplineOverrideDomain": {
+        "message": "डोमेन ओवरराइड करें"
+    },
+    "ziplineMaxUploadSize": {
+        "message": "अधिकतम अपलोड माप (MB)"
+    },
+    "ziplineChunkSize": {
+        "message": "चंक माप (MB"
+    },
+    "ziplineZeroWidthSpaces": {
+        "message": "शून्य चौड़ाई स्थान"
+    },
+    "ziplineNoJSON": {
+        "message": "कोई JSON नहीं"
+    },
+    "ziplineEmbed": {
+        "message": "एम्बेड"
+    },
+    "ziplineOriginalName": {
+        "message": "वास्तविक नाम"
+    },
+    "ziplineAllowChunkedUploads": {
+        "message": "खंडित अपलोड की अनुमति दें"
+    },
+    "ziplineChunkedUploadsNotifications": {
+        "message": "खंडित अपलोड के लिए सूचनाएं दिखाएं"
+    },
+    "ziplineGeneralNotifications": {
+        "message": "सामान्य सूचनाएं दिखाएं"
+    },
+    "ziplineEnableExperimentalFeatures": {
+        "message": "प्रायोगिक सुविधाएँ सक्षम करें (URL फ़ाइल अपलोड)"
+    },
+    "url": {
+        "message": "URL"
+    },
+    "buttonCopy": {
+        "message": "कॉपी"
+    },
+    "shortenUrl": {
+        "message": "URL छोटा करें"
+    },
+    "urlVanity": {
+        "message": "वैनिटी"
+    },
+    "buttonShorten": {
+        "message": "छोटा करे"
+    }
+}
