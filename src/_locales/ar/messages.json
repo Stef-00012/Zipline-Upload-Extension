@@ -196,5 +196,11 @@
     },
     "buttonShorten": {
         "message": "اختصار"
+    },
+    "ziplineExportSettings": {
+        "message": "إعدادات التصدير"
+    },
+    "ziplineImportSettings": {
+        "message": "إعدادات الاستيراد"
     }
 }

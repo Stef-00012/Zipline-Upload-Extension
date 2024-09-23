@@ -196,5 +196,11 @@
     },
     "buttonShorten": {
         "message": "Raccourcir"
+    },
+    "ziplineExportSettings": {
+        "message": "Paramètres d'exportation"
+    },
+    "ziplineImportSettings": {
+        "message": "Paramètres d'importation"
     }
 }

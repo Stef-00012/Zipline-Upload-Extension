@@ -196,5 +196,11 @@
     },
     "buttonShorten": {
         "message": "छोटा करे"
+    },
+    "ziplineExportSettings": {
+        "message": "निर्यात सेटिंग्स"
+    },
+    "ziplineImportSettings": {
+        "message": "सेटिंग आयात करना"
     }
 }

@@ -196,5 +196,11 @@
     },
     "buttonShorten": {
         "message": "Shorten"
+    },
+    "ziplineExportSettings": {
+        "message": "Export Settings"
+    },
+    "ziplineImportSettings": {
+        "message": "Import Settings"
     }
 }
