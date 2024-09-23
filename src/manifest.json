@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "short_name": "ZUE",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "description": "__MSG_extensionDescription__",
   "author": "Stef",
   "homepage_url": "https://zipline.diced.sh",
