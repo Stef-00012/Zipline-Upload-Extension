@@ -5,17 +5,17 @@
     "extensionDescription": {
         "message": "Menambahkan Tombol 'Unggah ke Zipline' pada menu pilihan untuk Gambar, Video, Audio, dan Teks"
     },
-    "contextMenu_UploadImage": {
-        "message": "Unggah Gambar ke Zipline"
+    "contextMenu_UploadFile": {
+        "message": "Upload File to Zipline"
     },
-    "contextMenu_UploadVideo": {
-        "message": "Unggah Video ke Zipline"
-    },
-    "contextMenu_UploadAudio": {
-        "message": "Unggah Audio ke Zipline"
+    "contextMenu_UploadFileAdvanced": {
+        "message": "Upload File to Zipline (Advanced Options)"
     },
     "contextMenu_UploadText": {
         "message": "Unggah Teks ke Zipline"
+    },
+    "contextMenu_UploadTextAdvanced": {
+        "message": "Upload Text to Zipline (Advanced Options)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Persingkat URL dengan Zipline"
@@ -25,6 +25,9 @@
     },
     "contextMenu_UploadUrl": {
         "message": "Persingkat URL dengan Zipline [Eksperimental]"
+    },
+    "contextMenu_UploadUrlAdvanced": {
+        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
     },
     "ziplineSettings": {
         "message": "Pengaturan Zipline"
@@ -47,14 +50,14 @@
     "ziplineImageExpires_5min": {
         "message": "5 Menit"
     },
-    "ziplineImageExpires_10Menit": {
-        "message": "10 Menit"
+    "ziplineImageExpires_10minutes": {
+        "message": "10 Minutes"
     },
-    "ziplineImageExpires_15Menit": {
-        "message": "15 Menit"
+    "ziplineImageExpires_15minutes": {
+        "message": "15 Minutes"
     },
-    "ziplineImageExpires_30Menit": {
-        "message": "30 Menit"
+    "ziplineImageExpires_30minutes": {
+        "message": "30 Minutes"
     },
     "ziplineImageExpires_1hour": {
         "message": "1 Jam"
@@ -161,9 +164,6 @@
     "ziplineZeroWidthSpaces": {
         "message": "Spasi Tanpa Lebar"
     },
-    "ziplineNoJSON": {
-        "message": "Tidak Ada JSON"
-    },
     "ziplineEmbed": {
         "message": "Sematkan"
     },
@@ -191,16 +191,43 @@
     "shortenUrl": {
         "message": "Persingkat URL"
     },
+    "uploadFile": {
+        "message": "Upload File"
+    },
     "urlVanity": {
         "message": "Kustom"
     },
+    "urlMaxViews": {
+        "message": "URL Max Views"
+    },
+    "urlPassword": {
+        "message": "Password"
+    },
     "buttonShorten": {
         "message": "Persingkat"
+    },
+    "buttonUpload": {
+        "message": "Upload"
     },
     "ziplineExportSettings": {
         "message": "Pengaturan Ekspor"
     },
     "ziplineImportSettings": {
         "message": "Pengaturan Impor"
+    },
+    "ziplineVersion": {
+        "message": "Zipline Version"
+    },
+    "ziplineFileNameFormat_v3": {
+        "message": "V3"
+    },
+    "ziplineFileNameFormat_v4": {
+        "message": "V4"
+    },
+    "ziplineFolder": {
+        "message": "Folder"
+    },
+    "ziplineFilename": {
+        "message": "Filename"
     }
 }

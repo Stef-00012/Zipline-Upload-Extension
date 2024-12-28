@@ -5,17 +5,17 @@
     "extensionDescription": {
         "message": "Ajoute le bouton 'Télécharger vers Zipline' au menu contextuel de sélection d'images, de vidéos, d'audio et de texte."
     },
-    "contextMenu_UploadImage": {
-        "message": "Télécharger l'image sur Zipline"
+    "contextMenu_UploadFile": {
+        "message": "Upload File to Zipline"
     },
-    "contextMenu_UploadVideo": {
-        "message": "Télécharger la vidéo sur Zipline"
-    },
-    "contextMenu_UploadAudio": {
-        "message": "Télécharger l'audio sur Zipline"
+    "contextMenu_UploadFileAdvanced": {
+        "message": "Upload File to Zipline (Advanced Options)"
     },
     "contextMenu_UploadText": {
         "message": "Télécharger le texte vers Zipline"
+    },
+    "contextMenu_UploadTextAdvanced": {
+        "message": "Upload Text to Zipline (Advanced Options)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Raccourcir l'URL avec Zipline"
@@ -25,6 +25,9 @@
     },
     "contextMenu_UploadUrl": {
         "message": "Télécharger l'URL avec Zipline [Expérimental]"
+    },
+    "contextMenu_UploadUrlAdvanced": {
+        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
     },
     "ziplineSettings": {
         "message": "Zipline paramètres"
@@ -161,9 +164,6 @@
     "ziplineZeroWidthSpaces": {
         "message": "Espaces De Largeur Nulle"
     },
-    "ziplineNoJSON": {
-        "message": "Non JSON"
-    },
     "ziplineEmbed": {
         "message": "Embed"
     },
@@ -191,16 +191,43 @@
     "shortenUrl": {
         "message": "Raccourcir l'URL"
     },
+    "uploadFile": {
+        "message": "Upload File"
+    },
     "urlVanity": {
         "message": "Vanité"
     },
+    "urlMaxViews": {
+        "message": "URL Max Views"
+    },
+    "urlPassword": {
+        "message": "Password"
+    },
     "buttonShorten": {
         "message": "Raccourcir"
+    },
+    "buttonUpload": {
+        "message": "Upload"
     },
     "ziplineExportSettings": {
         "message": "Paramètres d'exportation"
     },
     "ziplineImportSettings": {
         "message": "Paramètres d'importation"
+    },
+    "ziplineVersion": {
+        "message": "Zipline Version"
+    },
+    "ziplineFileNameFormat_v3": {
+        "message": "V3"
+    },
+    "ziplineFileNameFormat_v4": {
+        "message": "V4"
+    },
+    "ziplineFolder": {
+        "message": "Folder"
+    },
+    "ziplineFilename": {
+        "message": "Filename"
     }
 }

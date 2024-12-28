@@ -5,17 +5,17 @@
     "extensionDescription": {
         "message": "Aggiunge un bottone 'Carica su Zipline' al menu del tasto destro delle immagini, video, audio e al testo selezionato."
     },
-    "contextMenu_UploadImage": {
-        "message": "Carica l'Immagine su Zipline"
+    "contextMenu_UploadFile": {
+        "message": "Carica il File su Zipline"
     },
-    "contextMenu_UploadVideo": {
-        "message": "Carica il Video su Zipline"
-    },
-    "contextMenu_UploadAudio": {
-        "message": "Carica l'Audio su Zipline"
+    "contextMenu_UploadFileAdvanced": {
+        "message": "Carica il File su Zipline (Opzioni Avanzate)"
     },
     "contextMenu_UploadText": {
         "message": "Carica il Testo su Zipline"
+    },
+    "contextMenu_UploadTextAdvanced": {
+        "message": "Carica il Testo su Zipline (Opzioni Avanzate)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Accorcia il Link con Zipline"
@@ -24,7 +24,10 @@
         "message": "Accorcia il Link con Zipline (Opzioni Avanzate)"
     },
     "contextMenu_UploadUrl": {
-        "message": "Carica il link su Zipliine [Sperimentale]"
+        "message": "Carica il link su Zipline [Sperimentale]"
+    },
+    "contextMenu_UploadUrlAdvanced": {
+        "message": "Carica il link su Zipline (Opzioni Avanzate) [Sperimentale]"
     },
     "ziplineSettings": {
         "message": "Impostazioni di Zipline"
@@ -161,9 +164,6 @@
     "ziplineZeroWidthSpaces": {
         "message": "Spazi a Larghezza Zero"
     },
-    "ziplineNoJSON": {
-        "message": "Niente JSON"
-    },
     "ziplineEmbed": {
         "message": "Incorpora"
     },
@@ -191,16 +191,43 @@
     "shortenUrl": {
         "message": "Accorcia il Link"
     },
+    "uploadFile": {
+        "message": "Carica il File"
+    },
     "urlVanity": {
         "message": "Codice di Vanità"
     },
+    "urlMaxViews": {
+        "message": "Limite di Visioni del Link"
+    },
+    "urlPassword": {
+        "message": "Password"
+    },
     "buttonShorten": {
         "message": "Accorcia"
+    },
+    "buttonUpload": {
+        "message": "Carica"
     },
     "ziplineExportSettings": {
         "message": "Esporta Impostazioni"
     },
     "ziplineImportSettings": {
         "message": "Importa Impostazioni"
+    },
+    "ziplineVersion": {
+        "message": "Versione di Zipline"
+    },
+    "ziplineFileNameFormat_v3": {
+        "message": "V3"
+    },
+    "ziplineFileNameFormat_v4": {
+        "message": "V4"
+    },
+    "ziplineFolder": {
+        "message": "artella"
+    },
+    "ziplineFilename": {
+        "message": "Nome del File"
     }
 }

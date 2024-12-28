@@ -1,37 +1,30 @@
 {
-  "manifest_version": 3,
-  "name": "__MSG_extensionName__",
-  "short_name": "ZUE",
-  "version": "1.6.0",
-  "description": "__MSG_extensionDescription__",
-  "author": "Stef",
-  "homepage_url": "https://zipline.diced.sh",
-  "default_locale": "en",
-  "icons": {
-    "16": "icons/16.png",
-    "48": "icons/48.png",
-    "128": "icons/128.png",
-    "512": "icons/512.png"
-  },
-  "permissions": [
-    "contextMenus",
-    "storage",
-    "notifications"
-  ],
-  "background": {
-    "service_worker": "main.js"
-  },
-  "action": {
-    "default_popup": "popups/settings/settings.html"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["public/*", "icons/*", "*"],
-      "matches": ["*://*/*"]
-    }
-  ],
-  "host_permissions": [
-    "https://*/*",
-    "http://*/*"
-  ]
+	"manifest_version": 3,
+	"name": "__MSG_extensionName__",
+	"short_name": "ZUE",
+	"version": "2.0.0",
+	"description": "__MSG_extensionDescription__",
+	"author": "Stef",
+	"homepage_url": "https://zipline.diced.sh",
+	"default_locale": "en",
+	"icons": {
+		"16": "icons/16.png",
+		"48": "icons/48.png",
+		"128": "icons/128.png",
+		"512": "icons/512.png"
+	},
+	"permissions": ["contextMenus", "storage", "notifications"],
+	"background": {
+		"service_worker": "main.js"
+	},
+	"action": {
+		"default_popup": "popups/settings/settings.html"
+	},
+	"web_accessible_resources": [
+		{
+			"resources": ["public/*", "icons/*", "*"],
+			"matches": ["*://*/*"]
+		}
+	],
+	"host_permissions": ["https://*/*", "http://*/*"]
 }

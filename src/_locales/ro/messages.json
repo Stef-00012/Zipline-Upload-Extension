@@ -5,17 +5,17 @@
     "extensionDescription": {
         "message": "Adaugă butonul „Încărcare în Zipline” la meniul contextual de selecție a imaginilor, video, audio și text."
     },
-    "contextMenu_UploadImage": {
-        "message": "Încărcați imaginea în Zipline"
+    "contextMenu_UploadFile": {
+        "message": "Upload File to Zipline"
     },
-    "contextMenu_UploadVideo": {
-        "message": "Încărcați videoclipul în Zipline"
-    },
-    "contextMenu_UploadAudio": {
-        "message": "Încărcați audio în Zipline"
+    "contextMenu_UploadFileAdvanced": {
+        "message": "Upload File to Zipline (Advanced Options)"
     },
     "contextMenu_UploadText": {
         "message": "Încărcați text în Zipline"
+    },
+    "contextMenu_UploadTextAdvanced": {
+        "message": "Upload Text to Zipline (Advanced Options)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Scurtați URL cu Zipline"
@@ -25,6 +25,9 @@
     },
     "contextMenu_UploadUrl": {
         "message": "Încărcați URL cu Zipline [Experimental]"
+    },
+    "contextMenu_UploadUrlAdvanced": {
+        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
     },
     "ziplineSettings": {
         "message": "Setări Zipline"
@@ -161,9 +164,6 @@
     "ziplineZeroWidthSpaces": {
         "message": "Spații cu lățime zero"
     },
-    "ziplineNoJSON": {
-        "message": "Fără JSON"
-    },
     "ziplineEmbed": {
         "message": "Embed"
     },
@@ -191,16 +191,43 @@
     "shortenUrl": {
         "message": "Scurtați URL"
     },
+    "uploadFile": {
+        "message": "Upload File"
+    },
     "urlVanity": {
         "message": "Vanity"
     },
+    "urlMaxViews": {
+        "message": "URL Max Views"
+    },
+    "urlPassword": {
+        "message": "Password"
+    },
     "buttonShorten": {
         "message": "Scurtează"
+    },
+    "buttonUpload": {
+        "message": "Upload"
     },
     "ziplineExportSettings": {
         "message": "Setări de export"
     },
     "ziplineImportSettings": {
         "message": "Setări de import"
+    },
+    "ziplineVersion": {
+        "message": "Zipline Version"
+    },
+    "ziplineFileNameFormat_v3": {
+        "message": "V3"
+    },
+    "ziplineFileNameFormat_v4": {
+        "message": "V4"
+    },
+    "ziplineFolder": {
+        "message": "Folder"
+    },
+    "ziplineFilename": {
+        "message": "Filename"
     }
 }

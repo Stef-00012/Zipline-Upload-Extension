@@ -5,17 +5,17 @@
     "extensionDescription": {
         "message": "छवि, वीडियो, ऑडियो और पाठ चयन कॉन्टेक्स्ट मेनू में 'ज़िपलाइन पर अपलोड करें' बटन जोड़ता है।"
     },
-    "contextMenu_UploadImage": {
-        "message": "ज़िपलाइन पर छवि अपलोड करें"
+    "contextMenu_UploadFile": {
+        "message": "Upload File to Zipline"
     },
-    "contextMenu_UploadVideo": {
-        "message": "ज़िपलाइन पर वीडियो अपलोड करें"
-    },
-    "contextMenu_UploadAudio": {
-        "message": "ज़िपलाइन पर ऑडियो अपलोड करें"
+    "contextMenu_UploadFileAdvanced": {
+        "message": "Upload File to Zipline (Advanced Options)"
     },
     "contextMenu_UploadText": {
         "message": "ज़िपलाइन पर टेक्स्ट अपलोड करें"
+    },
+    "contextMenu_UploadTextAdvanced": {
+        "message": "Upload Text to Zipline (Advanced Options)"
     },
     "contextMenu_ShortenUrl": {
         "message": "ज़िपलाइन से URL छोटा करें"
@@ -25,6 +25,9 @@
     },
     "contextMenu_UploadUrl": {
         "message": "ज़िपलाइन के साथ URL अपलोड करें [प्रायोगिक]"
+    },
+    "contextMenu_UploadUrlAdvanced": {
+        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
     },
     "ziplineSettings": {
         "message": "ज़िपलाइन सेटिंग्स"
@@ -161,9 +164,6 @@
     "ziplineZeroWidthSpaces": {
         "message": "शून्य चौड़ाई स्थान"
     },
-    "ziplineNoJSON": {
-        "message": "कोई JSON नहीं"
-    },
     "ziplineEmbed": {
         "message": "एम्बेड"
     },
@@ -191,16 +191,43 @@
     "shortenUrl": {
         "message": "URL छोटा करें"
     },
+    "uploadFile": {
+        "message": "Upload File"
+    },
     "urlVanity": {
         "message": "वैनिटी"
     },
+    "urlMaxViews": {
+        "message": "URL Max Views"
+    },
+    "urlPassword": {
+        "message": "Password"
+    },
     "buttonShorten": {
         "message": "छोटा करे"
+    },
+    "buttonUpload": {
+        "message": "Upload"
     },
     "ziplineExportSettings": {
         "message": "निर्यात सेटिंग्स"
     },
     "ziplineImportSettings": {
         "message": "सेटिंग आयात करना"
+    },
+    "ziplineVersion": {
+        "message": "Zipline Version"
+    },
+    "ziplineFileNameFormat_v3": {
+        "message": "V3"
+    },
+    "ziplineFileNameFormat_v4": {
+        "message": "V4"
+    },
+    "ziplineFolder": {
+        "message": "Folder"
+    },
+    "ziplineFilename": {
+        "message": "Filename"
     }
 }

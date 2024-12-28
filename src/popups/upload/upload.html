@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html id="html">
+
+<head>
+    <title>Upload File</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./upload.css">
+</head>
+
+<body>
+    <div class="upload-popup" id="uploadPopup">
+        <center>
+            <h1 data-translation="uploadFile">Upload File</h1>
+        </center>
+    
+        <div class="form-container">
+            <div id="textOnly">
+                <label for="content" data-translation="fileUrlOrText">File URL or text</label>
+                <input type="text" id="content" placeholder="Hello World">
+            </div>
+
+            <label for="ziplineImageMaxViews" data-translation="ziplineImageMaxViews">File Max Views</label>
+            <input type="number" id="ziplineImageMaxViews" min="0" value="0">
+
+            <label for="ziplineImageExpires" data-translation="ziplineImageExpires">File Expires</label>
+            <select id="ziplineImageExpires">
+                <option value="never" data-translation="ziplineImageExpires_never">Never</option>
+                <option value="5m" data-translation="ziplineImageExpires_5min">5 Minutes</option>
+                <option value="10m" data-translation="ziplineImageExpires_10minutes">10 Minutes</option>
+                <option value="15m" data-translation="ziplineImageExpires_15minutes">15 Minutes</option>
+                <option value="30m" data-translation="ziplineImageExpires_30minutes">30 Minutes</option>
+                <option value="1h" data-translation="ziplineImageExpires_1hour">1 Hour</option>
+                <option value="2h" data-translation="ziplineImageExpires_2hours">2 Hours</option>
+                <option value="3h" data-translation="ziplineImageExpires_3hours">3 Hours</option>
+                <option value="4h" data-translation="ziplineImageExpires_4hours">4 Hours</option>
+                <option value="5h" data-translation="ziplineImageExpires_5hours">5 Hours</option>
+                <option value="6h" data-translation="ziplineImageExpires_6hours">6 Hours</option>
+                <option value="8h" data-translation="ziplineImageExpires_8hours">8 Hours</option>
+                <option value="12h" data-translation="ziplineImageExpires_12hours">12 Hours</option>
+                <option value="1d" data-translation="ziplineImageExpires_1day">1 Day</option>
+                <option value="3d" data-translation="ziplineImageExpires_3days">3 Days</option>
+                <option value="5d" data-translation="ziplineImageExpires_5days">5 Days</option>
+                <option value="7d" data-translation="ziplineImageExpires_7days">7 Days</option>
+                <option value="1w" data-translation="ziplineImageExpires_1week">1 Week</option>
+                <option value="1.5w" data-translation="ziplineImageExpires_1_5weeks">1.5 Weeks</option>
+                <option value="2w" data-translation="ziplineImageExpires_2weeks">2 Weeks</option>
+                <option value="3w" data-translation="ziplineImageExpires_3weeks">3 Weeks</option>
+                <option value="1M" data-translation="ziplineImageExpires_1month">1 Month</option>
+                <option value="1.5M" data-translation="ziplineImageExpires_1_5months">1.5 Months</option>
+                <option value="2M" data-translation="ziplineImageExpires_2months">2 Months</option>
+                <option value="3M" data-translation="ziplineImageExpires_3months">3 Months</option>
+                <option value="6M" data-translation="ziplineImageExpires_6months">6 Months</option>
+                <option value="8M" data-translation="ziplineImageExpires_8months">8 Months</option>
+                <option value="1y" data-translation="ziplineImageExpires_1year">1 Year</option>
+            </select>
+
+            <label for="ziplineImageCompression" data-translation="ziplineImageCompression">File Compression</label>
+            <input type="number" id="ziplineImageCompression" min="0" max="100" value="0">
+
+            <label for="ziplineFileNameFormat" data-translation="ziplineFileNameFormat">Select File Name Format</label>
+            <select id="ziplineFileNameFormat">
+                <option value="random" data-translation="ziplineFileNameFormat_random">Random (alphanumeric)</option>
+                <option value="date" data-translation="ziplineFileNameFormat_date">Date</option>
+                <option value="uuid" data-translation="ziplineFileNameFormat_uuid">UUID</option>
+                <option value="name" data-translation="ziplineFileNameFormat_name">Name (Keeps Original File Name)</option>
+                <option value="gfycat" data-translation="ziplineFileNameFormat_gfycat">Gfycat</option>
+            </select>
+
+            <label for="ziplinePassword" data-translation="ziplinePassword">File Password</label>
+            <input type="password" id="ziplinePassword" placeholder="e.g. 1234">
+
+            <div data-zipline-version="v4">
+                <label for="ziplineFilename" data-translation="ziplineFilename">Domain</label>
+                <input type="text" id="ziplineFilename" placeholder="e.g. myName">
+
+                <label for="ziplineFolder" data-translation="ziplineFolder">Folder</label>
+                <select id="ziplineFolder"></select>
+            </div>
+
+            <label for="ziplineOverrideDomain" data-translation="ziplineOverrideDomain">Override Domain</label>
+            <input type="text" id="ziplineOverrideDomain" placeholder="e.g. https://example.com">
+
+            <div data-zipline-version="v3">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="ziplineZeroWidthSpaces">
+                    <label for="ziplineZeroWidthSpaces" data-translation="ziplineZeroWidthSpaces">Zero Width Space</label>
+                </div>
+    
+                <div class="checkbox-container">
+                    <input type="checkbox" id="ziplineEmbed" checked>
+                    <label for="ziplineEmbed" data-translation="ziplineEmbed">Embed</label>
+                </div>
+            </div>
+    
+            <div class="checkbox-container">
+                <input type="checkbox" id="ziplineOriginalName">
+                <label for="ziplineOriginalName" data-translation="ziplineOriginalName">Original Name</label>
+            </div>
+    
+            <center>
+                <button id="upload" class="button" data-translation="buttonUpload">Upload</button>
+            </center>
+        </div>
+    </div>
+
+    <div class="copy-popup" id="copyPopup">
+        <center>
+            <h1>Output URL</h1>
+        </center>
+    
+        <div class="form-container">
+            <label for="outputUrl" data-translation="url">URL</label>
+            <input type="text" id="outputUrl" placeholder="e.g. https://example.com" readonly>
+    
+            <center>
+                <button id="copy" class="button" data-translation="buttonCopy">Copy</button>
+            </center>
+        </div>
+    </div>
+
+    <script src="upload.js" type="module"></script>
+</body>
+
+</html>

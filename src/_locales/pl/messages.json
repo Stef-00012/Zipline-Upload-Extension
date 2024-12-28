@@ -5,17 +5,17 @@
     "extensionDescription": {
         "message": "Dodaje przycisk 'Wyślij do Zipline' do menu kontekstowego wyboru obrazu, wideo, audio i tekstu."
     },
-    "contextMenu_UploadImage": {
-        "message": "Wyślij obraz do Zipline"
+    "contextMenu_UploadFile": {
+        "message": "Upload File to Zipline"
     },
-    "contextMenu_UploadVideo": {
-        "message": "Wyślij video do Zipline"
-    },
-    "contextMenu_UploadAudio": {
-        "message": "Wyślij audio do Zipline"
+    "contextMenu_UploadFileAdvanced": {
+        "message": "Upload File to Zipline (Advanced Options)"
     },
     "contextMenu_UploadText": {
         "message": "Wyślij tekst do Zipline"
+    },
+    "contextMenu_UploadTextAdvanced": {
+        "message": "Upload Text to Zipline (Advanced Options)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Skróć adres URL używając Zipline"
@@ -25,6 +25,9 @@
     },
     "contextMenu_UploadUrl": {
         "message": "Wyślij adres URL używając Zipline [eksperymentalne]"
+    },
+    "contextMenu_UploadUrlAdvanced": {
+        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
     },
     "ziplineSettings": {
         "message": "Ustawienia Zipline"
@@ -161,9 +164,6 @@
     "ziplineZeroWidthSpaces": {
         "message": "Spacje o zerowej szerokości"
     },
-    "ziplineNoJSON": {
-        "message": "Bez JSON"
-    },
     "ziplineEmbed": {
         "message": "Embed"
     },
@@ -191,16 +191,43 @@
     "shortenUrl": {
         "message": "Skróć Adres URL"
     },
+    "uploadFile": {
+        "message": "Upload File"
+    },
     "urlVanity": {
         "message": "Niestandardowy Link"
     },
+    "urlMaxViews": {
+        "message": "URL Max Views"
+    },
+    "urlPassword": {
+        "message": "Password"
+    },
     "buttonShorten": {
         "message": "Skróć"
+    },
+    "buttonUpload": {
+        "message": "Upload"
     },
     "ziplineExportSettings": {
         "message": "Eksportuj ustawienia"
     },
     "ziplineImportSettings": {
         "message": "Importuj ustawienia"
+    },
+    "ziplineVersion": {
+        "message": "Zipline Version"
+    },
+    "ziplineFileNameFormat_v3": {
+        "message": "V3"
+    },
+    "ziplineFileNameFormat_v4": {
+        "message": "V4"
+    },
+    "ziplineFolder": {
+        "message": "Folder"
+    },
+    "ziplineFilename": {
+        "message": "Filename"
     }
 }

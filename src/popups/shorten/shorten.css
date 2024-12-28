@@ -1,129 +1,129 @@
 html {
-    font-family: sans-serif;
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    width: 400px;
-    height: 300px;
+	font-family: sans-serif;
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	width: 400px;
+	height: 300px;
 }
 
 body {
-    background-color: rgb(12, 16, 28);
-    color: #FFFFFF;
-    text-decoration: none;
-    font-family: Ubuntu, sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1;
-    margin: 0px;
+	background-color: rgb(12, 16, 28);
+	color: #ffffff;
+	text-decoration: none;
+	font-family: Ubuntu, sans-serif;
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1;
+	margin: 0px;
 }
 
 h1 {
-    font-size: 2em;
+	font-size: 2em;
 }
 
 input {
-    height: 1.5rem;
+	height: 1.5rem;
 }
 
 .form-container {
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    
+	color: #ffffff;
+	padding: 20px;
+	border-radius: 8px;
 }
 .form-container label {
-    display: block;
-    margin-bottom: 8px;
-
+	display: block;
+	margin-bottom: 8px;
 }
 
+.form-container input[type="number"],
 .form-container input[type="text"] {
-    width: 95%;
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: rgb(24, 28, 40);
-    color: #ffffff;
+	width: 95%;
+	padding: 8px;
+	margin-bottom: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: rgb(24, 28, 40);
+	color: #ffffff;
 }
 .form-container .checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 16px;
 }
 .form-container .checkbox-container input {
-    margin-right: 8px;
+	margin-right: 8px;
 }
 .form-container .checkbox-container label {
-    margin: 0;
+	margin: 0;
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+	width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #192038;
+	background: #192038;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #202b50;
-    border-radius: 8px;
+	background: #202b50;
+	border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #25325f;
+	background: #25325f;
 }
 
 button,
 input {
-    font-family: sans-serif;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-    overflow: visible;
+	font-family: sans-serif;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
+	overflow: visible;
 }
 
 button {
-    text-transform: none;
-    -webkit-appearance: button;
+	text-transform: none;
+	appearance: button;
+	-webkit-appearance: button;
 }
 
 button::-moz-focus-inner {
-    border-style: none;
-    padding: 0;
+	border-style: none;
+	padding: 0;
 }
 
 button:-moz-focusring {
-    outline: 0.0625rem dotted #fff;
+	outline: 0.0625rem dotted #fff;
 }
 
 .button {
-    padding: 0px 1.125rem;
-    appearance: none;
-    text-align: center;
-    text-decoration: none;
-    box-sizing: border-box;
-    height: 2.25rem;
-    font-family: Ubuntu, sans-serif;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
-    width: 30%;
-    border-radius: 0.25rem;
-    font-weight: 600;
-    position: relative;
-    line-height: 1;
-    font-size: 0.875rem;
-    user-select: none;
-    cursor: pointer;
-    border: 0.0625rem solid transparent;
-    background-color: rgb(50, 62, 168);
-    color: rgb(255, 255, 255);
+	padding: 0px 1.125rem;
+	appearance: none;
+	text-align: center;
+	text-decoration: none;
+	box-sizing: border-box;
+	height: 2.25rem;
+	font-family: Ubuntu, sans-serif;
+	-webkit-tap-highlight-color: transparent;
+	display: inline-block;
+	width: 30%;
+	border-radius: 0.25rem;
+	font-weight: 600;
+	position: relative;
+	line-height: 1;
+	font-size: 0.875rem;
+	user-select: none;
+	cursor: pointer;
+	border: 0.0625rem solid transparent;
+	background-color: rgb(50, 62, 168);
+	color: rgb(255, 255, 255);
 }
 
 .copy-popup {
-    display: none
+	display: none;
 }

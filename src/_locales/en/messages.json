@@ -5,17 +5,17 @@
     "extensionDescription": {
         "message": "Adds 'Upload to Zipline' button to image, video, audio and text selection context menu."
     },
-    "contextMenu_UploadImage": {
-        "message": "Upload Image to Zipline"
+    "contextMenu_UploadFile": {
+        "message": "Upload File to Zipline"
     },
-    "contextMenu_UploadVideo": {
-        "message": "Upload Video to Zipline"
-    },
-    "contextMenu_UploadAudio": {
-        "message": "Upload Audio to Zipline"
+    "contextMenu_UploadFileAdvanced": {
+        "message": "Upload File to Zipline (Advanced Options)"
     },
     "contextMenu_UploadText": {
         "message": "Upload Text to Zipline"
+    },
+    "contextMenu_UploadTextAdvanced": {
+        "message": "Upload Text to Zipline (Advanced Options)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Shorten URL with Zipline"
@@ -25,6 +25,9 @@
     },
     "contextMenu_UploadUrl": {
         "message": "Upload URL with Zipline [Experimental]"
+    },
+    "contextMenu_UploadUrlAdvanced": {
+        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
     },
     "ziplineSettings": {
         "message": "Zipline Settings"
@@ -161,9 +164,6 @@
     "ziplineZeroWidthSpaces": {
         "message": "Zero Width Spaces"
     },
-    "ziplineNoJSON": {
-        "message": "No JSON"
-    },
     "ziplineEmbed": {
         "message": "Embed"
     },
@@ -191,16 +191,43 @@
     "shortenUrl": {
         "message": "Shorten URL"
     },
+    "uploadFile": {
+        "message": "Upload File"
+    },
     "urlVanity": {
         "message": "Vanity"
     },
+    "urlMaxViews": {
+        "message": "URL Max Views"
+    },
+    "urlPassword": {
+        "message": "Password"
+    },
     "buttonShorten": {
         "message": "Shorten"
+    },
+    "buttonUpload": {
+        "message": "Upload"
     },
     "ziplineExportSettings": {
         "message": "Export Settings"
     },
     "ziplineImportSettings": {
         "message": "Import Settings"
+    },
+    "ziplineVersion": {
+        "message": "Zipline Version"
+    },
+    "ziplineFileNameFormat_v3": {
+        "message": "V3"
+    },
+    "ziplineFileNameFormat_v4": {
+        "message": "V4"
+    },
+    "ziplineFolder": {
+        "message": "Folder"
+    },
+    "ziplineFilename": {
+        "message": "Filename"
     }
 }

@@ -1,146 +1,145 @@
 html {
-    font-family: sans-serif;
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    width: 400px;
-    height: 600px;
+	font-family: sans-serif;
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	width: 400px;
+	height: 600px;
 }
 
 body {
-    background-color: rgb(12, 16, 28);
-    color: #FFFFFF;
-    text-decoration: none;
-    font-family: Ubuntu, sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1;
-    margin: 0px;
+	background-color: rgb(12, 16, 28);
+	color: #ffffff;
+	text-decoration: none;
+	font-family: Ubuntu, sans-serif;
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1;
+	margin: 0px;
 }
 
 h1 {
-    font-size: 2em;
+	font-size: 2em;
 }
 
 .form-container {
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    
+	color: #ffffff;
+	padding: 20px;
+	border-radius: 8px;
 }
 .form-container label {
-    display: block;
-    margin-bottom: 8px;
+	display: block;
+	margin-bottom: 8px;
 }
 
 .form-container select,
 .form-container input[type="number"],
 .form-container input[type="text"],
 .form-container input[type="password"] {
-    width: 95%;
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: rgb(24, 28, 40);
-    color: #ffffff;
+	width: 95%;
+	padding: 8px;
+	margin-bottom: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: rgb(24, 28, 40);
+	color: #ffffff;
 }
 
 .form-container select {
-    width: 100% !important;
+	width: 100% !important;
 }
 
 .form-container .checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 16px;
 }
 
 .form-container .checkbox-container input {
-    margin-right: 8px;
+	margin-right: 8px;
 }
 
 .form-container .checkbox-container label {
-    margin: 0;
+	margin: 0;
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+	width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #192038;
+	background: #192038;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #202b50;
-    border-radius: 8px;
+	background: #202b50;
+	border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #25325f;
+	background: #25325f;
 }
 
 input,
 select {
-    font-family: sans-serif;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
+	font-family: sans-serif;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
 }
 
 input {
-    overflow: visible;
-    height: 1.5rem;
+	overflow: visible;
+	height: 1.5rem;
 }
 
 select {
-    text-transform: none;
+	text-transform: none;
 }
 
-[type=checkbox],
-[type=radio] {
-    box-sizing: border-box;
-    padding: 0;
+[type="checkbox"],
+[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
 }
 
-[type=number]::-webkit-inner-spin-button,
-[type=number]::-webkit-outer-spin-button {
-    height: auto;
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+	height: auto;
 }
 
 .button {
-    padding: 0px 1.125rem;
-    appearance: none;
-    text-align: left;
-    text-decoration: none;
-    box-sizing: border-box;
-    height: 2.25rem;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
-    width: auto;
-    border-radius: 0.25rem;
-    font-weight: 600;
-    position: relative;
-    line-height: 1;
-    font-size: 0.875rem;
-    user-select: none;
-    cursor: pointer;
-    border: 0.0625rem solid transparent;
-    background-color: rgb(50, 62, 168);
-    color: rgb(255, 255, 255);
+	padding: 0px 1.125rem;
+	appearance: none;
+	text-align: left;
+	text-decoration: none;
+	box-sizing: border-box;
+	height: 2.25rem;
+	-webkit-tap-highlight-color: transparent;
+	display: inline-block;
+	width: auto;
+	border-radius: 0.25rem;
+	font-weight: 600;
+	position: relative;
+	line-height: 1;
+	font-size: 0.875rem;
+	user-select: none;
+	cursor: pointer;
+	border: 0.0625rem solid transparent;
+	background-color: rgb(50, 62, 168);
+	color: rgb(255, 255, 255);
 }
 
 .import-export {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+	display: flex;
+	/* flex-direction: column; */
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
 }
 
 #filePicker {
-    display: none;
+	display: none;
 }

@@ -2,14 +2,14 @@ await chrome.action.setPopup({
 	popup: "popups/settings/settings.html",
 });
 
-const translationElements = document.querySelectorAll('[data-translation]')
+const translationElements = document.querySelectorAll("[data-translation]");
 
 for (const translationElement of translationElements) {
-	const translationId = translationElement.dataset.translation
+	const translationId = translationElement.dataset.translation;
 
-	const translation = chrome.i18n.getMessage(translationId)
+	const translation = chrome.i18n.getMessage(translationId);
 
-	if (translation) translationElement.innerText = translation
+	if (translation) translationElement.innerText = translation;
 }
 
 const { outputUrl } = await chrome.storage.local.get(["outputUrl"]);

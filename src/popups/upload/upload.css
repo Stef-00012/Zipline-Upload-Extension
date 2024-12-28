@@ -6,7 +6,7 @@ html {
 	-ms-text-size-adjust: 100%;
 	text-size-adjust: 100%;
 	width: 400px;
-	height: 200px;
+	height: 300px;
 }
 
 body {
@@ -33,12 +33,16 @@ input {
 	padding: 20px;
 	border-radius: 8px;
 }
+
 .form-container label {
 	display: block;
 	margin-bottom: 8px;
 }
 
-.form-container input[type="text"] {
+.form-container select,
+.form-container input[type="number"],
+.form-container input[type="text"],
+.form-container input[type="password"] {
 	width: 95%;
 	padding: 8px;
 	margin-bottom: 16px;
@@ -47,14 +51,21 @@ input {
 	background-color: rgb(24, 28, 40);
 	color: #ffffff;
 }
+
+.form-container select {
+	width: 100% !important;
+}
+
 .form-container .checkbox-container {
 	display: flex;
 	align-items: center;
 	margin-bottom: 16px;
 }
+
 .form-container .checkbox-container input {
 	margin-right: 8px;
 }
+
 .form-container .checkbox-container label {
 	margin: 0;
 }
@@ -77,6 +88,7 @@ input {
 }
 
 button,
+select,
 input {
 	font-family: sans-serif;
 	font-size: 100%;
@@ -85,9 +97,24 @@ input {
 	overflow: visible;
 }
 
+select {
+	text-transform: none;
+}
+
+[type="checkbox"],
+[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
 button {
 	text-transform: none;
-    appearance: button;
+	appearance: button;
 	-webkit-appearance: button;
 }
 
@@ -103,6 +130,7 @@ button:-moz-focusring {
 .button {
 	padding: 0px 1.125rem;
 	appearance: none;
+	text-align: center;
 	text-decoration: none;
 	box-sizing: border-box;
 	height: 2.25rem;
@@ -120,5 +148,12 @@ button:-moz-focusring {
 	border: 0.0625rem solid transparent;
 	background-color: rgb(50, 62, 168);
 	color: rgb(255, 255, 255);
-	text-align: center;
+}
+
+.copy-popup {
+	display: none;
+}
+
+#textOnly {
+	display: none;
 }

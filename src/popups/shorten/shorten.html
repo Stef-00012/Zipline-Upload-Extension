@@ -16,8 +16,17 @@
         <div class="form-container">
             <label for="url" data-translation="url">URL</label>
             <input type="text" id="url" placeholder="e.g. https://example.com">
+            
             <label for="vanity" data-translation="urlVanity">Vanity</label>
             <input type="text" id="vanity" placeholder="e.g. example">
+
+            <div data-zipline-version="v4">
+                <label for="maxViews" data-translation="urlMaxViews">URL Max Views</label>
+                <input type="number" id="maxViews" min="0" value="0">
+
+                <label for="password" data-translation="urlPassword">Password</label>
+                <input type="text" id="password" placeholder="e.g. password123">
+            </div>
     
             <center>
                 <button id="shorten" class="button" data-translation="buttonShorten">Shorten</button>
