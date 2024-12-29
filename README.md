@@ -12,7 +12,7 @@ To install the extension from the Chrome Webstore, open the [extension's Webstor
 On every update of the extension there will be a new release.
 To download the extensions from the releases, go to the [latest release](https://github.com/stef-00012/Zipline-Upload-Extension/releases/latest) and download the `ziplineUploads.crx` file.
 
-Once donwloaded go to the extensions page (`chrome://extensions`) and drop there the file you just downloaded.
+Once downloaded go to the extensions page (`chrome://extensions`) and drop there the file you just downloaded.
 
 ## Source
 
