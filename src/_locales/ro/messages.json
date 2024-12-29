@@ -6,16 +6,16 @@
         "message": "Adaugă butonul „Încărcare în Zipline” la meniul contextual de selecție a imaginilor, video, audio și text."
     },
     "contextMenu_UploadFile": {
-        "message": "Upload File to Zipline"
+        "message": "Încărcați un fișier în Zipline"
     },
     "contextMenu_UploadFileAdvanced": {
-        "message": "Upload File to Zipline (Advanced Options)"
+        "message": "Încărcați un fișier în Zipline (Opțiuni avansate)"
     },
     "contextMenu_UploadText": {
         "message": "Încărcați text în Zipline"
     },
     "contextMenu_UploadTextAdvanced": {
-        "message": "Upload Text to Zipline (Advanced Options)"
+        "message": "Încărcați Text în Zipline (Opțiuni avansate)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Scurtați URL cu Zipline"
@@ -27,7 +27,7 @@
         "message": "Încărcați URL cu Zipline [Experimental]"
     },
     "contextMenu_UploadUrlAdvanced": {
-        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
+        "message": "Încărcați URL cu Zipline (Opțiuni avansate) [Experimental]"
     },
     "ziplineSettings": {
         "message": "Setări Zipline"
@@ -192,22 +192,22 @@
         "message": "Scurtați URL"
     },
     "uploadFile": {
-        "message": "Upload File"
+        "message": "Încarcă un Fișier"
     },
     "urlVanity": {
         "message": "Vanity"
     },
     "urlMaxViews": {
-        "message": "URL Max Views"
+        "message": "Nr. Vizualizări Maxime URL"
     },
     "urlPassword": {
-        "message": "Password"
+        "message": "Parolă"
     },
     "buttonShorten": {
         "message": "Scurtează"
     },
     "buttonUpload": {
-        "message": "Upload"
+        "message": "Încarcă"
     },
     "ziplineExportSettings": {
         "message": "Setări de export"
@@ -225,9 +225,9 @@
         "message": "V4"
     },
     "ziplineFolder": {
-        "message": "Folder"
+        "message": "Dosar"
     },
     "ziplineFilename": {
-        "message": "Filename"
+        "message": "Nume Fișier"
     }
 }
