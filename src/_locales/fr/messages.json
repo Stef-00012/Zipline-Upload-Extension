@@ -1,21 +1,22 @@
 {
     "extensionName": {
-        "message": "Zipline Télécharger"
+        "message": "Téléverseur Zipline"
     },
     "extensionDescription": {
-        "message": "Ajoute le bouton 'Télécharger vers Zipline' au menu contextuel de sélection d'images, de vidéos, d'audio et de texte."
+        "message": "Ajoute le bouton 'Téléverser vers Zipline' au menu contextuel de sélection d'images, de vidéos, d'audio et de texte."
     },
     "contextMenu_UploadFile": {
-        "message": "Upload File to Zipline"
+        "message": "Téléverser le fichier vers Zipline"
+
     },
     "contextMenu_UploadFileAdvanced": {
-        "message": "Upload File to Zipline (Advanced Options)"
+        "message": "Téléverser le fichier vers Zipline (Options avancées)"
     },
     "contextMenu_UploadText": {
-        "message": "Télécharger le texte vers Zipline"
+        "message": "Téléverser le texte vers Zipline"
     },
     "contextMenu_UploadTextAdvanced": {
-        "message": "Upload Text to Zipline (Advanced Options)"
+        "message": "Téléverser le texte vers Zipline (Options avancées)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Raccourcir l'URL avec Zipline"
@@ -24,16 +25,16 @@
         "message": "Raccourcir l'URL avec Zipline (Options avancées)"
     },
     "contextMenu_UploadUrl": {
-        "message": "Télécharger l'URL avec Zipline [Expérimental]"
+        "message": "Téléverser l'URL avec Zipline [Expérimental]"
     },
     "contextMenu_UploadUrlAdvanced": {
-        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
+        "message": "Téléverser l'URL avec Zipline (Options avancées) [Experimental]"
     },
     "ziplineSettings": {
-        "message": "Zipline paramètres"
+        "message": "Paramètres de Zipline"
     },
     "ziplineUrl": {
-        "message": "Domain"
+        "message": "Domaine"
     },
     "ziplineToken": {
         "message": "Jeton de Zipline"
@@ -60,7 +61,7 @@
         "message": "30 Minutes"
     },
     "ziplineImageExpires_1hour": {
-        "message": "1 Heures"
+        "message": "1 Heure"
     },
     "ziplineImageExpires_2hours": {
         "message": "2 Heures"
@@ -129,10 +130,10 @@
         "message": "1 Année"
     },
     "ziplineImageCompression": {
-        "message": "Compression De Fichiers"
+        "message": "Compression de fichiers"
     },
     "ziplineFileNameFormat": {
-        "message": "Sélectionnez Le Format Du Nom De Fichier"
+        "message": "Sélectionnez le format du nom de fichier"
     },
     "ziplineFileNameFormat_random": {
         "message": "Aléatoire"
@@ -144,19 +145,19 @@
         "message": "UUID"
     },
     "ziplineFileNameFormat_name": {
-        "message": "Nom (conserve le nom d'origine)"
+        "message": "Nom (conserve le nom d'origine  du fichier)"
     },
     "ziplineFileNameFormat_gfycat": {
         "message": "Gfycat"
     },
     "ziplinePassword": {
-        "message": "De Passe Du Fichier"
+        "message": "Mot de passe du fichier"
     },
     "ziplineOverrideDomain": {
-        "message": "Remplacer Le Domaine"
+        "message": "Remplacer le domaine"
     },
     "ziplineMaxUploadSize": {
-        "message": "Taille Maximale De Téléchargement (MB)"
+        "message": "Taille Maximale De Téléversement (MO)"
     },
     "ziplineChunkSize": {
         "message": "Taille fragmentée (MB)"
@@ -165,22 +166,22 @@
         "message": "Espaces De Largeur Nulle"
     },
     "ziplineEmbed": {
-        "message": "Embed"
+        "message": "Intégration"
     },
     "ziplineOriginalName": {
-        "message": "Nom D'Origine"
+        "message": "Nom d'origine"
     },
     "ziplineAllowChunkedUploads": {
-        "message": "Autoriser Les Téléchargements Fragmentés"
+        "message": "Autoriser Les Téléversements Fragmentés"
     },
     "ziplineChunkedUploadsNotifications": {
-        "message": "Afficher Les Notifications Pour Les Téléchargements Fragmentés"
+        "message": "Afficher Les Notifications Pour Les Téléversements Fragmentés"
     },
     "ziplineGeneralNotifications": {
         "message": "Afficher Les Notifications Générales"
     },
     "ziplineEnableExperimentalFeatures": {
-        "message": "Activer Les Fonctionnalités Expérimentales (Téléchargement De Fichiers URL)"
+        "message": "Activer Les Fonctionnalités Expérimentales (Téléversement de fichiers par URL)"
     },
     "url": {
         "message": "URL"
@@ -192,7 +193,7 @@
         "message": "Raccourcir l'URL"
     },
     "uploadFile": {
-        "message": "Upload File"
+        "message": "Téléverser le fichier"
     },
     "urlVanity": {
         "message": "Vanité"
@@ -201,13 +202,13 @@
         "message": "URL Max Views"
     },
     "urlPassword": {
-        "message": "Password"
+        "message": "Mot de passe"
     },
     "buttonShorten": {
         "message": "Raccourcir"
     },
     "buttonUpload": {
-        "message": "Upload"
+        "message": "Téléverser"
     },
     "ziplineExportSettings": {
         "message": "Paramètres d'exportation"
@@ -225,9 +226,9 @@
         "message": "V4"
     },
     "ziplineFolder": {
-        "message": "Folder"
+        "message": "Dossier"
     },
     "ziplineFilename": {
-        "message": "Filename"
+        "message": "Nom du fichier"
     }
 }
