@@ -50,7 +50,7 @@ Translations:
   - English (UK): 
   - English (US): [Stef-00012](https://github.com/Stef-00012)
 - Italian: [Stef-00012](https://github.com/Stef-00012)
-- French: [KennySB-dev](https://github.com/KennySB-dev)
+- French: [KennySB-dev](https://github.com/KennySB-dev) & [SkyExploreWasTaken](https://github.com/SkyExploreWasTaken)
 - Polish: [iHategithub9000](https://github.com/iHategithub9000)
 - Romanian: [broisvoldemort](https://github.com/broisvoldemort) & [LeoMavri](https://github.com/LeoMavri) 
 - Indonesian: [Muhammad Ari Al Ghifari](https://github.com/alfari24)
