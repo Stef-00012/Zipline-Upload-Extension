@@ -192,22 +192,22 @@
         "message": "Scurtați URL"
     },
     "uploadFile": {
-        "message": "Upload File"
+        "message": "Încarcă un Fișier"
     },
     "urlVanity": {
         "message": "Vanity"
     },
     "urlMaxViews": {
-        "message": "URL Max Views"
+        "message": "Vizualizări Maxime ale URL-ului"
     },
     "urlPassword": {
-        "message": "Password"
+        "message": "Parolă"
     },
     "buttonShorten": {
         "message": "Scurtează"
     },
     "buttonUpload": {
-        "message": "Upload"
+        "message": "Încarcă"
     },
     "ziplineExportSettings": {
         "message": "Setări de export"
@@ -225,9 +225,9 @@
         "message": "V4"
     },
     "ziplineFolder": {
-        "message": "Folder"
+        "message": "Dosar"
     },
     "ziplineFilename": {
-        "message": "Filename"
+        "message": "Nume Fișier"
     }
 }
