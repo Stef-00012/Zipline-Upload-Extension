@@ -1,25 +1,25 @@
 chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 	if (reason === "install") {
 		await chrome.storage.local.set({
-			ziplineUrl: "UNSET",
-			ziplineToken: "UNSET",
+			ziplineUrl: null,
+			ziplineToken: null,
 			ziplineVersion: "v3",
-			ziplineImageMaxViews: "",
+			ziplineImageMaxViews: null,
 			ziplineImageExpires: "never",
-			ziplineImageCompression: "0",
+			ziplineImageCompression: 0,
 			ziplineFileNameFormat: "random",
-			ziplinePassword: "",
-			ziplineFolder: "UNSET",
-			ziplineOverrideDomain: "",
-			ziplineMaxUploadSize: "100",
-			ziplineChunkSize: "50",
-			ziplineZeroWidthSpaces: "false",
-			ziplineEmbed: "true",
-			ziplineOriginalName: "false",
-			ziplineAllowChunkedUploads: "false",
-			ziplineChunkedUploadsNotifications: "false",
-			ziplineGeneralNotifications: "true",
-			ziplineEnableExperimentalFeatures: "false",
+			ziplinePassword: null,
+			ziplineFolder: null,
+			ziplineOverrideDomain: null,
+			ziplineMaxUploadSize: 100,
+			ziplineChunkSize: 50,
+			ziplineZeroWidthSpaces: false,
+			ziplineEmbed: true,
+			ziplineOriginalName: false,
+			ziplineAllowChunkedUploads: false,
+			ziplineChunkedUploadsNotifications: false,
+			ziplineGeneralNotifications: true,
+			ziplineEnableExperimentalFeatures: false,
 		});
 	}
 });
@@ -64,7 +64,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 	const { ziplineEnableExperimentalFeatures: experimentalFeatures } =
 		await chrome.storage.local.get(["ziplineEnableExperimentalFeatures"]);
 
-	if (experimentalFeatures !== "true") return;
+	if (!experimentalFeatures) return;
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_URL",
@@ -297,9 +297,8 @@ async function uploadToZipline(blob, text = false) {
 	]);
 
 	if (!ziplineVersion) ziplineVersion = "v3";
-	if (overrideDomain) overrideDomain = overrideDomain.split("/")[2];
 
-	if (!ziplineUrl || ziplineUrl === "UNSET")
+	if (!ziplineUrl)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline URL first.",
@@ -315,7 +314,7 @@ async function uploadToZipline(blob, text = false) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!ziplineToken || ziplineToken === "UNSET")
+	if (!ziplineToken)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
@@ -323,105 +322,65 @@ async function uploadToZipline(blob, text = false) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	let headers = {};
+	const headers = {};
+
+	const expirationLegend = {
+		"never": null,
+		"5m": new Date(Date.now() + 5 * 60 * 1000).toISOString(),
+		"10m": new Date(Date.now() + 10 * 60 * 1000).toISOString(),
+		"15m": new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+		"30m": new Date(Date.now() + 30 * 60 * 1000).toISOString(),
+		"1h": new Date(Date.now() + 1 * 60 * 60 * 1000).toISOString(),
+		"2h": new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
+		"3h": new Date(Date.now() + 3 * 60 * 60 * 1000).toISOString(),
+		"4h": new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString(),
+		"5h": new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(),
+		"6h": new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString(),
+		"8h": new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
+		"12h": Date.now() + 12 * 60 * 60 * 1000,
+		"1d": new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString(),
+		"3d": new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
+		"5d": new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
+		"7d": new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+		"1w": new Date(Date.now() + 1 * 7 * 24 * 60 * 60 * 1000).toISOString(),
+		"1.5w": new Date(Date.now() + 1.5 * 7 * 24 * 60 * 60 * 1000).toISOString(),
+		"2w": new Date(Date.now() + 2 * 7 * 24 * 60 * 60 * 1000).toISOString(),
+		"3w": new Date(Date.now() + 3 * 7 * 24 * 60 * 60 * 1000).toISOString(),
+		"1M": new Date(Date.now() + 1 * 30.44 * 24 * 60 * 60 * 1000).toISOString(), // 30.44 is the average days in 1 month
+		"1.5M": new Date(Date.now() + 1.5 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
+		"2M": new Date(Date.now() + 2 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
+		"3M": new Date(Date.now() + 3 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
+		"6M": new Date(Date.now() + 6 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
+		"8M": new Date(Date.now() + 8 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
+		"1y": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+	}
+
+	expires = expirationLegend[expires]
 
 	if (ziplineVersion === "v3") {
-		headers = {
-			Authorization: ziplineToken,
-			Format: fileNameFormat.toLowerCase(),
-			Embed: embed,
-			"Image-Compression-Percent": imageCompression,
-			"Original-Name": originalName,
-			"Override-Domain": overrideDomain,
-			Zws: zeroWidthSpaces,
-			Password: password,
-			"Max-Views": maxViews,
-		}
+		headers.Authorization = ziplineToken
+		headers.Format = fileNameFormat.toLowerCase()
+		headers["Image-Compression-Percent"] = String(imageCompression)
+
+		if (maxViews) headers["Max-Views"] = String(maxViews)
+		if (password) headers.Password = password
+		if (overrideDomain) headers["Override-Domain"] = overrideDomain.split("/")[2]
+		if (zeroWidthSpaces) headers.Zws = "true"
+		if (embed) headers.Embed = "true"
+		if (expires) headers["Expires-At"] = `date=${expires}`
+		if (originalName) headers["Original-Name"] = "true"
 	} else if (ziplineVersion === "v4") {
-		headers = {
-			Authorization: ziplineToken,
-			"X-Zipline-Domain": overrideDomain,
-			"X-Zipline-Format": fileNameFormat.toLowerCase(),
-			"X-Zipline-Image-Compression-Percent": imageCompression,
-			"X-Zipline-Max-Views": maxViews,
-			"X-Zipline-Original-Name": originalName,
-			"X-Zipline-Password": password,
-		}
+		headers.Authorization = ziplineToken
+		headers["X-Zipline-Format"] = fileNameFormat.toLowerCase()
+		headers["X-Zipline-Image-Compression-Percent"] = String(imageCompression)
+
+		if (maxViews) headers["X-Zipline-Max-Views"] = String(maxViews)
+		if (password) headers["X-Zipline-Password"] = password
+		if (folder) headers["X-Zipline-Folder"] = folder
+		if (overrideDomain) headers["X-Zipline-Domain"] = overrideDomain.split("/")[2]
+		if (expires) headers["X-Zipline-Deletes-At"] = `date=${expires}`
+		if (originalName) headers["X-Zipline-Original-Name"] = "true"
 	}
-
-	if (expires !== "never") {
-		if (ziplineVersion === "v3") {
-			const legend = {
-				"5m": 5 * 60 * 1000,
-				"10m": 10 * 60 * 1000,
-				"15m": 15 * 60 * 1000,
-				"30m": 30 * 60 * 1000,
-				"1h": 1 * 60 * 60 * 1000,
-				"2h": 2 * 60 * 60 * 1000,
-				"3h": 3 * 60 * 60 * 1000,
-				"4h": 4 * 60 * 60 * 1000,
-				"5h": 5 * 60 * 60 * 1000,
-				"6h": 6 * 60 * 60 * 1000,
-				"8h": 8 * 60 * 60 * 1000,
-				"12h": 12 * 60 * 60 * 1000,
-				"1d": 1 * 24 * 60 * 60 * 1000,
-				"3d": 3 * 24 * 60 * 60 * 1000,
-				"5d": 5 * 24 * 60 * 60 * 1000,
-				"7d": 7 * 24 * 60 * 60 * 1000,
-				"1w": 1 * 7 * 24 * 60 * 60 * 1000,
-				"1.5w": 1.5 * 7 * 24 * 60 * 60 * 1000,
-				"2w": 2 * 7 * 24 * 60 * 60 * 1000,
-				"3w": 3 * 7 * 24 * 60 * 60 * 1000,
-				"1M": 1 * 30.44 * 24 * 60 * 60 * 1000, // 30.44 is the average days in 1 month
-				"1.5M": 1.5 * 30.44 * 24 * 60 * 60 * 1000,
-				"2M": 2 * 30.44 * 24 * 60 * 60 * 1000,
-				"3M": 3 * 30.44 * 24 * 60 * 60 * 1000,
-				"6M": 6 * 30.44 * 24 * 60 * 60 * 1000,
-				"8M": 8 * 30.44 * 24 * 60 * 60 * 1000,
-				"1y": 365 * 24 * 60 * 60 * 1000,
-			};
-	
-			const expiresDate = new Date(Date.now() + legend[expires]).toISOString();
-	
-			if (ziplineVersion === "v3") headers["Expires-At"] = `date=${expiresDate}`;
-			else if (ziplineVersion === "v4") headers["X-Zipline-Deletes-At"] = `date=${expiresDate}`;
-		}
-		else if (ziplineVersion === "v4") {
-			const v4Legend = {
-				"5m": "5min",
-				"10m": "10min",
-				"15m": "15min",
-				"30m": "30min",
-				"1h": "1h",
-				"2h": "2h",
-				"3h": "3h",
-				"4h": "4h",
-				"5h": "5h",
-				"6h": "6h",
-				"8h": "8h",
-				"12h": "12h",
-				"1d": "1d",
-				"3d": "3d",
-				"5d": "5d",
-				"7d": "7d",
-				"1w": "1w",
-				"1.5w": "1.5w",
-				"2w": "2w",
-				"3w": "3w",
-				"1M": "30d",
-				"1.5M": "45.625d",
-				"2M": "60d",
-				"3M": "90d",
-				"6M": "120d",
-				"8M": "180d",
-				"1y": "1y",
-			};
-
-			headers["X-Zipline-Deletes-At"] = v4Legend[expires];
-		}
-	}
-
-	if (ziplineVersion === "v4" && ["UNSET", "noFolder"].every(value => folder !== value)) headers["X-Zipline-Folder"] = folder;
 
 	if (blob.size > maxUploadSize * 1024 * 1024)
 		return await chrome.notifications.create({
@@ -431,7 +390,7 @@ async function uploadToZipline(blob, text = false) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (blob.size > 95 * 1024 * 1024 && allowChunkedUploads === "false")
+	if (blob.size > 95 * 1024 * 1024 && allowChunkedUploads)
 		return await chrome.notifications.create({
 			title: "Error",
 			message:
@@ -442,7 +401,7 @@ async function uploadToZipline(blob, text = false) {
 
 	console.log("Uploading file...");
 
-	if (showNotifications === "true") await chrome.notifications.create({
+	if (showNotifications) await chrome.notifications.create({
 		title: "Upload",
 		message: "Uploading the file...",
 		type: "basic",
@@ -580,7 +539,7 @@ async function uploadToZipline(blob, text = false) {
 
 				console.log(`Successfully uploaded the chunk ${chunkId}`);
 
-				if (showChunkedUploadNotification === "true")
+				if (showChunkedUploadNotification)
 					await chrome.notifications.create({
 						title: "Chunked Upload",
 						message: `Successfully upload the chunk ${chunkId} out of ${numberOfChunks}\nStarted uploading the chunk ${chunkId + 1}`,
@@ -608,7 +567,7 @@ async function shortenWithZipline(url) {
 		"ziplineVersion"
 	]);
 
-	if (!ziplineUrl || ziplineUrl === "UNSET")
+	if (!ziplineUrl)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline URL first.",
@@ -624,7 +583,7 @@ async function shortenWithZipline(url) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!ziplineToken || ziplineToken === "UNSET")
+	if (!ziplineToken)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
@@ -715,7 +674,7 @@ async function convertToBlob(data) {
 	if (urlRegex.test(data)) {
 		console.log("Fetching file...");
 
-		if (showNotifications === "true") chrome.notifications.create({
+		if (showNotifications) chrome.notifications.create({
 			title: "Upload",
 			message:
 				"Fetching the file...",
@@ -730,7 +689,7 @@ async function convertToBlob(data) {
 
 	console.log("Decoding base64 file...");
 
-	if (showNotifications === "true") chrome.notifications.create({
+	if (showNotifications) chrome.notifications.create({
 		title: "Upload",
 		message:
 			"Decoding the file...",

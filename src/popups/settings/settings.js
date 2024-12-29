@@ -22,7 +22,7 @@ const {
 	"ziplineFolder",
 	"ziplineUrl",
 ]);
-console.log(currentFolder);
+
 updateVersionOptions(currentVersion || "v3");
 
 const settings = [
@@ -58,9 +58,9 @@ for (const setting of settings) {
 		["text", "number", "password"].includes(element.type) ||
 		element.tagName === "SELECT"
 	) {
-		element.value = elementData === "UNSET" ? "" : elementData;
+		element.value = elementData === null ? "" : elementData;
 	} else {
-		element.checked = elementData === "true";
+		element.checked = elementData;
 	}
 
 	element.oninput = async () => {
@@ -69,14 +69,13 @@ for (const setting of settings) {
 			element.tagName === "SELECT"
 		) {
 			await chrome.storage.local.set({
-				[element.id]: String(element.value),
+				[element.id]: element.value.length > 0 ? element.value : null,
 			});
 
-			if (element.id === "ziplineVersion")
-				updateVersionOptions(element.value || "v3");
+			if (element.id === "ziplineVersion") updateVersionOptions(element.value || "v3");
 		} else {
 			await chrome.storage.local.set({
-				[element.id]: element.checked ? "true" : "false",
+				[element.id]: element.checked,
 			});
 
 			try {
@@ -109,13 +108,7 @@ importButton.onclick = async () => {
 };
 
 exportButton.onclick = async () => {
-	const exportData = {};
-
-	for (const setting of settings) {
-		const settingContent = await chrome.storage.local.get(setting);
-		console.log(settingContent[setting]);
-		exportData[setting] = settingContent[setting];
-	}
+	const exportData = await chrome.storage.local.get(settings);
 
 	const stringifiedSettings = JSON.stringify(exportData, null, 4);
 
@@ -149,12 +142,25 @@ filePicker.onchange = async (event) => {
 			console.log(e);
 		}
 
+		const validSettings = validateSettings(jsonSettings)
+
+		if (!validSettings) {
+			return await chrome.notifications.create({
+				title: "Error",
+				message: "Invalid settings JSON.",
+				type: "basic",
+				iconUrl: chrome.runtime.getURL("icons/512.png"),
+			});
+		}
+
 		for (const setting in jsonSettings) {
 			if (!settings.includes(setting)) continue;
 
 			await chrome.storage.local.set({
 				[setting]: jsonSettings[setting],
 			});
+
+			document.getElementById(setting).value = jsonSettings[setting];
 		}
 	};
 
@@ -225,4 +231,138 @@ async function updateVersionOptions(version) {
 			folderSelectElement.appendChild(noFolderOption);
 		}
 	}
+}
+
+const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/;
+const validVersions = ["v3", "v4"];
+const validExpirationTimes = [
+	"never",
+	"5m",
+	"10m",
+	"15m",
+	"30m",
+	"1h",
+	"2h",
+	"3h",
+	"4h",
+	"5h",
+	"6h",
+	"8h",
+	"12h",
+	"1d",
+	"3d",
+	"5d",
+	"7d",
+	"1w",
+	"1.5w",
+	"2w",
+	"3w",
+	"1M",
+	"1.5M",
+	"2M",
+	"3M",
+	"6M",
+	"8M",
+	"1y",
+]
+const validFileNameFormats = [
+	"random",
+	"date",
+	"uuid",
+	"name",
+	"gfycat",
+]
+
+const validationFunctions = {
+	ziplineUrl(setting) {
+		return urlRegex.test(setting);
+	},
+
+	ziplineToken(setting) {
+		return typeof setting === "string" && setting.length > 0
+	},
+
+	ziplineVersion(setting) {
+		return validVersions.includes(setting);
+	},
+
+	ziplineImageMaxViews(setting) {
+		const settingNumber = Number(setting)
+
+		return setting === null || (!Number.isNaN(settingNumber) && settingNumber >= 0);
+	},
+
+	ziplineImageExpires(setting) {
+		return validExpirationTimes.includes(setting);
+	},
+
+	ziplineImageCompression(setting) {
+		const settingNumber = Number(setting)
+
+		return !Number.isNaN(settingNumber) && settingNumber >= 0 && settingNumber <= 100;
+	},
+
+	ziplineFileNameFormat(setting) {
+		return validFileNameFormats.includes(setting);
+	},
+
+	ziplinePassword(setting) {
+		return setting === null || typeof setting === "string";
+	},
+
+	ziplineFolder(setting) {
+		return setting === null || typeof setting === "string"
+	},
+
+	ziplineOverrideDomain(setting) {
+		return setting === null || urlRegex.test(setting);
+	},
+
+	ziplineMaxUploadSize(setting) {
+		const settingNumber = Number(setting)
+
+		return !Number.isNaN(settingNumber) && settingNumber >= 0;
+	},
+
+	ziplineChunkSize(setting) {
+		const settingNumber = Number(setting)
+
+		return !Number.isNaN(settingNumber) && settingNumber >= 0;
+	},
+
+	ziplineZeroWidthSpaces(setting) {
+		return typeof setting === "boolean";
+	},
+
+	ziplineEmbed(setting) {
+		return typeof setting === "boolean";
+	},
+
+	ziplineOriginalName(setting) {
+		return typeof setting === "boolean";
+	},
+
+	ziplineAllowChunkedUploads(setting) {
+		return typeof setting === "boolean";
+	},
+
+	ziplineChunkedUploadsNotifications(setting) {
+		return typeof setting === "boolean";
+	},
+
+	ziplineGeneralNotifications(setting) {
+		return typeof setting === "boolean";
+	},
+
+	ziplineEnableExperimentalFeatures(setting) {
+		return typeof setting === "boolean";
+	}
+}
+
+function validateSettings(settingsToValidate) {
+	for (const setting in settingsToValidate) {
+		if (!validationFunctions[setting](settingsToValidate[setting])) return false;
+	}
+
+	return true;
 }

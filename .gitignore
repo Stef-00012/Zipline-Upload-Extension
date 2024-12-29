@@ -4,3 +4,5 @@
 *.sh
 changelog.md
 _icons
+node_modules
+bun.lockb
