@@ -23,7 +23,7 @@ const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/;
 document.getElementById("copy").onclick = async () => {
 	if (!urlElement.value || !urlRegex.test(urlElement.value))
 		return await chrome.notifications.create({
-			title: "Success",
+			title: "Error",
 			message: `Invalid URL "${urlElement.value || "none"}".`,
 			type: "basic",
 			iconUrl: chrome.runtime.getURL("icons/512.png"),

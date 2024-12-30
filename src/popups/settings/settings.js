@@ -12,39 +12,39 @@ for (const translationElement of translationElements) {
 }
 
 const {
-	ziplineVersion: currentVersion,
-	ziplineToken,
-	ziplineFolder: currentFolder,
-	ziplineUrl,
+	apiVersion: currentVersion,
+	token,
+	folder: currentFolder,
+	hostname,
 } = await chrome.storage.local.get([
-	"ziplineVersion",
-	"ziplineToken",
-	"ziplineFolder",
-	"ziplineUrl",
+	"apiVersion",
+	"token",
+	"folder",
+	"hostname",
 ]);
 
 updateVersionOptions(currentVersion || "v3");
 
 const settings = [
-	"ziplineUrl",
-	"ziplineToken",
-	"ziplineVersion",
-	"ziplineImageMaxViews",
-	"ziplineImageExpires",
-	"ziplineImageCompression",
-	"ziplineFileNameFormat",
-	"ziplinePassword",
-	"ziplineFolder",
-	"ziplineOverrideDomain",
-	"ziplineMaxUploadSize",
-	"ziplineChunkSize",
-	"ziplineZeroWidthSpaces",
-	"ziplineEmbed",
-	"ziplineOriginalName",
-	"ziplineAllowChunkedUploads",
-	"ziplineChunkedUploadsNotifications",
-	"ziplineGeneralNotifications",
-	"ziplineEnableExperimentalFeatures",
+	"hostname",
+	"token",
+	"apiVersion",
+	"maxViews",
+	"expiration",
+	"fileCompression",
+	"fileNameFormat",
+	"password",
+	"folder",
+	"overrideDomain",
+	"maxUploadSize",
+	"chunkSize",
+	"zeroWidthSpaces",
+	"embed",
+	"originalName",
+	"allowChunkedUploads",
+	"chunkedUploadsNotifications",
+	"generalNotifications",
+	"enableExperimentalFeatures",
 ];
 
 for (const setting of settings) {
@@ -68,11 +68,13 @@ for (const setting of settings) {
 			["text", "number", "password"].includes(element.type) ||
 			element.tagName === "SELECT"
 		) {
+			const elementValue = element.value.length > 0 ? element.value : null;
+
 			await chrome.storage.local.set({
-				[element.id]: element.value.length > 0 ? element.value : null,
+				[element.id]: element.type === "number" ? Number(elementValue) : elementValue,
 			});
 
-			if (element.id === "ziplineVersion") updateVersionOptions(element.value || "v3");
+			if (element.id === "apiVersion") updateVersionOptions(element.value || "v3");
 		} else {
 			await chrome.storage.local.set({
 				[element.id]: element.checked,
@@ -80,17 +82,16 @@ for (const setting of settings) {
 
 			try {
 				if (
-					element.id === "ziplineEnableExperimentalFeatures" &&
+					element.id === "enableExperimentalFeatures" &&
 					element.checked
 				) {
-					console.log(element.checked, element.id);
 					chrome.contextMenus.create({
 						id: "Zipline_Upload_URL",
 						title: "Upload URL with Zipliine [Experimental]",
 						contexts: ["link"],
 					});
 				} else if (
-					element.id === "ziplineEnableExperimentalFeatures" &&
+					element.id === "enableExperimentalFeatures" &&
 					!element.checked
 				) {
 					console.log(element.checked, element.id);
@@ -168,6 +169,7 @@ filePicker.onchange = async (event) => {
 };
 
 async function updateVersionOptions(version) {
+	console.log(version)
 	const versionElements = document.querySelectorAll("[data-zipline-version]");
 
 	for (const versionElement of versionElements) {
@@ -177,7 +179,7 @@ async function updateVersionOptions(version) {
 	}
 
 	if (version === "v4") {
-		const folderSelectElement = document.getElementById("ziplineFolder");
+		const folderSelectElement = document.getElementById("folder");
 
 		const noFolderOption = document.createElement("option");
 
@@ -185,9 +187,9 @@ async function updateVersionOptions(version) {
 		noFolderOption.innerText = "No Folder";
 
 		try {
-			const res = await fetch(`${ziplineUrl}/api/user/folders?noincl=true`, {
+			const res = await fetch(`${hostname}/api/user/folders?noincl=true`, {
 				headers: {
-					Authorization: ziplineToken,
+					Authorization: token,
 				},
 			});
 
@@ -201,7 +203,7 @@ async function updateVersionOptions(version) {
 
 			if (!currentFolderExists) {
 				await chrome.storage.local.set({
-					ziplineFolder: "noFolder",
+					folder: "noFolder",
 				});
 			}
 
@@ -274,51 +276,51 @@ const validFileNameFormats = [
 ]
 
 const validationFunctions = {
-	ziplineUrl(setting) {
+	hostname(setting) {
 		return urlRegex.test(setting);
 	},
 
-	ziplineToken(setting) {
+	token(setting) {
 		return typeof setting === "string" && setting.length > 0
 	},
 
-	ziplineVersion(setting) {
+	apiVersion(setting) {
 		return validVersions.includes(setting);
 	},
 
-	ziplineImageMaxViews(setting) {
+	maxViews(setting) {
 		const settingNumber = Number(setting)
 
 		return setting === null || (!Number.isNaN(settingNumber) && settingNumber >= 0);
 	},
 
-	ziplineImageExpires(setting) {
+	expiration(setting) {
 		return validExpirationTimes.includes(setting);
 	},
 
-	ziplineImageCompression(setting) {
+	fileCompression(setting) {
 		const settingNumber = Number(setting)
 
 		return !Number.isNaN(settingNumber) && settingNumber >= 0 && settingNumber <= 100;
 	},
 
-	ziplineFileNameFormat(setting) {
+	fileNameFormat(setting) {
 		return validFileNameFormats.includes(setting);
 	},
 
-	ziplinePassword(setting) {
+	password(setting) {
 		return setting === null || typeof setting === "string";
 	},
 
-	ziplineFolder(setting) {
+	folder(setting) {
 		return setting === null || typeof setting === "string"
 	},
 
-	ziplineOverrideDomain(setting) {
+	overrideDomain(setting) {
 		return setting === null || urlRegex.test(setting);
 	},
 
-	ziplineMaxUploadSize(setting) {
+	maxUploadSize(setting) {
 		const settingNumber = Number(setting)
 
 		return !Number.isNaN(settingNumber) && settingNumber >= 0;
@@ -330,31 +332,31 @@ const validationFunctions = {
 		return !Number.isNaN(settingNumber) && settingNumber >= 0;
 	},
 
-	ziplineZeroWidthSpaces(setting) {
+	zeroWidthSpaces(setting) {
 		return typeof setting === "boolean";
 	},
 
-	ziplineEmbed(setting) {
+	embed(setting) {
 		return typeof setting === "boolean";
 	},
 
-	ziplineOriginalName(setting) {
+	originalName(setting) {
 		return typeof setting === "boolean";
 	},
 
-	ziplineAllowChunkedUploads(setting) {
+	allowChunkedUploads(setting) {
 		return typeof setting === "boolean";
 	},
 
-	ziplineChunkedUploadsNotifications(setting) {
+	chunkedUploadsNotifications(setting) {
 		return typeof setting === "boolean";
 	},
 
-	ziplineGeneralNotifications(setting) {
+	generalNotifications(setting) {
 		return typeof setting === "boolean";
 	},
 
-	ziplineEnableExperimentalFeatures(setting) {
+	enableExperimentalFeatures(setting) {
 		return typeof setting === "boolean";
 	}
 }

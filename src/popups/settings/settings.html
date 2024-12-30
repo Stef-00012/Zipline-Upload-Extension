@@ -13,23 +13,23 @@
     </center>
 
     <div class="form-container">
-        <label for="ziplineUrl" data-translation="ziplineUrl">Domain</label>
-        <input type="text" id="ziplineUrl" placeholder="e.g. https://example.com">
+        <label for="hostname" data-translation="ziplineUrl">Domain</label>
+        <input type="text" id="hostname" placeholder="e.g. https://example.com">
 
-        <label for="ziplineToken" data-translation="ziplineToken">Zipline Token</label>
-        <input type="password" id="ziplineToken" placeholder="e.g. Tm2FDc9BTGXjwzk9q.MTcyMjk3k5GsOv">
+        <label for="token" data-translation="ziplineToken">Zipline Token</label>
+        <input type="password" id="token" placeholder="e.g. Tm2FDc9BTGXjwzk9q.MTcyMjk3k5GsOv">
 
-        <label for="ziplineVersion" data-translation="ziplineVersion">Zipline Version</label>
-        <select id="ziplineVersion">
+        <label for="apiVersion" data-translation="ziplineVersion">Zipline Version</label>
+        <select id="apiVersion">
             <option value="v3" data-translation="ziplineFileNameFormat_v3">V3</option>
             <option value="v4" data-translation="ziplineFileNameFormat_v4">V4</option>
         </select>
 
-        <label for="ziplineImageMaxViews" data-translation="ziplineImageMaxViews">File Max Views</label>
-        <input type="number" id="ziplineImageMaxViews" min="0" value="0">
+        <label for="maxViews" data-translation="ziplineImageMaxViews">File Max Views</label>
+        <input type="number" id="maxViews" min="0" value="0">
 
-        <label for="ziplineImageExpires" data-translation="ziplineImageExpires">File Expires</label>
-        <select id="ziplineImageExpires">
+        <label for="expiration" data-translation="ziplineImageExpires">File Expires</label>
+        <select id="expiration">
             <option value="never" data-translation="ziplineImageExpires_never">Never</option>
             <option value="5m" data-translation="ziplineImageExpires_5min">5 Minutes</option>
             <option value="10m" data-translation="ziplineImageExpires_10minutes">10 Minutes</option>
@@ -60,11 +60,11 @@
             <option value="1y" data-translation="ziplineImageExpires_1year">1 Year</option>
         </select>
 
-        <label for="ziplineImageCompression" data-translation="ziplineImageCompression">File Compression</label>
-        <input type="number" id="ziplineImageCompression" min="0" max="100" value="0">
+        <label for="fileCompression" data-translation="ziplineImageCompression">File Compression</label>
+        <input type="number" id="fileCompression" min="0" max="100" value="0">
 
-        <label for="ziplineFileNameFormat" data-translation="ziplineFileNameFormat">Select File Name Format</label>
-        <select id="ziplineFileNameFormat">
+        <label for="fileNameFormat" data-translation="ziplineFileNameFormat">Select File Name Format</label>
+        <select id="fileNameFormat">
             <option value="random" data-translation="ziplineFileNameFormat_random">Random (alphanumeric)</option>
             <option value="date" data-translation="ziplineFileNameFormat_date">Date</option>
             <option value="uuid" data-translation="ziplineFileNameFormat_uuid">UUID</option>
@@ -72,58 +72,58 @@
             <option value="gfycat" data-translation="ziplineFileNameFormat_gfycat">Gfycat</option>
         </select>
 
-        <label for="ziplinePassword" data-translation="ziplinePassword">File Password</label>
-        <input type="password" id="ziplinePassword" placeholder="e.g. 1234">
+        <label for="password" data-translation="ziplinePassword">File Password</label>
+        <input type="password" id="password" placeholder="e.g. 1234">
 
         <div data-zipline-version="v4">
-            <label for="ziplineFolder" data-translation="ziplineFolder">Folder</label>
-            <select id="ziplineFolder"></select>
+            <label for="folder" data-translation="ziplineFolder">Folder</label>
+            <select id="folder"></select>
         </div>
 
-        <label for="ziplineOverrideDomain" data-translation="ziplineOverrideDomain">Override Domain</label>
-        <input type="text" id="ziplineOverrideDomain" placeholder="e.g. https://example.com">
+        <label for="overrideDomain" data-translation="ziplineOverrideDomain">Override Domain</label>
+        <input type="text" id="overrideDomain" placeholder="e.g. https://example.com">
 
-        <label for="ziplineMaxUploadSize" data-translation="ziplineMaxUploadSize">Max Upload Size (MB)</label>
-        <input type="number" min="1" id="ziplineMaxUploadSize" placeholder="e.g. 100">
+        <label for="maxUploadSize" data-translation="ziplineMaxUploadSize">Max Upload Size (MB)</label>
+        <input type="number" min="1" id="maxUploadSize" placeholder="e.g. 100">
 
-        <label for="ziplineChunkSize" data-translation="ziplineChunkSize">Chunk Size (MB)</label>
-        <input type="number" min="1" id="ziplineChunkSize" placeholder="e.g. 100">
+        <label for="chunkSize" data-translation="ziplineChunkSize">Chunk Size (MB)</label>
+        <input type="number" min="1" id="chunkSize" placeholder="e.g. 100">
 
         <div data-zipline-version="v3">
             <div class="checkbox-container">
-                <input type="checkbox" id="ziplineZeroWidthSpaces">
-                <label for="ziplineZeroWidthSpaces" data-translation="ziplineZeroWidthSpaces">Zero Width Space</label>
+                <input type="checkbox" id="zeroWidthSpaces">
+                <label for="zeroWidthSpaces" data-translation="ziplineZeroWidthSpaces">Zero Width Space</label>
             </div>
 
             <div class="checkbox-container">
-                <input type="checkbox" id="ziplineEmbed" checked>
-                <label for="ziplineEmbed" data-translation="ziplineEmbed">Embed</label>
+                <input type="checkbox" id="embed" checked>
+                <label for="embed" data-translation="ziplineEmbed">Embed</label>
             </div>
         </div>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="ziplineOriginalName">
-            <label for="ziplineOriginalName" data-translation="ziplineOriginalName">Original Name</label>
+            <input type="checkbox" id="originalName">
+            <label for="originalName" data-translation="ziplineOriginalName">Original Name</label>
         </div>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="ziplineAllowChunkedUploads">
-            <label for="ziplineAllowChunkedUploads" data-translation="ziplineAllowChunkedUploads">Allow Chunked Uploads</label>
+            <input type="checkbox" id="allowChunkedUploads">
+            <label for="allowChunkedUploads" data-translation="ziplineAllowChunkedUploads">Allow Chunked Uploads</label>
         </div>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="ziplineChunkedUploadsNotifications">
-            <label for="ziplineChunkedUploadsNotifications" data-translation="ziplineChunkedUploadsNotifications">Show Notifications for Chunked Uploads</label>
+            <input type="checkbox" id="chunkedUploadsNotifications">
+            <label for="chunkedUploadsNotifications" data-translation="ziplineChunkedUploadsNotifications">Show Notifications for Chunked Uploads</label>
         </div>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="ziplineGeneralNotifications">
-            <label for="ziplineGeneralNotifications" data-translation="ziplineGeneralNotifications">Show General Notifications</label>
+            <input type="checkbox" id="generalNotifications">
+            <label for="generalNotifications" data-translation="ziplineGeneralNotifications">Show General Notifications</label>
         </div>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="ziplineEnableExperimentalFeatures">
-            <label for="ziplineEnableExperimentalFeatures" data-translation="ziplineEnableExperimentalFeatures">Enable Experimental Features (URL File Upload)</label>
+            <input type="checkbox" id="enableExperimentalFeatures">
+            <label for="enableExperimentalFeatures" data-translation="ziplineEnableExperimentalFeatures">Enable Experimental Features (URL File Upload)</label>
         </div>
 
         <div class="import-export">

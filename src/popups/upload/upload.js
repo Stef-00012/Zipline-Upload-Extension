@@ -25,23 +25,70 @@ try {
 if (["url", "file", "text"].every((type) => uploadData.type !== type))
 	window.close();
 
-let { ziplineUrl, ziplineVersion, ziplineToken, ziplineFolder: currentFolder } = await chrome.storage.local.get([
-	"ziplineUrl",
-	"ziplineVersion",
-	"ziplineToken",
-	"ziplineFolder"
+let {
+	hostname,
+	apiVersion,
+	token,
+	folder: currentFolder,
+	maxViews: globalMaxViews,
+	expiration: globalExpires,
+	fileCompression: globalFileCompression,
+	fileNameFormat: globalFileNameFormat,
+	password: globalPassword,
+	folder: globalFolder,
+	overrideDomain: globalOverrideDomain,
+	zeroWidthSpaces: globalZeroWidthSpaces,
+	embed: globalEmbed,
+	originalName: globalOriginalName,
+} = await chrome.storage.local.get([
+	"hostname",
+	"apiVersion",
+	"token",
+	"folder",
+	"maxViews",
+	"expiration",
+	"fileCompression",
+	"fileNameFormat",
+	"password",
+	"folder",
+	"overrideDomain",
+	"zeroWidthSpaces",
+	"embed",
+	"originalName",
 ]);
 
-if (!ziplineVersion) ziplineVersion = "v3";
+if (!apiVersion) apiVersion = "v3";
 
-updateVersionOptions(ziplineVersion);
+updateVersionOptions(apiVersion);
 
 const uploadPopup = document.getElementById("uploadPopup");
 const copyPopup = document.getElementById("copyPopup");
 
 const textOnlyContainer = document.getElementById("textOnly");
 const contentElement = document.getElementById("content");
-const vanityElement = document.getElementById("vanity");
+
+const maxViewsElement = document.getElementById("ziplineImageMaxViews");
+const expiresElement = document.getElementById("ziplineImageExpires");
+const imageCompressionElement = document.getElementById("ziplineImageCompression");
+const fileNameFormatElement = document.getElementById("ziplineFileNameFormat");
+const passwordElement = document.getElementById("ziplinePassword");
+const filenameElement = document.getElementById("ziplineFilename");
+const folderElement = document.getElementById("ziplineFolder");
+const overrideDomainElement = document.getElementById("ziplineOverrideDomain");
+const zeroWidthSpacesElement = document.getElementById("ziplineZeroWidthSpaces");
+const embedElement = document.getElementById("ziplineEmbed");
+const originalNameElement = document.getElementById("ziplineOriginalName");
+
+if (globalMaxViews) maxViewsElement.value = globalMaxViews;
+if (globalExpires) expiresElement.value = globalExpires;
+if (globalFileCompression) imageCompressionElement.value = globalFileCompression;
+if (globalFileNameFormat) fileNameFormatElement.value = globalFileNameFormat;
+if (globalPassword) passwordElement.value = globalPassword;
+if (globalFolder) folderElement.value = globalFolder;
+if (globalOverrideDomain) overrideDomainElement.value = globalOverrideDomain;
+if (globalZeroWidthSpaces) zeroWidthSpacesElement.checked = globalZeroWidthSpaces;
+if (globalEmbed) embedElement.checked = globalEmbed;
+if (globalOriginalName) originalNameElement.checked = globalOriginalName;
 
 const outputUrlElement = document.getElementById("outputUrl");
 
@@ -123,54 +170,30 @@ document.getElementById("copy").onclick = async () => {
 
 async function uploadToZipline(blob, text = false) {
 	const {
-		ziplineMaxUploadSize: maxUploadSize,
-		ziplineChunkSize: chunkSize,
-		ziplineAllowChunkedUploads: allowChunkedUploads,
-		ziplineGeneralNotifications: showNotifications,
-		ziplineImageMaxViews: globalMaxViews,
-		ziplineImageExpires: globalExpires,
-		ziplineImageCompression: globalImageCompression,
-		ziplineFileNameFormat: globalFileNameFormat,
-		ziplinePassword: globalPassword,
-		ziplineFolder: globalFolder,
-		ziplineOverrideDomain: globalOverrideDomain,
-		ziplineZeroWidthSpaces: globalZeroWidthSpaces,
-		ziplineEmbed: globalEmbed,
-		ziplineOriginalName: globalOriginalName
+		maxUploadSize,
+		chunkSize,
+		allowChunkedUploads,
+		generalNotifications: showNotifications,
 	} = await chrome.storage.local.get([
-		"ziplineMaxUploadSize",
-		"ziplineChunkSize",
-		"ziplineAllowChunkedUploads",
-		"ziplineGeneralNotifications",
-		"ziplineImageMaxViews",
-		"ziplineImageExpires",
-		"ziplineImageCompression",
-		"ziplineFileNameFormat",
-		"ziplinePassword",
-		"ziplineFolder",
-		"ziplineOverrideDomain",
-		"ziplineZeroWidthSpaces",
-		"ziplineEmbed",
-		"ziplineOriginalName"
+		"maxUploadSize",
+		"chunkSize",
+		"allowChunkedUploads",
+		"generalNotifications",
 	]);
 
-	const maxViews = document.getElementById("ziplineImageMaxViews").value || globalMaxViews;
-	let expires = document.getElementById("ziplineImageExpires").value || globalExpires;
-	const imageCompression = document.getElementById(
-		"ziplineImageCompression",
-).value || globalImageCompression;
-	const fileNameFormat = document.getElementById("ziplineFileNameFormat").value || globalFileNameFormat;
-	const password = document.getElementById("ziplinePassword").value || globalPassword;
-	const customFilename = document.getElementById("ziplineFilename").value;
-	const folder = document.getElementById("ziplineFolder").value || globalFolder;
-	const overrideDomain = document.getElementById("ziplineOverrideDomain").value || globalOverrideDomain;
-	const zeroWidthSpaces = document.getElementById(
-		"ziplineZeroWidthSpaces",
-	).checked || globalZeroWidthSpaces;
-	const embed = document.getElementById("ziplineEmbed").checked || globalEmbed;
-	const originalName = document.getElementById("ziplineOriginalName").checked || globalOriginalName;
+	const maxViews = maxViewsElement.value;
+	let expires = expiresElement.value;
+	const imageCompression = imageCompressionElement.value;
+	const fileNameFormat = fileNameFormatElement.value;
+	const password = passwordElement.value;
+	const customFilename = filenameElement.value;
+	const folder = folderElement.value;
+	const overrideDomain = overrideDomainElement.value;
+	const zeroWidthSpaces = zeroWidthSpacesElement.checked;
+	const embed = embedElement.checked;
+	const originalName = originalNameElement.checked;
 
-	if (!ziplineUrl) {
+	if (!hostname) {
 		await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline URL first.",
@@ -181,7 +204,7 @@ async function uploadToZipline(blob, text = false) {
 		return window.close();
 	}
 
-	if (!urlRegex.test(ziplineUrl)) {
+	if (!urlRegex.test(hostname)) {
 		await chrome.notifications.create({
 			title: "Error",
 			message: "Your Zipline URL is not a valid URL.",
@@ -192,7 +215,7 @@ async function uploadToZipline(blob, text = false) {
 		return window.close();
 	}
 
-	if (!ziplineToken) {
+	if (!token) {
 		await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
@@ -206,7 +229,7 @@ async function uploadToZipline(blob, text = false) {
 	const headers = {};
 
 	const expirationLegend = {
-		"never": null,
+		never: null,
 		"5m": new Date(Date.now() + 5 * 60 * 1000).toISOString(),
 		"10m": new Date(Date.now() + 10 * 60 * 1000).toISOString(),
 		"15m": new Date(Date.now() + 15 * 60 * 1000).toISOString(),
@@ -218,7 +241,7 @@ async function uploadToZipline(blob, text = false) {
 		"5h": new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(),
 		"6h": new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString(),
 		"8h": new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
-		"12h": Date.now() + 12 * 60 * 60 * 1000,
+		"12h": new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(),
 		"1d": new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString(),
 		"3d": new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
 		"5d": new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
@@ -228,39 +251,43 @@ async function uploadToZipline(blob, text = false) {
 		"2w": new Date(Date.now() + 2 * 7 * 24 * 60 * 60 * 1000).toISOString(),
 		"3w": new Date(Date.now() + 3 * 7 * 24 * 60 * 60 * 1000).toISOString(),
 		"1M": new Date(Date.now() + 1 * 30.44 * 24 * 60 * 60 * 1000).toISOString(), // 30.44 is the average days in 1 month
-		"1.5M": new Date(Date.now() + 1.5 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
+		"1.5M": new Date(
+			Date.now() + 1.5 * 30.44 * 24 * 60 * 60 * 1000,
+		).toISOString(),
 		"2M": new Date(Date.now() + 2 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
 		"3M": new Date(Date.now() + 3 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
 		"6M": new Date(Date.now() + 6 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
 		"8M": new Date(Date.now() + 8 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
 		"1y": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
-	}
+	};
 
-	expires = expirationLegend[expires]
+	expires = expirationLegend[expires];
 
-	if (ziplineVersion === "v3") {
-		headers.Authorization = ziplineToken
-		headers.Format = fileNameFormat.toLowerCase()
-		headers["Image-Compression-Percent"] = String(imageCompression)
+	if (apiVersion === "v3") {
+		headers.Authorization = token;
+		headers.Format = fileNameFormat.toLowerCase();
+		headers["Image-Compression-Percent"] = String(imageCompression);
 
-		if (maxViews) headers["Max-Views"] = String(maxViews)
-		if (password) headers.Password = password
-		if (overrideDomain) headers["Override-Domain"] = overrideDomain.split("/")[2]
-		if (zeroWidthSpaces) headers.Zws = "true"
-		if (embed) headers.Embed = "true"
-		if (expires) headers["Expires-At"] = `date=${expires}`
-		if (originalName) headers["Original-Name"] = "true"
-	} else if (ziplineVersion === "v4") {
-		headers.Authorization = ziplineToken
-		headers["X-Zipline-Format"] = fileNameFormat.toLowerCase()
-		headers["X-Zipline-Image-Compression-Percent"] = String(imageCompression)
+		if (maxViews) headers["Max-Views"] = String(maxViews);
+		if (password) headers.Password = password;
+		if (overrideDomain)
+			headers["Override-Domain"] = overrideDomain.split("/")[2];
+		if (zeroWidthSpaces) headers.Zws = "true";
+		if (embed) headers.Embed = "true";
+		if (expires) headers["Expires-At"] = `date=${expires}`;
+		if (originalName) headers["Original-Name"] = "true";
+	} else if (apiVersion === "v4") {
+		headers.Authorization = token;
+		headers["X-Zipline-Format"] = fileNameFormat.toLowerCase();
+		headers["X-Zipline-Image-Compression-Percent"] = String(imageCompression);
 
-		if (maxViews) headers["X-Zipline-Max-Views"] = String(maxViews)
-		if (password) headers["X-Zipline-Password"] = password
-		if (folder) headers["X-Zipline-Folder"] = folder
-		if (overrideDomain) headers["X-Zipline-Domain"] = overrideDomain.split("/")[2]
-		if (expires) headers["X-Zipline-Deletes-At"] = `date=${expires}`
-		if (originalName) headers["X-Zipline-Original-Name"] = "true"
+		if (maxViews) headers["X-Zipline-Max-Views"] = String(maxViews);
+		if (password) headers["X-Zipline-Password"] = password;
+		if (folder && folder !== "noFolder") headers["X-Zipline-Folder"] = folder;
+		if (overrideDomain)
+			headers["X-Zipline-Domain"] = overrideDomain.split("/")[2];
+		if (expires) headers["X-Zipline-Deletes-At"] = `date=${expires}`;
+		if (originalName) headers["X-Zipline-Original-Name"] = "true";
 		if (customFilename) headers["X-Zipline-Filename"] = customFilename;
 	}
 
@@ -310,7 +337,7 @@ async function uploadToZipline(blob, text = false) {
 		else formData.append("file", blob, filename);
 
 		try {
-			const res = await fetch(`${ziplineUrl}/api/upload`, {
+			const res = await fetch(`${hostname}/api/upload`, {
 				body: formData,
 				method: "POST",
 				headers,
@@ -332,11 +359,11 @@ async function uploadToZipline(blob, text = false) {
 			const data = await res.json();
 			console.debug(data);
 
-			if (ziplineVersion === "v3") {
+			if (apiVersion === "v3") {
 				const url = data?.files?.[0];
 
 				if (url) return url;
-			} else if (ziplineVersion === "v4") {
+			} else if (apiVersion === "v4") {
 				const url = data?.files?.[0]?.url;
 
 				if (url) return url;
@@ -398,12 +425,12 @@ async function uploadToZipline(blob, text = false) {
 
 			headers["Content-Range"] = `bytes ${start}-${end - 1}/${blob.size}`;
 
-			if (ziplineVersion === "v3") {
+			if (apiVersion === "v3") {
 				headers["X-Zipline-Partial-Filename"] = filename;
 				headers["X-Zipline-Partial-Lastchunk"] = i === 0 ? "true" : "false";
 				headers["X-Zipline-Partial-Identifier"] = identifier;
 				headers["X-Zipline-Partial-Mimetype"] = blob.type;
-			} else if (ziplineVersion === "v4") {
+			} else if (apiVersion === "v4") {
 				headers["X-Zipline-P-Filename"] = filename;
 				headers["X-Zipline-P-Lastchunk"] = i === 0 ? "true" : "false";
 				headers["X-Zipline-P-Identifier"] = identifier;
@@ -411,7 +438,7 @@ async function uploadToZipline(blob, text = false) {
 			}
 
 			try {
-				const response = await fetch(`${ziplineUrl}/api/upload`, {
+				const response = await fetch(`${hostname}/api/upload`, {
 					method: "POST",
 					body: formData,
 					headers,
@@ -433,8 +460,9 @@ async function uploadToZipline(blob, text = false) {
 				const data = await response.json();
 				console.debug(data);
 
-				if (ziplineVersion === "v3" && data.files) return data.files;
-				if (ziplineVersion === "v4" && data.files?.length > 0) return data.files?.[0]?.url;
+				if (apiVersion === "v3" && data.files) return data.files;
+				if (apiVersion === "v4" && data.files?.length > 0)
+					return data.files?.[0]?.url;
 
 				console.log(`Successfully uploaded the chunk ${chunkId}`);
 
@@ -476,7 +504,7 @@ async function convertToBlob(data) {
 	)
 		return null;
 
-	const { ziplineGeneralNotifications: showNotifications } =
+	const { generalNotifications: showNotifications } =
 		await chrome.storage.local.get(["ziplineGeneralNotifications"]);
 
 	if (urlRegex.test(data)) {
@@ -556,9 +584,9 @@ async function updateVersionOptions(version) {
 		noFolderOption.innerText = "No Folder";
 
 		try {
-			const res = await fetch(`${ziplineUrl}/api/user/folders?noincl=true`, {
+			const res = await fetch(`${hostname}/api/user/folders?noincl=true`, {
 				headers: {
-					Authorization: ziplineToken,
+					Authorization: token,
 				},
 			});
 
@@ -572,7 +600,7 @@ async function updateVersionOptions(version) {
 
 			if (!currentFolderExists) {
 				await chrome.storage.local.set({
-					ziplineFolder: "noFolder",
+					folder: "noFolder",
 				});
 			}
 

@@ -1,25 +1,25 @@
 chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 	if (reason === "install") {
 		await chrome.storage.local.set({
-			ziplineUrl: null,
-			ziplineToken: null,
-			ziplineVersion: "v3",
-			ziplineImageMaxViews: null,
-			ziplineImageExpires: "never",
-			ziplineImageCompression: 0,
-			ziplineFileNameFormat: "random",
-			ziplinePassword: null,
-			ziplineFolder: null,
-			ziplineOverrideDomain: null,
-			ziplineMaxUploadSize: 100,
-			ziplineChunkSize: 50,
-			ziplineZeroWidthSpaces: false,
-			ziplineEmbed: true,
-			ziplineOriginalName: false,
-			ziplineAllowChunkedUploads: false,
-			ziplineChunkedUploadsNotifications: false,
-			ziplineGeneralNotifications: true,
-			ziplineEnableExperimentalFeatures: false,
+			hostname: null,
+			token: null,
+			apiVersion: "v3",
+			maxViews: null,
+			expiration: "never",
+			fileCompression: 0,
+			fileNameFormat: "random",
+			password: null,
+			folder: null,
+			overrideDomain: null,
+			maxUploadSize: 100,
+			chunkSize: 50,
+			zeroWidthSpaces: false,
+			embed: true,
+			originalName: false,
+			allowChunkedUploads: false,
+			chunkedUploadsNotifications: false,
+			generalNotifications: true,
+			enableExperimentalFeatures: false,
 		});
 	}
 });
@@ -259,46 +259,46 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 
 async function uploadToZipline(blob, text = false) {
 	let {
-		ziplineUrl,
-		ziplineToken,
-		ziplineVersion,
-		ziplineImageMaxViews: maxViews,
-		ziplineImageExpires: expires,
-		ziplineImageCompression: imageCompression,
-		ziplineFileNameFormat: fileNameFormat,
-		ziplinePassword: password,
-		ziplineFolder: folder,
-		ziplineOverrideDomain: overrideDomain,
-		ziplineMaxUploadSize: maxUploadSize,
-		ziplineChunkSize: chunkSize,
-		ziplineZeroWidthSpaces: zeroWidthSpaces,
-		ziplineEmbed: embed,
-		ziplineOriginalName: originalName,
-		ziplineAllowChunkedUploads: allowChunkedUploads,
-		ziplineGeneralNotifications: showNotifications
+		hostname,
+		token,
+		apiVersion,
+		maxViews,
+		expiration,
+		fileCompression,
+		fileNameFormat,
+		password,
+		folder,
+		overrideDomain,
+		maxUploadSize,
+		chunkSize,
+		zeroWidthSpaces,
+		embed,
+		originalName,
+		allowChunkedUploads,
+		generalNotifications: showNotifications
 	} = await chrome.storage.local.get([
-		"ziplineUrl",
-		"ziplineToken",
-		"ziplineVersion",
-		"ziplineImageMaxViews",
-		"ziplineImageExpires",
-		"ziplineImageCompression",
-		"ziplineFileNameFormat",
-		"ziplinePassword",
-		"ziplineFolder",
-		"ziplineOverrideDomain",
-		"ziplineMaxUploadSize",
-		"ziplineChunkSize",
-		"ziplineZeroWidthSpaces",
-		"ziplineEmbed",
-		"ziplineOriginalName",
-		"ziplineAllowChunkedUploads",
-		"ziplineGeneralNotifications"
+		"hostname",
+		"token",
+		"apiVersion",
+		"maxViews",
+		"expiration",
+		"fileCompression",
+		"fileNameFormat",
+		"password",
+		"folder",
+		"overrideDomain",
+		"maxUploadSize",
+		"chunkSize",
+		"zeroWidthSpaces",
+		"embed",
+		"originalName",
+		"allowChunkedUploads",
+		"generalNotifications"
 	]);
 
-	if (!ziplineVersion) ziplineVersion = "v3";
+	if (!apiVersion) apiVersion = "v3";
 
-	if (!ziplineUrl)
+	if (!hostname)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline URL first.",
@@ -306,7 +306,7 @@ async function uploadToZipline(blob, text = false) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!urlRegex.test(ziplineUrl))
+	if (!urlRegex.test(hostname))
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Your Zipline URL is not a valid URL.",
@@ -314,7 +314,7 @@ async function uploadToZipline(blob, text = false) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!ziplineToken)
+	if (!token)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
@@ -337,7 +337,7 @@ async function uploadToZipline(blob, text = false) {
 		"5h": new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(),
 		"6h": new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString(),
 		"8h": new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
-		"12h": Date.now() + 12 * 60 * 60 * 1000,
+		"12h": new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(),
 		"1d": new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString(),
 		"3d": new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
 		"5d": new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
@@ -355,30 +355,30 @@ async function uploadToZipline(blob, text = false) {
 		"1y": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
 	}
 
-	expires = expirationLegend[expires]
+	expiration = expirationLegend[expiration]
 
-	if (ziplineVersion === "v3") {
-		headers.Authorization = ziplineToken
+	if (apiVersion === "v3") {
+		headers.Authorization = token
 		headers.Format = fileNameFormat.toLowerCase()
-		headers["Image-Compression-Percent"] = String(imageCompression)
+		headers["Image-Compression-Percent"] = String(fileCompression)
 
 		if (maxViews) headers["Max-Views"] = String(maxViews)
 		if (password) headers.Password = password
 		if (overrideDomain) headers["Override-Domain"] = overrideDomain.split("/")[2]
 		if (zeroWidthSpaces) headers.Zws = "true"
 		if (embed) headers.Embed = "true"
-		if (expires) headers["Expires-At"] = `date=${expires}`
+		if (expiration) headers["Expiration-At"] = `date=${expiration}`
 		if (originalName) headers["Original-Name"] = "true"
-	} else if (ziplineVersion === "v4") {
-		headers.Authorization = ziplineToken
+	} else if (apiVersion === "v4") {
+		headers.Authorization = token
 		headers["X-Zipline-Format"] = fileNameFormat.toLowerCase()
-		headers["X-Zipline-Image-Compression-Percent"] = String(imageCompression)
+		headers["X-Zipline-Image-Compression-Percent"] = String(fileCompression)
 
 		if (maxViews) headers["X-Zipline-Max-Views"] = String(maxViews)
 		if (password) headers["X-Zipline-Password"] = password
-		if (folder) headers["X-Zipline-Folder"] = folder
+		if (folder && folder !== "noFolder") headers["X-Zipline-Folder"] = folder
 		if (overrideDomain) headers["X-Zipline-Domain"] = overrideDomain.split("/")[2]
-		if (expires) headers["X-Zipline-Deletes-At"] = `date=${expires}`
+		if (expiration) headers["X-Zipline-Deletes-At"] = `date=${expiration}`
 		if (originalName) headers["X-Zipline-Original-Name"] = "true"
 	}
 
@@ -421,7 +421,7 @@ async function uploadToZipline(blob, text = false) {
 		else formData.append("file", blob, filename);
 
 		try {
-			const res = await fetch(`${ziplineUrl}/api/upload`, {
+			const res = await fetch(`${hostname}/api/upload`, {
 				body: formData,
 				method: "POST",
 				headers,
@@ -441,11 +441,11 @@ async function uploadToZipline(blob, text = false) {
 			const data = await res.json();
 			console.debug(data)
 
-			if (ziplineVersion === "v3") {
+			if (apiVersion === "v3") {
 				const url = data?.files?.[0]
 
 				if (url) return url;
-			} else if (ziplineVersion === "v4") {
+			} else if (apiVersion === "v4") {
 				const url = data?.files?.[0]?.url
 
 				if (url) return url;
@@ -483,8 +483,8 @@ async function uploadToZipline(blob, text = false) {
 
 			console.log(`Starting upload chunk ${chunkId}`);
 
-			const { ziplineChunkedUploadsNotifications: showChunkedUploadNotification } =
-				await chrome.storage.local.get(["ziplineChunkedUploadsNotifications"]);
+			const { chunkedUploadsNotifications: showChunkedUploadNotification } =
+				await chrome.storage.local.get(["chunkedUploadsNotifications"]);
 
 			const start = i * (chunkSize * 1024 * 1024);
 			const end = Math.min(start + chunkSize * 1024 * 1024, blob.size);
@@ -500,12 +500,12 @@ async function uploadToZipline(blob, text = false) {
 
 			headers["Content-Range"] = `bytes ${start}-${end - 1}/${blob.size}`;
 
-			if (ziplineVersion === "v3") {
+			if (apiVersion === "v3") {
 				headers["X-Zipline-Partial-Filename"] = filename;
 				headers["X-Zipline-Partial-Lastchunk"] = i === 0 ? "true" : "false";
 				headers["X-Zipline-Partial-Identifier"] = identifier;
 				headers["X-Zipline-Partial-Mimetype"] = blob.type;
-			} else if (ziplineVersion === "v4") {
+			} else if (apiVersion === "v4") {
 				headers["X-Zipline-P-Filename"] = filename;
 				headers["X-Zipline-P-Lastchunk"] = i === 0 ? "true" : "false";
 				headers["X-Zipline-P-Identifier"] = identifier;
@@ -514,7 +514,7 @@ async function uploadToZipline(blob, text = false) {
 			}
 
 			try {
-				const response = await fetch(`${ziplineUrl}/api/upload`, {
+				const response = await fetch(`${hostname}/api/upload`, {
 					method: "POST",
 					body: formData,
 					headers,
@@ -534,8 +534,8 @@ async function uploadToZipline(blob, text = false) {
 				const data = await response.json();
 				console.debug(data)
 
-				if (ziplineVersion === "v3" && data.files) return data.files;
-				if (ziplineVersion === "v4" && data.files?.length > 0) return data.files?.[0]?.url;
+				if (apiVersion === "v3" && data.files) return data.files;
+				if (apiVersion === "v4" && data.files?.length > 0) return data.files?.[0]?.url;
 
 				console.log(`Successfully uploaded the chunk ${chunkId}`);
 
@@ -561,13 +561,15 @@ async function uploadToZipline(blob, text = false) {
 }
 
 async function shortenWithZipline(url) {
-	const { ziplineUrl, ziplineToken, ziplineVersion } = await chrome.storage.local.get([
-		"ziplineUrl",
-		"ziplineToken",
-		"ziplineVersion"
+	let { hostname, token, apiVersion } = await chrome.storage.local.get([
+		"hostname",
+		"token",
+		"apiVersion"
 	]);
 
-	if (!ziplineUrl)
+	if (!apiVersion) apiVersion = "v3";
+
+	if (!hostname)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline URL first.",
@@ -575,7 +577,7 @@ async function shortenWithZipline(url) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!urlRegex.test(ziplineUrl))
+	if (!urlRegex.test(hostname))
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Your Zipline URL is not a valid URL.",
@@ -583,7 +585,7 @@ async function shortenWithZipline(url) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!ziplineToken)
+	if (!token)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
@@ -595,14 +597,14 @@ async function shortenWithZipline(url) {
 		let endpoint;
 		let body = {}
 
-		if (ziplineVersion === "v3") {
+		if (apiVersion === "v3") {
 			endpoint = "/api/shorten";
 
 			body = {
 				url: url,
 			};
 		}
-		else if (ziplineVersion === "v4") {
+		else if (apiVersion === "v4") {
 			endpoint = "/api/user/urls"
 
 			body = {
@@ -610,11 +612,11 @@ async function shortenWithZipline(url) {
 			}
 		}
 
-		const res = await fetch(`${ziplineUrl}${endpoint}`, {
+		const res = await fetch(`${hostname}${endpoint}`, {
 			body: JSON.stringify(body),
 			method: "POST",
 			headers: {
-				Authorization: ziplineToken,
+				Authorization: token,
 				"Content-Type": "application/json",
 			},
 		});
@@ -669,7 +671,7 @@ async function convertToBlob(data) {
 	)
 		return null;
 
-	const { ziplineGeneralNotifications: showNotifications } = await chrome.storage.local.get(['ziplineGeneralNotifications'])
+	const { generalNotifications: showNotifications } = await chrome.storage.local.get(['ziplineGeneralNotifications'])
 
 	if (urlRegex.test(data)) {
 		console.log("Fetching file...");

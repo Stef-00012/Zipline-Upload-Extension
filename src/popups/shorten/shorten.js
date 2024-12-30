@@ -12,14 +12,16 @@ for (const translationElement of translationElements) {
 	if (translation) translationElement.innerText = translation;
 }
 
-let { ziplineUrl, ziplineVersion } = await chrome.storage.local.get([
-	"ziplineUrl",
-	"ziplineVersion",
+let { hostname, apiVersion, maxViews, password } = await chrome.storage.local.get([
+	"hostname",
+	"apiVersion",
+	"maxViews",
+	"password",
 ]);
 
-if (!ziplineVersion) ziplineVersion = "v3";
+if (!apiVersion) apiVersion = "v3";
 
-updateVersionOptions(ziplineVersion);
+updateVersionOptions(apiVersion);
 
 const { shortenUrl } = await chrome.storage.local.get(["shortenUrl"]);
 
@@ -34,6 +36,8 @@ const passwordElement = document.getElementById("password");
 const outputUrlElement = document.getElementById("outputUrl");
 
 urlElement.value = shortenUrl;
+if (maxViews) maxViewsElement.value = maxViews;
+if (password) passwordElement.value = password;
 
 const urlRegex = /^http:\/\/(.*)?|https:\/\/(.*)?$/;
 
@@ -79,10 +83,10 @@ document.getElementById("copy").onclick = async () => {
 	await window.close();
 };
 
-async function shortenWithZipline({ url, vanity, password, maxViews }) {
+async function shortenWithZipline({ url, vanity, password: urlPassword, maxViews: urlMaxViews }) {
 	const { ziplineToken } = await chrome.storage.local.get(["ziplineToken"]);
 
-	if (!ziplineUrl || ziplineUrl === "UNSET")
+	if (!hostname)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline URL first.",
@@ -90,7 +94,7 @@ async function shortenWithZipline({ url, vanity, password, maxViews }) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!urlRegex.test(ziplineUrl))
+	if (!urlRegex.test(hostname))
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Your Zipline URL is not a valid URL.",
@@ -98,7 +102,7 @@ async function shortenWithZipline({ url, vanity, password, maxViews }) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!ziplineToken || ziplineToken === "UNSET")
+	if (!ziplineToken)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
@@ -108,30 +112,26 @@ async function shortenWithZipline({ url, vanity, password, maxViews }) {
 
 	try {
 		let endpoint;
-		let body = {}
+		const body = {}
 		const extraHeaders = {};
 
-		if (ziplineVersion === "v3") {
+		if (apiVersion === "v3") {
 			endpoint = "/api/shorten";
 
-			body = {
-				url: url,
-				vanity: vanity || null,
-			};
+			body.url = url
+			if (vanity) body.vanity = vanity;
 		}
-		else if (ziplineVersion === "v4") {
+		else if (apiVersion === "v4") {
 			endpoint = "/api/user/urls"
+			
+			body.destination = url;
+			if (vanity) body.vanity = vanity;
 
-			body = {
-				destination: url,
-				vanity: vanity || null,
-			}
-
-			extraHeaders["X-Zipline-Max-Views"] = maxViews;
-			if (password) extraHeaders["X-Zipline-Password"] = password;
+			if (urlMaxViews) extraHeaders["X-Zipline-Max-Views"] = String(urlMaxViews);
+			if (urlPassword) extraHeaders["X-Zipline-Password"] = urlPassword;
 		}
 
-		const res = await fetch(`${ziplineUrl}${endpoint}`, {
+		const res = await fetch(`${hostname}${endpoint}`, {
 			body: JSON.stringify(body),
 			method: "POST",
 			headers: {
