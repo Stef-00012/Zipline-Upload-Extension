@@ -52,7 +52,7 @@ Translations:
 - Italian: [Stef-00012](https://github.com/Stef-00012)
 - French: [KennySB-dev](https://github.com/KennySB-dev) & [SkyExploreWasTaken](https://github.com/SkyExploreWasTaken)
 - Polish: [iHategithub9000](https://github.com/iHategithub9000)
-- Romanian: [broisvoldemort](https://github.com/broisvoldemort) & [LeoMavri](https://github.com/LeoMavri) & [Lungu Stefan-Gabriel](https://github.com/lungustefan) 
+- Romanian: [broisvoldemort](https://github.com/broisvoldemort) & [LeoMavri](https://github.com/LeoMavri) & [Lungu Stefan](https://github.com/lungustefan) 
 - Indonesian: [Muhammad Ari Al Ghifari](https://github.com/alfari24)
 - Hindi: [Vaibhav](https://github.com/VaibhavSys) & [Satindar](https://github.com/Satindar31)
 - Arabic: Cracky
