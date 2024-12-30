@@ -56,6 +56,7 @@ Translations:
 - Indonesian: [Muhammad Ari Al Ghifari](https://github.com/alfari24)
 - Hindi: [Vaibhav](https://github.com/VaibhavSys) & [Satindar](https://github.com/Satindar31)
 - Arabic: Cracky
+- German: [ukriu](https://github.com/ukriu)
 
 <details>
   <summary>Some Images</summary>
