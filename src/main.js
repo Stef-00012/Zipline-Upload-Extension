@@ -390,7 +390,7 @@ async function uploadToZipline(blob, text = false) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (blob.size > 95 * 1024 * 1024 && allowChunkedUploads)
+	if (blob.size > 95 * 1024 * 1024 && !allowChunkedUploads)
 		return await chrome.notifications.create({
 			title: "Error",
 			message:
