@@ -194,6 +194,9 @@
     "uploadFile": {
         "message": "Carica il File"
     },
+    "textContent": {
+        "message": "Text Content"
+    },
     "urlVanity": {
         "message": "Codice di Vanità"
     },

@@ -194,6 +194,9 @@
     "uploadFile": {
         "message": "Încarcă un Fișier"
     },
+    "textContent": {
+        "message": "Text Content"
+    },
     "urlVanity": {
         "message": "Vanity"
     },

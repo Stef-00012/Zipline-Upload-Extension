@@ -194,6 +194,9 @@
     "uploadFile": {
         "message": "Upload File"
     },
+    "textContent": {
+        "message": "Text Content"
+    },
     "urlVanity": {
         "message": "معرف متخصص"
     },

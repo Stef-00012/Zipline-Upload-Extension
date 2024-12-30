@@ -7,7 +7,6 @@
     },
     "contextMenu_UploadFile": {
         "message": "Téléverser le fichier vers Zipline"
-
     },
     "contextMenu_UploadFileAdvanced": {
         "message": "Téléverser le fichier vers Zipline (Options avancées)"
@@ -194,6 +193,9 @@
     },
     "uploadFile": {
         "message": "Téléverser le fichier"
+    },
+    "textContent": {
+        "message": "Text Content"
     },
     "urlVanity": {
         "message": "Vanité"

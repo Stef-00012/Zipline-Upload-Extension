@@ -6,3 +6,4 @@ changelog.md
 _icons
 node_modules
 bun.lockb
+/missingTranslationScript.js
