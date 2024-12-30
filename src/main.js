@@ -27,37 +27,49 @@ chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 chrome.runtime.onInstalled.addListener(async () => {
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_File",
-		title: chrome.i18n.getMessage("contextMenu_UploadFile") || "Upload File to Zipline",
+		title:
+			chrome.i18n.getMessage("contextMenu_UploadFile") ||
+			"Upload File to Zipline",
 		contexts: ["image", "video", "audio"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Advanced_Zipline_Upload_File",
-		title: chrome.i18n.getMessage("contextMenu_UploadFileAdvanced") || "Upload File to Zipline (Advanced Options)",
+		title:
+			chrome.i18n.getMessage("contextMenu_UploadFileAdvanced") ||
+			"Upload File to Zipline (Advanced Options)",
 		contexts: ["image", "video", "audio"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_Text",
-		title: chrome.i18n.getMessage("contextMenu_UploadText") || "Upload Text to Zipline",
+		title:
+			chrome.i18n.getMessage("contextMenu_UploadText") ||
+			"Upload Text to Zipline",
 		contexts: ["selection"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Advanced_Zipline_Upload_Text",
-		title: chrome.i18n.getMessage("contextMenu_UploadTextAdvanced") || "Upload Text to Zipline (Advanced Options)",
+		title:
+			chrome.i18n.getMessage("contextMenu_UploadTextAdvanced") ||
+			"Upload Text to Zipline (Advanced Options)",
 		contexts: ["selection"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Zipline_Shorten_URL",
-		title: chrome.i18n.getMessage("contextMenu_ShortenUrl") || "Shorten URL with Zipline",
+		title:
+			chrome.i18n.getMessage("contextMenu_ShortenUrl") ||
+			"Shorten URL with Zipline",
 		contexts: ["link"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Advanced_Zipline_Shorten_URL",
-		title: chrome.i18n.getMessage("contextMenu_ShortenUrlAdvanced") || "Shorten URL with Zipline (Advanced Options)",
+		title:
+			chrome.i18n.getMessage("contextMenu_ShortenUrlAdvanced") ||
+			"Shorten URL with Zipline (Advanced Options)",
 		contexts: ["link"],
 	});
 
@@ -68,13 +80,17 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_URL",
-		title: chrome.i18n.getMessage("contextMenu_UploadUrl") || "Upload URL with Zipline [Experimental]",
+		title:
+			chrome.i18n.getMessage("contextMenu_UploadUrl") ||
+			"Upload URL with Zipline [Experimental]",
 		contexts: ["link"],
 	});
 
 	chrome.contextMenus.create({
 		id: "Advanced_Zipline_Upload_URL",
-		title: chrome.i18n.getMessage("contextMenu_UploadUrlAdvanced") || "Upload URL with Zipline (Advanced Options) [Experimental]",
+		title:
+			chrome.i18n.getMessage("contextMenu_UploadUrlAdvanced") ||
+			"Upload URL with Zipline (Advanced Options) [Experimental]",
 		contexts: ["link"],
 	});
 });
@@ -99,14 +115,14 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 			if (!urlRegex.test(url)) return;
 
 			await chrome.storage.local.set({
-				outputUrl: url
-			})
+				outputUrl: url,
+			});
 
 			await chrome.action.setPopup({
-				popup: 'popups/outputUrl/outputUrl.html'
-			})
+				popup: "popups/outputUrl/outputUrl.html",
+			});
 
-			await chrome.action.openPopup()
+			await chrome.action.openPopup();
 
 			break;
 		}
@@ -138,14 +154,14 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 			if (!urlRegex.test(url)) return;
 
 			await chrome.storage.local.set({
-				outputUrl: url
-			})
+				outputUrl: url,
+			});
 
 			await chrome.action.setPopup({
-				popup: 'popups/outputUrl/outputUrl.html'
-			})
+				popup: "popups/outputUrl/outputUrl.html",
+			});
 
-			await chrome.action.openPopup()
+			await chrome.action.openPopup();
 
 			break;
 		}
@@ -173,14 +189,14 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 			if (!urlRegex.test(url)) return;
 
 			await chrome.storage.local.set({
-				outputUrl: url
-			})
+				outputUrl: url,
+			});
 
 			await chrome.action.setPopup({
-				popup: 'popups/outputUrl/outputUrl.html'
-			})
+				popup: "popups/outputUrl/outputUrl.html",
+			});
 
-			await chrome.action.openPopup()
+			await chrome.action.openPopup();
 
 			break;
 		}
@@ -216,14 +232,14 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 				if (!urlRegex.test(url)) return;
 
 				await chrome.storage.local.set({
-					outputUrl: url
-				})
+					outputUrl: url,
+				});
 
 				await chrome.action.setPopup({
-					popup: 'popups/outputUrl/outputUrl.html'
-				})
+					popup: "popups/outputUrl/outputUrl.html",
+				});
 
-				await chrome.action.openPopup()
+				await chrome.action.openPopup();
 
 				break;
 			} catch (e) {
@@ -275,7 +291,7 @@ async function uploadToZipline(blob, text = false) {
 		embed,
 		originalName,
 		allowChunkedUploads,
-		generalNotifications: showNotifications
+		generalNotifications: showNotifications,
 	} = await chrome.storage.local.get([
 		"hostname",
 		"token",
@@ -293,7 +309,7 @@ async function uploadToZipline(blob, text = false) {
 		"embed",
 		"originalName",
 		"allowChunkedUploads",
-		"generalNotifications"
+		"generalNotifications",
 	]);
 
 	if (!apiVersion) apiVersion = "v3";
@@ -325,7 +341,7 @@ async function uploadToZipline(blob, text = false) {
 	const headers = {};
 
 	const expirationLegend = {
-		"never": null,
+		never: null,
 		"5m": new Date(Date.now() + 5 * 60 * 1000).toISOString(),
 		"10m": new Date(Date.now() + 10 * 60 * 1000).toISOString(),
 		"15m": new Date(Date.now() + 15 * 60 * 1000).toISOString(),
@@ -347,39 +363,43 @@ async function uploadToZipline(blob, text = false) {
 		"2w": new Date(Date.now() + 2 * 7 * 24 * 60 * 60 * 1000).toISOString(),
 		"3w": new Date(Date.now() + 3 * 7 * 24 * 60 * 60 * 1000).toISOString(),
 		"1M": new Date(Date.now() + 1 * 30.44 * 24 * 60 * 60 * 1000).toISOString(), // 30.44 is the average days in 1 month
-		"1.5M": new Date(Date.now() + 1.5 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
+		"1.5M": new Date(
+			Date.now() + 1.5 * 30.44 * 24 * 60 * 60 * 1000,
+		).toISOString(),
 		"2M": new Date(Date.now() + 2 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
 		"3M": new Date(Date.now() + 3 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
 		"6M": new Date(Date.now() + 6 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
 		"8M": new Date(Date.now() + 8 * 30.44 * 24 * 60 * 60 * 1000).toISOString(),
 		"1y": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
-	}
+	};
 
-	expiration = expirationLegend[expiration]
+	expiration = expirationLegend[expiration];
 
 	if (apiVersion === "v3") {
-		headers.Authorization = token
-		headers.Format = fileNameFormat.toLowerCase()
-		headers["Image-Compression-Percent"] = String(fileCompression)
+		headers.Authorization = token;
+		headers.Format = fileNameFormat.toLowerCase();
+		headers["Image-Compression-Percent"] = String(fileCompression);
 
-		if (maxViews) headers["Max-Views"] = String(maxViews)
-		if (password) headers.Password = password
-		if (overrideDomain) headers["Override-Domain"] = overrideDomain.split("/")[2]
-		if (zeroWidthSpaces) headers.Zws = "true"
-		if (embed) headers.Embed = "true"
-		if (expiration) headers["Expiration-At"] = `date=${expiration}`
-		if (originalName) headers["Original-Name"] = "true"
+		if (maxViews) headers["Max-Views"] = String(maxViews);
+		if (password) headers.Password = password;
+		if (overrideDomain)
+			headers["Override-Domain"] = overrideDomain.split("/")[2];
+		if (zeroWidthSpaces) headers.Zws = "true";
+		if (embed) headers.Embed = "true";
+		if (expiration) headers["Expiration-At"] = `date=${expiration}`;
+		if (originalName) headers["Original-Name"] = "true";
 	} else if (apiVersion === "v4") {
-		headers.Authorization = token
-		headers["X-Zipline-Format"] = fileNameFormat.toLowerCase()
-		headers["X-Zipline-Image-Compression-Percent"] = String(fileCompression)
+		headers.Authorization = token;
+		headers["X-Zipline-Format"] = fileNameFormat.toLowerCase();
+		headers["X-Zipline-Image-Compression-Percent"] = String(fileCompression);
 
-		if (maxViews) headers["X-Zipline-Max-Views"] = String(maxViews)
-		if (password) headers["X-Zipline-Password"] = password
-		if (folder && folder !== "noFolder") headers["X-Zipline-Folder"] = folder
-		if (overrideDomain) headers["X-Zipline-Domain"] = overrideDomain.split("/")[2]
-		if (expiration) headers["X-Zipline-Deletes-At"] = `date=${expiration}`
-		if (originalName) headers["X-Zipline-Original-Name"] = "true"
+		if (maxViews) headers["X-Zipline-Max-Views"] = String(maxViews);
+		if (password) headers["X-Zipline-Password"] = password;
+		if (folder && folder !== "noFolder") headers["X-Zipline-Folder"] = folder;
+		if (overrideDomain)
+			headers["X-Zipline-Domain"] = overrideDomain.split("/")[2];
+		if (expiration) headers["X-Zipline-Deletes-At"] = `date=${expiration}`;
+		if (originalName) headers["X-Zipline-Original-Name"] = "true";
 	}
 
 	if (blob.size > maxUploadSize * 1024 * 1024)
@@ -401,12 +421,13 @@ async function uploadToZipline(blob, text = false) {
 
 	console.log("Uploading file...");
 
-	if (showNotifications) await chrome.notifications.create({
-		title: "Upload",
-		message: "Uploading the file...",
-		type: "basic",
-		iconUrl: chrome.runtime.getURL("icons/512.png"),
-	});
+	if (showNotifications)
+		await chrome.notifications.create({
+			title: "Upload",
+			message: "Uploading the file...",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
 
 	if (blob.size < 95 * 1024 * 1024) {
 		const filename = `${new Date().toISOString()}.${(await guessMimetype(blob.type)) || "png"}`;
@@ -439,14 +460,14 @@ async function uploadToZipline(blob, text = false) {
 			}
 
 			const data = await res.json();
-			console.debug(data)
+			console.debug(data);
 
 			if (apiVersion === "v3") {
-				const url = data?.files?.[0]
+				const url = data?.files?.[0];
 
 				if (url) return url;
 			} else if (apiVersion === "v4") {
-				const url = data?.files?.[0]?.url
+				const url = data?.files?.[0]?.url;
 
 				if (url) return url;
 			}
@@ -510,7 +531,7 @@ async function uploadToZipline(blob, text = false) {
 				headers["X-Zipline-P-Lastchunk"] = i === 0 ? "true" : "false";
 				headers["X-Zipline-P-Identifier"] = identifier;
 				headers["X-Zipline-P-Content-Type"] = blob.type;
-				headers["X-Zipline-P-Content-Length"] = blob.size
+				headers["X-Zipline-P-Content-Length"] = blob.size;
 			}
 
 			try {
@@ -532,10 +553,11 @@ async function uploadToZipline(blob, text = false) {
 				}
 
 				const data = await response.json();
-				console.debug(data)
+				console.debug(data);
 
 				if (apiVersion === "v3" && data.files) return data.files;
-				if (apiVersion === "v4" && data.files?.length > 0) return data.files?.[0]?.url;
+				if (apiVersion === "v4" && data.files?.length > 0)
+					return data.files?.[0]?.url;
 
 				console.log(`Successfully uploaded the chunk ${chunkId}`);
 
@@ -564,7 +586,7 @@ async function shortenWithZipline(url) {
 	let { hostname, token, apiVersion } = await chrome.storage.local.get([
 		"hostname",
 		"token",
-		"apiVersion"
+		"apiVersion",
 	]);
 
 	if (!apiVersion) apiVersion = "v3";
@@ -595,7 +617,7 @@ async function shortenWithZipline(url) {
 
 	try {
 		let endpoint;
-		let body = {}
+		let body = {};
 
 		if (apiVersion === "v3") {
 			endpoint = "/api/shorten";
@@ -603,13 +625,12 @@ async function shortenWithZipline(url) {
 			body = {
 				url: url,
 			};
-		}
-		else if (apiVersion === "v4") {
-			endpoint = "/api/user/urls"
+		} else if (apiVersion === "v4") {
+			endpoint = "/api/user/urls";
 
 			body = {
 				destination: url,
-			}
+			};
 		}
 
 		const res = await fetch(`${hostname}${endpoint}`, {
@@ -671,18 +692,19 @@ async function convertToBlob(data) {
 	)
 		return null;
 
-	const { generalNotifications: showNotifications } = await chrome.storage.local.get(['ziplineGeneralNotifications'])
+	const { generalNotifications: showNotifications } =
+		await chrome.storage.local.get(["ziplineGeneralNotifications"]);
 
 	if (urlRegex.test(data)) {
 		console.log("Fetching file...");
 
-		if (showNotifications) chrome.notifications.create({
-			title: "Upload",
-			message:
-				"Fetching the file...",
-			type: "basic",
-			iconUrl: chrome.runtime.getURL("icons/512.png"),
-		});
+		if (showNotifications)
+			chrome.notifications.create({
+				title: "Upload",
+				message: "Fetching the file...",
+				type: "basic",
+				iconUrl: chrome.runtime.getURL("icons/512.png"),
+			});
 
 		const blob = await downloadFile(data);
 
@@ -691,13 +713,13 @@ async function convertToBlob(data) {
 
 	console.log("Decoding base64 file...");
 
-	if (showNotifications) chrome.notifications.create({
-		title: "Upload",
-		message:
-			"Decoding the file...",
-		type: "basic",
-		iconUrl: chrome.runtime.getURL("icons/512.png"),
-	});
+	if (showNotifications)
+		chrome.notifications.create({
+			title: "Upload",
+			message: "Decoding the file...",
+			type: "basic",
+			iconUrl: chrome.runtime.getURL("icons/512.png"),
+		});
 
 	const base64Data = data.split(",")[1];
 	const mimetype = data.split(":")[1].split(";")[0];

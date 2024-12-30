@@ -69,24 +69,30 @@ const contentElement = document.getElementById("content");
 
 const maxViewsElement = document.getElementById("ziplineImageMaxViews");
 const expiresElement = document.getElementById("ziplineImageExpires");
-const imageCompressionElement = document.getElementById("ziplineImageCompression");
+const imageCompressionElement = document.getElementById(
+	"ziplineImageCompression",
+);
 const fileNameFormatElement = document.getElementById("ziplineFileNameFormat");
 const passwordElement = document.getElementById("ziplinePassword");
 const filenameElement = document.getElementById("ziplineFilename");
 const folderElement = document.getElementById("ziplineFolder");
 const overrideDomainElement = document.getElementById("ziplineOverrideDomain");
-const zeroWidthSpacesElement = document.getElementById("ziplineZeroWidthSpaces");
+const zeroWidthSpacesElement = document.getElementById(
+	"ziplineZeroWidthSpaces",
+);
 const embedElement = document.getElementById("ziplineEmbed");
 const originalNameElement = document.getElementById("ziplineOriginalName");
 
 if (globalMaxViews) maxViewsElement.value = globalMaxViews;
 if (globalExpires) expiresElement.value = globalExpires;
-if (globalFileCompression) imageCompressionElement.value = globalFileCompression;
+if (globalFileCompression)
+	imageCompressionElement.value = globalFileCompression;
 if (globalFileNameFormat) fileNameFormatElement.value = globalFileNameFormat;
 if (globalPassword) passwordElement.value = globalPassword;
 if (globalFolder) folderElement.value = globalFolder;
 if (globalOverrideDomain) overrideDomainElement.value = globalOverrideDomain;
-if (globalZeroWidthSpaces) zeroWidthSpacesElement.checked = globalZeroWidthSpaces;
+if (globalZeroWidthSpaces)
+	zeroWidthSpacesElement.checked = globalZeroWidthSpaces;
 if (globalEmbed) embedElement.checked = globalEmbed;
 if (globalOriginalName) originalNameElement.checked = globalOriginalName;
 
@@ -181,14 +187,22 @@ async function uploadToZipline(blob, text = false) {
 		"generalNotifications",
 	]);
 
-	const maxViews = maxViewsElement.value;
-	let expires = expiresElement.value;
-	const imageCompression = imageCompressionElement.value;
-	const fileNameFormat = fileNameFormatElement.value;
-	const password = passwordElement.value;
-	const customFilename = filenameElement.value;
-	const folder = folderElement.value;
-	const overrideDomain = overrideDomainElement.value;
+	const maxViews =
+		maxViewsElement.value.length > 0 ? maxViewsElement.value : null;
+	let expires = expiresElement.value.length > 0 ? expiresElement.value : null;
+	const imageCompression =
+		imageCompressionElement.value.length > 0
+			? imageCompressionElement.value
+			: null;
+	const fileNameFormat =
+		fileNameFormatElement.value.length > 0 ? fileNameFormatElement.value : null;
+	const password =
+		passwordElement.value.length > 0 ? passwordElement.value : null;
+	const customFilename =
+		filenameElement.value.length > 0 ? filenameElement.value : null;
+	const folder = folderElement.value.length > 0 ? folderElement.value : null;
+	const overrideDomain =
+		overrideDomainElement.value.length > 0 ? overrideDomainElement.value : null;
 	const zeroWidthSpaces = zeroWidthSpacesElement.checked;
 	const embed = embedElement.checked;
 	const originalName = originalNameElement.checked;
@@ -302,7 +316,7 @@ async function uploadToZipline(blob, text = false) {
 		return window.close();
 	}
 
-	if (blob.size > 95 * 1024 * 1024 && allowChunkedUploads === "false") {
+	if (blob.size > 95 * 1024 * 1024 && !allowChunkedUploads) {
 		await chrome.notifications.create({
 			title: "Error",
 			message:

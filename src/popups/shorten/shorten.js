@@ -12,12 +12,13 @@ for (const translationElement of translationElements) {
 	if (translation) translationElement.innerText = translation;
 }
 
-let { hostname, apiVersion, maxViews, password } = await chrome.storage.local.get([
-	"hostname",
-	"apiVersion",
-	"maxViews",
-	"password",
-]);
+let { hostname, apiVersion, maxViews, password } =
+	await chrome.storage.local.get([
+		"hostname",
+		"apiVersion",
+		"maxViews",
+		"password",
+	]);
 
 if (!apiVersion) apiVersion = "v3";
 
@@ -83,7 +84,12 @@ document.getElementById("copy").onclick = async () => {
 	await window.close();
 };
 
-async function shortenWithZipline({ url, vanity, password: urlPassword, maxViews: urlMaxViews }) {
+async function shortenWithZipline({
+	url,
+	vanity,
+	password: urlPassword,
+	maxViews: urlMaxViews,
+}) {
 	const { ziplineToken } = await chrome.storage.local.get(["ziplineToken"]);
 
 	if (!hostname)
@@ -112,22 +118,22 @@ async function shortenWithZipline({ url, vanity, password: urlPassword, maxViews
 
 	try {
 		let endpoint;
-		const body = {}
+		const body = {};
 		const extraHeaders = {};
 
 		if (apiVersion === "v3") {
 			endpoint = "/api/shorten";
 
-			body.url = url
+			body.url = url;
 			if (vanity) body.vanity = vanity;
-		}
-		else if (apiVersion === "v4") {
-			endpoint = "/api/user/urls"
-			
+		} else if (apiVersion === "v4") {
+			endpoint = "/api/user/urls";
+
 			body.destination = url;
 			if (vanity) body.vanity = vanity;
 
-			if (urlMaxViews) extraHeaders["X-Zipline-Max-Views"] = String(urlMaxViews);
+			if (urlMaxViews)
+				extraHeaders["X-Zipline-Max-Views"] = String(urlMaxViews);
 			if (urlPassword) extraHeaders["X-Zipline-Password"] = urlPassword;
 		}
 
@@ -137,7 +143,7 @@ async function shortenWithZipline({ url, vanity, password: urlPassword, maxViews
 			headers: {
 				Authorization: ziplineToken,
 				"Content-Type": "application/json",
-				...extraHeaders
+				...extraHeaders,
 			},
 		});
 
@@ -155,10 +161,10 @@ async function shortenWithZipline({ url, vanity, password: urlPassword, maxViews
 		const data = await res.json();
 		await chrome.notifications.create({
 			title: "Error",
-			message:JSON.stringify(data),
+			message: JSON.stringify(data),
 			type: "basic",
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
-		})
+		});
 
 		if (data) return data.url;
 
@@ -176,7 +182,7 @@ async function shortenWithZipline({ url, vanity, password: urlPassword, maxViews
 			message: e.toString(),
 			type: "basic",
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
-		})
+		});
 
 		return await chrome.notifications.create({
 			title: "Error",

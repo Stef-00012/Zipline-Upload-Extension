@@ -71,20 +71,19 @@ for (const setting of settings) {
 			const elementValue = element.value.length > 0 ? element.value : null;
 
 			await chrome.storage.local.set({
-				[element.id]: element.type === "number" ? Number(elementValue) : elementValue,
+				[element.id]:
+					element.type === "number" ? Number(elementValue) : elementValue,
 			});
 
-			if (element.id === "apiVersion") updateVersionOptions(element.value || "v3");
+			if (element.id === "apiVersion")
+				updateVersionOptions(element.value || "v3");
 		} else {
 			await chrome.storage.local.set({
 				[element.id]: element.checked,
 			});
 
 			try {
-				if (
-					element.id === "enableExperimentalFeatures" &&
-					element.checked
-				) {
+				if (element.id === "enableExperimentalFeatures" && element.checked) {
 					chrome.contextMenus.create({
 						id: "Zipline_Upload_URL",
 						title: "Upload URL with Zipliine [Experimental]",
@@ -94,7 +93,6 @@ for (const setting of settings) {
 					element.id === "enableExperimentalFeatures" &&
 					!element.checked
 				) {
-					console.log(element.checked, element.id);
 					chrome.contextMenus.remove("Zipline_Upload_URL");
 				}
 			} catch (e) {
@@ -143,7 +141,7 @@ filePicker.onchange = async (event) => {
 			console.log(e);
 		}
 
-		const validSettings = validateSettings(jsonSettings)
+		const validSettings = validateSettings(jsonSettings);
 
 		if (!validSettings) {
 			return await chrome.notifications.create({
@@ -169,7 +167,6 @@ filePicker.onchange = async (event) => {
 };
 
 async function updateVersionOptions(version) {
-	console.log(version)
 	const versionElements = document.querySelectorAll("[data-zipline-version]");
 
 	for (const versionElement of versionElements) {
@@ -266,14 +263,8 @@ const validExpirationTimes = [
 	"6M",
 	"8M",
 	"1y",
-]
-const validFileNameFormats = [
-	"random",
-	"date",
-	"uuid",
-	"name",
-	"gfycat",
-]
+];
+const validFileNameFormats = ["random", "date", "uuid", "name", "gfycat"];
 
 const validationFunctions = {
 	hostname(setting) {
@@ -281,7 +272,7 @@ const validationFunctions = {
 	},
 
 	token(setting) {
-		return typeof setting === "string" && setting.length > 0
+		return typeof setting === "string" && setting.length > 0;
 	},
 
 	apiVersion(setting) {
@@ -289,9 +280,11 @@ const validationFunctions = {
 	},
 
 	maxViews(setting) {
-		const settingNumber = Number(setting)
+		const settingNumber = Number(setting);
 
-		return setting === null || (!Number.isNaN(settingNumber) && settingNumber >= 0);
+		return (
+			setting === null || (!Number.isNaN(settingNumber) && settingNumber >= 0)
+		);
 	},
 
 	expiration(setting) {
@@ -299,9 +292,11 @@ const validationFunctions = {
 	},
 
 	fileCompression(setting) {
-		const settingNumber = Number(setting)
+		const settingNumber = Number(setting);
 
-		return !Number.isNaN(settingNumber) && settingNumber >= 0 && settingNumber <= 100;
+		return (
+			!Number.isNaN(settingNumber) && settingNumber >= 0 && settingNumber <= 100
+		);
 	},
 
 	fileNameFormat(setting) {
@@ -313,7 +308,7 @@ const validationFunctions = {
 	},
 
 	folder(setting) {
-		return setting === null || typeof setting === "string"
+		return setting === null || typeof setting === "string";
 	},
 
 	overrideDomain(setting) {
@@ -321,13 +316,13 @@ const validationFunctions = {
 	},
 
 	maxUploadSize(setting) {
-		const settingNumber = Number(setting)
+		const settingNumber = Number(setting);
 
 		return !Number.isNaN(settingNumber) && settingNumber >= 0;
 	},
 
 	ziplineChunkSize(setting) {
-		const settingNumber = Number(setting)
+		const settingNumber = Number(setting);
 
 		return !Number.isNaN(settingNumber) && settingNumber >= 0;
 	},
@@ -358,12 +353,13 @@ const validationFunctions = {
 
 	enableExperimentalFeatures(setting) {
 		return typeof setting === "boolean";
-	}
-}
+	},
+};
 
 function validateSettings(settingsToValidate) {
 	for (const setting in settingsToValidate) {
-		if (!validationFunctions[setting](settingsToValidate[setting])) return false;
+		if (!validationFunctions[setting](settingsToValidate[setting]))
+			return false;
 	}
 
 	return true;
