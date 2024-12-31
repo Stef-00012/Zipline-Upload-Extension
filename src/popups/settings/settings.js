@@ -96,7 +96,7 @@ for (const setting of settings) {
 					chrome.contextMenus.remove("Zipline_Upload_URL");
 				}
 			} catch (e) {
-				console.log("unable to toogle experimental context menu options");
+				console.error("unable to toogle experimental context menu options");
 			}
 		}
 	};
@@ -138,7 +138,12 @@ filePicker.onchange = async (event) => {
 		try {
 			jsonSettings = JSON.parse(jsonContent);
 		} catch (e) {
-			console.log(e);
+			return await chrome.notifications.create({
+				title: "Error",
+				message: "The file you uploaded is noy a valid JSON.",
+				type: "basic",
+				iconUrl: chrome.runtime.getURL("icons/512.png"),
+			});
 		}
 
 		const validSettings = validateSettings(jsonSettings);
@@ -146,7 +151,7 @@ filePicker.onchange = async (event) => {
 		if (!validSettings) {
 			return await chrome.notifications.create({
 				title: "Error",
-				message: "Invalid settings JSON.",
+				message: "The file you uploaded has some invalid settings.",
 				type: "basic",
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});

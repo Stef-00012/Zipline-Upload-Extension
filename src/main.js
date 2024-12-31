@@ -203,7 +203,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 
 		case "Advanced_Zipline_Shorten_URL": {
 			await chrome.storage.local.set({
-				shortenUrl: info.srcUrl,
+				shortenUrl: info.linkUrl,
 			});
 
 			await chrome.action.setPopup({
@@ -243,7 +243,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 
 				break;
 			} catch (e) {
-				console.log(e);
+				console.error(e);
 				return await chrome.notifications.create({
 					title: "Error",
 					message:
@@ -419,7 +419,7 @@ async function uploadToZipline(blob, text = false) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	console.log("Uploading file...");
+	console.info("Uploading file...");
 
 	if (showNotifications)
 		await chrome.notifications.create({
@@ -432,7 +432,7 @@ async function uploadToZipline(blob, text = false) {
 	if (blob.size < 95 * 1024 * 1024) {
 		const filename = `${new Date().toISOString()}.${(await guessMimetype(blob.type)) || "png"}`;
 
-		console.log(
+		console.info(
 			`Starting normal upload\nFile Size: ${Math.floor(blob.size / 1024 / 1024)}mb\nFile Mimetype: ${blob.type}\nUploaded File Name: ${filename}`,
 		);
 
@@ -460,7 +460,6 @@ async function uploadToZipline(blob, text = false) {
 			}
 
 			const data = await res.json();
-			console.debug(data);
 
 			if (apiVersion === "v3") {
 				const url = data?.files?.[0];
@@ -480,7 +479,7 @@ async function uploadToZipline(blob, text = false) {
 				iconUrl: chrome.runtime.getURL("icons/512.png"),
 			});
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 			return await chrome.notifications.create({
 				title: "Error",
 				message:
@@ -495,14 +494,14 @@ async function uploadToZipline(blob, text = false) {
 		const identifier = generateRandomString();
 		const filename = `${new Date().toISOString()}.${(await guessMimetype(blob.type)) || "png"}`;
 
-		console.log(
+		console.info(
 			`Starting chunked upload\nFile Size: ${Math.floor(blob.size / 1024 / 1024)}mb\nFile Mimetype: ${blob.type}\nNumber of Chunks: ${numberOfChunks}\nChunk Size: ${chunkSize}mb\nIdentifier: ${identifier}\nUploaded File Name: ${filename}`,
 		);
 
 		for (let i = numberOfChunks - 1; i >= 0; i--) {
 			const chunkId = numberOfChunks - i;
 
-			console.log(`Starting upload chunk ${chunkId}`);
+			console.info(`Starting upload chunk ${chunkId}`);
 
 			const { chunkedUploadsNotifications: showChunkedUploadNotification } =
 				await chrome.storage.local.get(["chunkedUploadsNotifications"]);
@@ -553,13 +552,12 @@ async function uploadToZipline(blob, text = false) {
 				}
 
 				const data = await response.json();
-				console.debug(data);
 
 				if (apiVersion === "v3" && data.files) return data.files;
 				if (apiVersion === "v4" && data.files?.length > 0)
 					return data.files?.[0]?.url;
 
-				console.log(`Successfully uploaded the chunk ${chunkId}`);
+				console.info(`Successfully uploaded the chunk ${chunkId}`);
 
 				if (showChunkedUploadNotification)
 					await chrome.notifications.create({
@@ -569,7 +567,7 @@ async function uploadToZipline(blob, text = false) {
 						iconUrl: chrome.runtime.getURL("icons/512.png"),
 					});
 			} catch (e) {
-				console.log(e);
+				console.error(e);
 				return await chrome.notifications.create({
 					title: "Error",
 					message:
@@ -665,7 +663,7 @@ async function shortenWithZipline(url) {
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 	} catch (e) {
-		console.log(e);
+		console.error(e);
 
 		return await chrome.notifications.create({
 			title: "Error",
@@ -693,10 +691,10 @@ async function convertToBlob(data) {
 		return null;
 
 	const { generalNotifications: showNotifications } =
-		await chrome.storage.local.get(["ziplineGeneralNotifications"]);
+		await chrome.storage.local.get(["generalNotifications"]);
 
 	if (urlRegex.test(data)) {
-		console.log("Fetching file...");
+		console.info("Fetching file...");
 
 		if (showNotifications)
 			chrome.notifications.create({
@@ -711,7 +709,7 @@ async function convertToBlob(data) {
 		return blob;
 	}
 
-	console.log("Decoding base64 file...");
+	console.info("Decoding base64 file...");
 
 	if (showNotifications)
 		chrome.notifications.create({

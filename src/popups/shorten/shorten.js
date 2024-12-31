@@ -176,7 +176,8 @@ async function shortenWithZipline({
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 	} catch (e) {
-		console.log(e);
+		console.error(e);
+		
 		await chrome.notifications.create({
 			title: "Error",
 			message: e.toString(),
