@@ -177,7 +177,7 @@ async function shortenWithZipline({
 		});
 	} catch (e) {
 		console.error(e);
-		
+
 		await chrome.notifications.create({
 			title: "Error",
 			message: e.toString(),

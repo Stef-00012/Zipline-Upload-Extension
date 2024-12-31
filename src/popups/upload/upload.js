@@ -419,11 +419,8 @@ async function uploadToZipline(blob, text = false) {
 
 			console.info(`Starting upload chunk ${chunkId}`);
 
-			const {
-				chunkedUploadsNotifications: showChunkedUploadNotification,
-			} = await chrome.storage.local.get([
-				"chunkedUploadsNotifications",
-			]);
+			const { chunkedUploadsNotifications: showChunkedUploadNotification } =
+				await chrome.storage.local.get(["chunkedUploadsNotifications"]);
 
 			const start = i * (chunkSize * 1024 * 1024);
 			const end = Math.min(start + chunkSize * 1024 * 1024, blob.size);
