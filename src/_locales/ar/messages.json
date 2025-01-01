@@ -6,16 +6,16 @@
         "message": "إضافة 'تحميل ل Zipline' زر لصورة، فيديو، صوت و نص اختيار سياق القائمه"
     },
     "contextMenu_UploadFile": {
-        "message": "Upload File to Zipline"
+        "message": "رفع الملف إلى Zipline"
     },
     "contextMenu_UploadFileAdvanced": {
-        "message": "Upload File to Zipline (Advanced Options)"
+        "message": "رفع الملف إلى Zipline (الخيارات المتقدمة)"
     },
     "contextMenu_UploadText": {
         "message": "Zipline تحميل النص إلى"
     },
     "contextMenu_UploadTextAdvanced": {
-        "message": "Upload Text to Zipline (Advanced Options)"
+        "message": "رفع النص إلى Zipline (الخيارات المتقدمة)"
     },
     "contextMenu_ShortenUrl": {
         "message": "اختصار عنوان URL باستخدام ال Zipline"
@@ -27,7 +27,7 @@
         "message": "تحميل عنوان URL باستخدام ال Zipline [تجريبي]"
     },
     "contextMenu_UploadUrlAdvanced": {
-        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
+        "message": "رفع الرابط إلى Zipline (الخيارات المتقدمة) [تجريبي]"
     },
     "ziplineSettings": {
         "message": "Zipline اعدادات"
@@ -192,25 +192,25 @@
         "message": "اختصار رابط"
     },
     "uploadFile": {
-        "message": "Upload File"
+        "message": "رفع الملف"
     },
     "textContent": {
-        "message": "Text Content"
+        "message": "محتوى النص"
     },
     "urlVanity": {
         "message": "معرف متخصص"
     },
     "urlMaxViews": {
-        "message": "URL Max Views"
+        "message": "أقصى عدد مرات مشاهدة للرابط"
     },
     "urlPassword": {
-        "message": "Password"
+        "message": "كلمة السر"
     },
     "buttonShorten": {
         "message": "اختصار"
     },
     "buttonUpload": {
-        "message": "Upload"
+        "message": "رفع"
     },
     "ziplineExportSettings": {
         "message": "إعدادات التصدير"
@@ -219,7 +219,7 @@
         "message": "إعدادات الاستيراد"
     },
     "ziplineVersion": {
-        "message": "Zipline Version"
+        "message": "إصدار Zipline"
     },
     "ziplineFileNameFormat_v3": {
         "message": "V3"
@@ -228,9 +228,9 @@
         "message": "V4"
     },
     "ziplineFolder": {
-        "message": "Folder"
+        "message": "مجلد"
     },
     "ziplineFilename": {
-        "message": "Filename"
+        "message": "اسم الملف"
     }
 }

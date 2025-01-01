@@ -6,16 +6,16 @@
         "message": "Dodaje przycisk 'Wyślij do Zipline' do menu kontekstowego wyboru obrazu, wideo, audio i tekstu."
     },
     "contextMenu_UploadFile": {
-        "message": "Upload File to Zipline"
+        "message": "Prześlij plik do Zipline"
     },
     "contextMenu_UploadFileAdvanced": {
-        "message": "Upload File to Zipline (Advanced Options)"
+        "message": "Prześlij plik do Zipline (Opcje zaawansowane)"
     },
     "contextMenu_UploadText": {
         "message": "Wyślij tekst do Zipline"
     },
     "contextMenu_UploadTextAdvanced": {
-        "message": "Upload Text to Zipline (Advanced Options)"
+        "message": "Prześlij tekst do Zipline (Opcje zaawansowane)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Skróć adres URL używając Zipline"
@@ -27,7 +27,7 @@
         "message": "Wyślij adres URL używając Zipline [eksperymentalne]"
     },
     "contextMenu_UploadUrlAdvanced": {
-        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
+        "message": "Prześlij URL do Zipline (Opcje zaawansowane) [Eksperymentalne]"
     },
     "ziplineSettings": {
         "message": "Ustawienia Zipline"
@@ -192,25 +192,25 @@
         "message": "Skróć Adres URL"
     },
     "uploadFile": {
-        "message": "Upload File"
+        "message": "Prześlij plik"
     },
     "textContent": {
-        "message": "Text Content"
+        "message": "Treść tekstu"
     },
     "urlVanity": {
         "message": "Niestandardowy Link"
     },
     "urlMaxViews": {
-        "message": "URL Max Views"
+        "message": "Maksymalna liczba wyświetleń URL"
     },
     "urlPassword": {
-        "message": "Password"
+        "message": "Hasło"
     },
     "buttonShorten": {
         "message": "Skróć"
     },
     "buttonUpload": {
-        "message": "Upload"
+        "message": "Prześlij"
     },
     "ziplineExportSettings": {
         "message": "Eksportuj ustawienia"
@@ -219,7 +219,7 @@
         "message": "Importuj ustawienia"
     },
     "ziplineVersion": {
-        "message": "Zipline Version"
+        "message": "Wersja Zipline"
     },
     "ziplineFileNameFormat_v3": {
         "message": "V3"
@@ -231,6 +231,6 @@
         "message": "Folder"
     },
     "ziplineFilename": {
-        "message": "Filename"
+        "message": "Nazwa pliku"
     }
 }

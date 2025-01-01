@@ -6,16 +6,16 @@
         "message": "Menambahkan Tombol 'Unggah ke Zipline' pada menu pilihan untuk Gambar, Video, Audio, dan Teks"
     },
     "contextMenu_UploadFile": {
-        "message": "Upload File to Zipline"
+        "message": "Unggah File ke Zipline"
     },
     "contextMenu_UploadFileAdvanced": {
-        "message": "Upload File to Zipline (Advanced Options)"
+        "message": "Unggah File ke Zipline (Opsi Lanjutan)"
     },
     "contextMenu_UploadText": {
         "message": "Unggah Teks ke Zipline"
     },
     "contextMenu_UploadTextAdvanced": {
-        "message": "Upload Text to Zipline (Advanced Options)"
+        "message": "Unggah Teks ke Zipline (Opsi Lanjutan)"
     },
     "contextMenu_ShortenUrl": {
         "message": "Persingkat URL dengan Zipline"
@@ -27,7 +27,7 @@
         "message": "Persingkat URL dengan Zipline [Eksperimental]"
     },
     "contextMenu_UploadUrlAdvanced": {
-        "message": "Upload URL with Zipline (Advanced Options) [Experimental]"
+        "message": "Unggah URL ke Zipline (Opsi Lanjutan) [Eksperimental]"
     },
     "ziplineSettings": {
         "message": "Pengaturan Zipline"
@@ -192,25 +192,25 @@
         "message": "Persingkat URL"
     },
     "uploadFile": {
-        "message": "Upload File"
+        "message": "Unggah File"
     },
     "textContent": {
-        "message": "Text Content"
+        "message": "Konten Teks"
     },
     "urlVanity": {
         "message": "Kustom"
     },
     "urlMaxViews": {
-        "message": "URL Max Views"
+        "message": "Jumlah Maksimal Tampilan URL"
     },
     "urlPassword": {
-        "message": "Password"
+        "message": "Kata Sandi"
     },
     "buttonShorten": {
         "message": "Persingkat"
     },
     "buttonUpload": {
-        "message": "Upload"
+        "message": "Unggah"
     },
     "ziplineExportSettings": {
         "message": "Pengaturan Ekspor"
@@ -219,7 +219,7 @@
         "message": "Pengaturan Impor"
     },
     "ziplineVersion": {
-        "message": "Zipline Version"
+        "message": "Versi Zipline"
     },
     "ziplineFileNameFormat_v3": {
         "message": "V3"
@@ -231,6 +231,6 @@
         "message": "Folder"
     },
     "ziplineFilename": {
-        "message": "Filename"
+        "message": "Nama File"
     }
 }
