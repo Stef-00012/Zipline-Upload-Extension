@@ -83,17 +83,14 @@ for (const setting of settings) {
 			});
 
 			try {
-				if (element.id === "enableExperimentalFeatures" && element.checked) {
-					chrome.contextMenus.create({
-						id: "Zipline_Upload_URL",
-						title: "Upload URL with Zipliine [Experimental]",
-						contexts: ["link"],
-					});
-				} else if (
-					element.id === "enableExperimentalFeatures" &&
-					!element.checked
-				) {
-					chrome.contextMenus.remove("Zipline_Upload_URL");
+				if (element.id === "enableExperimentalFeatures") {
+					await chrome.contextMenus.update("Zipline_Upload_URL", {
+						visible: element.checked
+					})
+
+					await chrome.contextMenus.update("Advanced_Zipline_Upload_URL", {
+						visible: element.checked
+					})
 				}
 			} catch (e) {
 				console.error("unable to toogle experimental context menu options");

@@ -1,0 +1,13 @@
+Zipline Uploads memungkinkan Anda mengunggah file yang diklik kanan atau memperpendek URL yang diklik kanan ke instance self-hosted Zipline Anda (https://github.com/diced/zipline) tanpa perlu mengunduh file ke PC dan mengunggahnya secara manual.
+
+Menambahkan opsi "Unggah File ke Zipline" di menu konteks saat Anda mengklik kanan gambar, video, atau file audio.
+Menambahkan opsi "Unggah Teks ke Zipline" di menu konteks saat Anda mengklik kanan teks yang dipilih.
+Menambahkan opsi "Persingkat URL dengan Zipline" di menu konteks saat Anda mengklik kanan sebuah tautan.
+[Eksperimental] Menambahkan opsi "Unggah URL ke Zipline" di menu konteks saat Anda mengklik kanan sebuah tautan. Fitur ini memungkinkan Anda mengunggah konten dari URL tersebut (fitur ini dinonaktifkan secara default tetapi dapat diaktifkan di pengaturan dengan mengaktifkan toggle "Aktifkan Fitur Eksperimental").
+Semua opsi menu konteks memiliki varian "Opsi Lanjutan" yang memungkinkan Anda untuk:
+- Pada pemendekan URL, menambahkan nama vanity dan kata sandi ke tautan (kata sandi hanya untuk versi V4).
+- Pada unggahan, mengatur konfigurasi seperti kata sandi, jumlah maksimal tampilan, kompresi, folder, nama file, dll., khusus untuk file tersebut (folder dan nama file hanya untuk versi V4).
+
+Agar dapat digunakan, pertama-tama Anda harus membuka popup ekstensi dan mengatur URL Zipline serta token Zipline Anda.
+
+Semua pengaturan akan disimpan secara otomatis di penyimpanan lokal peramban Anda.

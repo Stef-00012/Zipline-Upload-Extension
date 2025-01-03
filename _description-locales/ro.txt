@@ -1,0 +1,13 @@
+Zipline Uploads iti permite  sa incarci fisierele pe care ai dat click dreapta sau sa iti scurtezi linkuri-le pe care ai dat click dreapta, pe instanta ta Zipline (https://github.com/diced/zipline) fara a fii nevoie de a descarca fisierul pe PC-ul si al incarca manual.
+
+Adauga optiunra "Upload File to Zipline" in meniul de context care apare cand dai click drepta pe o imagine, un video, sau un fisier audio.
+Adauga optiunea "Upload Text to Zipline" in meniul de context cand ai dat click dreapta pe un text selectat.
+Adauga optiunea "Shorten URL with zipline" in meniul de context cand ai dat click dreapta pr un link.
+[Experimental] Adauga optiunea "Upload URL to Zipline" in meniul de context cand dai click dreapta pe un link, aceasta optiune yr lasa sa incarci continutul unui URL ( aceasta optiune este dezactivata la instalarea extensiei, dar poate fii activata in setarile extensiei prin activarea "Enable Experimental Features" l).
+Toate meniurile din click dreapta au optiunea "Advanced Options" care te lasa da:
+la scurtare, sa adaugi un mesaj unic, si o parola pentru link ( parola functioneaza doar pe V4 )
+la incarcari, poti configura parola, vizualizari maximr, compresie, dosar, nume, etc. doar fix pentru acel fisier ( dosar si nume sunt doar pentru V4).
+
+Pentru a functiona trebuke sa deschizi fereastra extensiei si sa setezi URL-ul so Token-ul instantei tale Zipline.
+
+Toate setarile sunt salvate automat in stocarea browser-ului tau.

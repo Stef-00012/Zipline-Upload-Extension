@@ -46,17 +46,37 @@ If the your language is listed there,
 Extension Code: [Stef-00012](https://github.com/Stef-00012)<br />
 Popup UI: [Smartlinuxcoder](https://github.com/Smartlinuxcoder)<br />
 Translations:
-- English: [Stef-00012](https://github.com/Stef-00012)
-  - English (UK): 
-  - English (US): [Stef-00012](https://github.com/Stef-00012)
-- Italian: [Stef-00012](https://github.com/Stef-00012)
-- French: [KennySB-dev](https://github.com/KennySB-dev) & [SkyExploreWasTaken](https://github.com/SkyExploreWasTaken)
-- Polish: [iHategithub9000](https://github.com/iHategithub9000)
-- Romanian: [broisvoldemort](https://github.com/broisvoldemort) & [LeoMavri](https://github.com/LeoMavri) & [Lungu Stefan](https://github.com/lungustefan) 
-- Indonesian: [Muhammad Ari Al Ghifari](https://github.com/alfari24)
-- Hindi: [Vaibhav](https://github.com/VaibhavSys) & [Satindar](https://github.com/Satindar31)
-- Arabic: Cracky
-- German: [ukriu](https://github.com/ukriu)
+
+**Arabic**:
+- Cracky
+- [Linker](https://github.com/linkersh)
+
+**German**: [ukriu](https://github.com/ukriu)
+
+**English**: [Stef-00012](https://github.com/Stef-00012)
+- English (UK): [Stef-00012](https://github.com/Stef-00012)
+- English (US): [Stef-00012](https://github.com/Stef-00012)
+
+**French**: 
+- [KennySB-dev](https://github.com/KennySB-dev)
+- [SkyExploreWasTaken](https://github.com/SkyExploreWasTaken)
+
+**Hindi**:
+- [Vaibhav](https://github.com/VaibhavSys)
+- [Satindar](https://github.com/Satindar31)
+
+**Indonesian**:
+- [Muhammad Ari Al Ghifari](https://github.com/alfari24)
+- [Eryquicc](https://github.com/Eryquicc)
+
+**Italian**: [Stef-00012](https://github.com/Stef-00012)
+
+**Polish**: [iHategithub9000](https://github.com/iHategithub9000)
+
+**Romanian**:
+- [broisvoldemort](https://github.com/broisvoldemort)
+- [LeoMavri](https://github.com/LeoMavri)
+- [Lungu Stefan](https://github.com/lungustefan) 
 
 <details>
   <summary>Some Images</summary>

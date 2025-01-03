@@ -73,10 +73,8 @@ chrome.runtime.onInstalled.addListener(async () => {
 		contexts: ["link"],
 	});
 
-	const { ziplineEnableExperimentalFeatures: experimentalFeatures } =
-		await chrome.storage.local.get(["ziplineEnableExperimentalFeatures"]);
-
-	if (!experimentalFeatures) return;
+	const { enableExperimentalFeatures: experimentalFeatures } =
+		await chrome.storage.local.get(["enableExperimentalFeatures"]);
 
 	chrome.contextMenus.create({
 		id: "Zipline_Upload_URL",
@@ -84,6 +82,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 			chrome.i18n.getMessage("contextMenu_UploadUrl") ||
 			"Upload URL with Zipline [Experimental]",
 		contexts: ["link"],
+		visible: experimentalFeatures,
 	});
 
 	chrome.contextMenus.create({
@@ -92,6 +91,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 			chrome.i18n.getMessage("contextMenu_UploadUrlAdvanced") ||
 			"Upload URL with Zipline (Advanced Options) [Experimental]",
 		contexts: ["link"],
+		visible: experimentalFeatures,
 	});
 });
 

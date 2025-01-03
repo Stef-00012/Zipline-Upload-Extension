@@ -1,9 +1,10 @@
+/scripts
+
 *.crx
 *.pem
 *.zip
 *.sh
-changelog.md
-_icons
+
+/changelog.md
 node_modules
 bun.lockb
-/missingTranslationScript.js

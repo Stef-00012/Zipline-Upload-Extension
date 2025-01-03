@@ -1,0 +1,13 @@
+Zipline Uploads ti permette ti caricare i file cliccati col tasto destro o accorciare i link cliccati col tasto destro tramite la tua istanza selfhostata di Zipline (https://github.com/diced/zipline) senza dover scaricare il file sul tuo PC e caricarlo manualmente.
+
+Aggiunge un opzione "Carica il File su Zipline" nel menù del tasto destro di un immaginem un video o un file audio.
+Aggiunge un opzione "Carica il Testo su Zipline" nel menù del tasto destro di un testo selezionato.
+Aggiunge un opzione "Accorcia il Link con Zipline" nel menù del tasto destro di un link.
+[Sperimentale] Aggiunge un opzione "Carica il link su Zipline" nel menù del tasto destro di un link, ti permette di caricare il contenuto del link (questa funzione è disabilitata di base ma può essere attivara nelle impostazioni attivando "Attiva le Funzioni Sperimentali").
+Tutte le opzioni del tasto destro hanno una variante "Opzioni Avanzate" che ti permette di:
+- quando accorci, aggiungere un codice di vanità e una password al link (la password è disponibile solo nella V4 di Zipline).
+- quando carichi un file, aggiungere impostazioni come password, visualizzazioni massime, compressione, cartella, nome del file ecc. solo per quel file specifico (la cartella e il nome del file sono disponibili solo nella V4 di Zipline).
+
+Per funzione, devi prima aprire il popup dell'estensione e configurare il dominio di Zipline e il token di Zipline.
+
+Tutte le impostazioni sono salvate automaticamente nell'archiviazione locale del tuo browser.

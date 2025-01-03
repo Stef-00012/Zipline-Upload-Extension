@@ -1,0 +1,13 @@
+Zipline Uploads allow you to upload your right clicked files or shorten your right clicked URLs to your selfhosted instance of Zipline (https://github.com/diced/zipline) without having to download the file to your PC and upload it manually.
+
+Adds a "Upload File to Zipline" option in the context menu when right clicking an image, a video or an audio file.
+Adds a "Upload Text to Zipline" option in the context menu when right clicking a selected text.
+Adds a "Shorten URL with zipline" option in the context menu when right clicking a link.
+[Experimental] Adds a "Upload URL to Zipline" option in the context menu when right clicking a link, it allows to upload the content of the URL (this feature is disabled by default but can be enabled in the settings by enabling the "Enable Experimental Features" toggle).
+All of the right context menu options have a "Advanced Options" variant which allows you to:
+- on shorten, add a vanity name and a password to the link (password is V4 only).
+- on uploads, set configs such as password, max views, compression, folder, filename etc. just for that specific file (folder and filename are V4 only).
+
+For it to work you first have to open the extension's popup and set your Zipline URL and Zipline token.
+
+All the settings are saved automatically in the local storage of your browser.

@@ -1,0 +1,13 @@
+Zipline Uploads ermöglichen es Ihnen, Ihre mit der rechten Maustaste angeklickten Dateien hochzuladen oder Ihre mit der rechten Maustaste angeklickten URLs auf Ihre selbstgehostete Zipline-Instanz (https://github.com/diced/zipline) zu verkürzen, ohne die Datei auf Ihren PC herunterladen und manuell hochladen zu müssen.
+
+Fügt dem Kontextmenü beim Rechtsklick auf ein Bild, ein Video oder eine Audiodatei die Option "Datei zu Zipline hochladen" hinzu.
+Fügt dem Kontextmenü beim Rechtsklick auf einen ausgewählten Text die Option "Text zu Zipline hochladen" hinzu.
+Fügt dem Kontextmenü beim Rechtsklick auf einen Link die Option "URL mit Zipline kürzen" hinzu.
+[Experimentell] Fügt dem Kontextmenü beim Rechtsklick auf einen Link die Option "URL zu Zipline hochladen" hinzu, mit der der Inhalt der URL hochgeladen werden kann (diese Funktion ist standardmäßig deaktiviert, kann jedoch in den Einstellungen durch Aktivieren der Option "Experimentelle Funktionen aktivieren" aktiviert werden).
+Alle Optionen des Kontextmenüs haben eine Variante "Erweiterte Optionen", die es Ihnen ermöglicht:
+- beim Verkürzen einen Vanity-Namen und ein Passwort hinzuzufügen (Passwort ist nur in V4 verfügbar).
+- beim Hochladen Konfigurationen wie Passwort, maximale Ansichten, Komprimierung, Ordner, Dateiname usw. nur für diese spezielle Datei festzulegen (Ordner und Dateiname sind nur in V4 verfügbar).
+
+Damit es funktioniert, müssen Sie zuerst das Popup der Erweiterung öffnen und Ihre Zipline-URL und Ihren Zipline-Token festlegen.
+
+Alle Einstellungen werden automatisch im lokalen Speicher Ihres Browsers gespeichert.

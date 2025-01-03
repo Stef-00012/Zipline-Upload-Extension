@@ -1,0 +1,14 @@
+Zipline Uploads vous permet de téléverser les fichiers ou de raccourcir les URLs sur lequels vous avez fait clic-droit dans votre instance personelle de Zipline (https://github.com/diced/zipline) sans devoir télécharger d'abord le fichier sur votre PC manuellement.
+
+L'extension ajoute les options suivantes au menu contextuel (quand vous faites un clic-droit) :
+- "Téléverser le fichier vers Zipline"
+- "Téléverser le texte vers Zipline"
+- "Raccourcir l'URL avec Zipline"
+- "Téléverser l'URL vers Zipline" [Expérimental]
+Toutes les options du menu contextuel ont une variante (Options avancées), qui vous permettent de :
+- En raccourcissant, personnaliser l'URL et ajouter un mot de passe pour y accéder (Le mot de passe ne marche qu'avec la version 4 de Zipline)
+- En téléversant, ajouter un mot de passe, configurer les vues maximales et la compression, choisir dans quel dossier téléverser et le nom du fichier, etc... juste pour le fichier sur lequel on a fait clic-droit. (Choisir le dossier et le nom du fichier ne marche qu'avec la version 4 de Zipline)
+
+Pour que l'extension marche, vous devez d'abord l'ouvrir et configurer l'URL de votre instance Zipline ainsi que votre jeton d'accés.
+
+Tous les paramètres sont sauvegardés automatiquement dans le stockage local de votre navigateur.

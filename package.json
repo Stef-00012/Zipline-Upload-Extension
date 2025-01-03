@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "@types/bun": "^1.1.14",
+    "@types/node": "^22.10.3",
     "chrome-types": "^0.1.327"
   }
 }

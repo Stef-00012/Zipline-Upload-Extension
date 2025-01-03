@@ -1,0 +1,13 @@
+Zipline Uploads pozwala ci wysłać pliki lub skracać adresy URL do twojej samohostowanej instancji Zipline (https://github.com/diced/zipline) bez potrzeby pobierania pliku na twój komputer i wysyłania go manualnie.
+
+Dodaje opcję "Wyślij plik do Zipline" do menu kontekstowego, kiedy klikasz prawym przyciskiem myszy na obraz, wideo, lub plik audio.
+Dodaje opcję "Wyślij tekst do Zipline" do menu kontekstowego, kiedy klikasz prawym przyciskiem myszy na zaznaczony tekst.
+Dodaje opcję "Skróć adres URL z Zipline" do menu kontekstowego, kiedy klikasz prawym przyciskiem myszy na link.
+[Eksperymentalne] Dodaje opcję "Wyślij adres URL do Zipline" do menu kontekstowego, kiedy klikasz prawym przyciskiem myszy na link, ta opcja pozwala na wysłanie zawartości strony z adresu URL.
+Wszystkie opcje z menu kontekstowego mają wariant zaawansowanych opcji, co pozwala na:
+- dodanie nazwy i hasła do linku przy skracaniu linku (hasło jest dostępne tylko na wersji Zipline V4)
+- ustawianie konfiguracji takich jak hasło, maksymalna ilość wyświetleń, kompresja, folder, nazwa pliku itp. dla jednego wysyłanego pliku. (folder i nazwa pliku jest dostępne tylko na wersji Zipline V4)
+
+Żeby rozszerzenie działało, najpierw musisz ustawić adres URL Zipline i Token Zipline.
+
+Wszystkie ustawienia są automatycznie zapisywane w pamięci twojej przeglądarki.
