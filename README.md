@@ -36,10 +36,12 @@ First check if your language is listed in the [supported locales](https://develo
 
 If the your language is listed there,
 
-- [Fork](https://github.com/Stef-00012/Zipline-Upload-Extension/fork) the repository.
-- Create a file `src/_locales/<locale_code>/messages.json` (replace `<locale_code>` with the code of your language, you can get it from the [supported locales](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales) list).
-- Translate the strings (use the [english file](https://github.com/Stef-00012/Zipline-Upload-Extension/blob/main/src/_locales/en/messages.json) as template).
-- Make a pull request.
+1. [Fork](https://github.com/Stef-00012/Zipline-Upload-Extension/fork) the repository.
+2. Create the translation files (replace `<locale_code>` with the code of your language, you can get it from the [supported locales](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales) list).
+    - `src/_locales/<locale_code>/messages.json`.
+    - `_description-locales/<locale_code>.txt`.
+3. Translate the strings (use the [english file](https://github.com/Stef-00012/Zipline-Upload-Extension/blob/main/src/_locales/en/messages.json) and [english description](https://github.com/Stef-00012/Zipline-Upload-Extension/blob/main/_description-locales/en.txt) as templates).
+4. Make a pull request.
 
 # Credits
 
