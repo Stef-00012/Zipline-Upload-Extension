@@ -280,8 +280,8 @@ async function uploadToZipline(blob, text = false) {
 	if (apiVersion === "v3") {
 		headers.Authorization = token;
 		headers.Format = fileNameFormat.toLowerCase();
-		headers["Image-Compression-Percent"] = String(imageCompression);
-
+		
+		if (imageCompression) headers["Image-Compression-Percent"] = String(imageCompression);
 		if (maxViews) headers["Max-Views"] = String(maxViews);
 		if (password) headers.Password = password;
 		if (overrideDomain)
@@ -293,8 +293,8 @@ async function uploadToZipline(blob, text = false) {
 	} else if (apiVersion === "v4") {
 		headers.Authorization = token;
 		headers["X-Zipline-Format"] = fileNameFormat.toLowerCase();
-		headers["X-Zipline-Image-Compression-Percent"] = String(imageCompression);
-
+		
+		if (imageCompression) headers["X-Zipline-Image-Compression-Percent"] = String(imageCompression);
 		if (maxViews) headers["X-Zipline-Max-Views"] = String(maxViews);
 		if (password) headers["X-Zipline-Password"] = password;
 		if (folder && folder !== "noFolder") headers["X-Zipline-Folder"] = folder;

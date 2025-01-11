@@ -90,7 +90,7 @@ async function shortenWithZipline({
 	password: urlPassword,
 	maxViews: urlMaxViews,
 }) {
-	const { ziplineToken } = await chrome.storage.local.get(["ziplineToken"]);
+	const { token } = await chrome.storage.local.get(["token"]);
 
 	if (!hostname)
 		return await chrome.notifications.create({
@@ -108,7 +108,7 @@ async function shortenWithZipline({
 			iconUrl: chrome.runtime.getURL("icons/512.png"),
 		});
 
-	if (!ziplineToken)
+	if (!token)
 		return await chrome.notifications.create({
 			title: "Error",
 			message: "Please set your Zipline token first.",
@@ -141,7 +141,7 @@ async function shortenWithZipline({
 			body: JSON.stringify(body),
 			method: "POST",
 			headers: {
-				Authorization: ziplineToken,
+				Authorization: token,
 				"Content-Type": "application/json",
 				...extraHeaders,
 			},
